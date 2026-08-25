@@ -15,15 +15,15 @@ import { getUsers } from "../lib/auth";
 import type { User } from "../lib/auth";
 
 // ── Tokens de color ──────────────────────────────────────────────────────────
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
-const C_DISP = "#27ae60";
-const C_CASI = "#e67e22";
-const C_COMP = "#c0392b";
-const C_TUYA = "#2980b9";
-const C_GREY = "#AAAAAA";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
+const LIGHT = "#3D3D3D";
+const C_DISP = "#8B1A2F";
+const C_CASI = "#C08A2E";
+const C_COMP = "#C0574A";
+const C_TUYA = "#4A6FA5";
+const C_GREY = "#A8A296";
 
 // ── Tipos ────────────────────────────────────────────────────────────────────
 type CatId = "entrenamiento" | "fisioterapia" | "podologia";
@@ -203,7 +203,7 @@ function SlotCard({
       transition: "box-shadow 0.15s",
     }}>
       {/* Hora */}
-      <div style={{ padding: "1rem 1.1rem", minWidth: 90, borderRight: "1px solid rgba(31,31,31,0.07)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: `${color}0a` }}>
+      <div style={{ padding: "1rem 1.1rem", minWidth: 90, borderRight: "1px solid rgba(61,61,61,0.07)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: `${color}0a` }}>
         <p style={{ fontSize: "1rem", fontWeight: 700, color: DARK, lineHeight: 1, marginBottom: "0.25rem", fontVariantNumeric: "tabular-nums" }}>{slot.hora}</p>
         <p style={{ fontSize: "0.6rem", color: MID }}>{slot.horaFin}</p>
         <p style={{ fontSize: "0.55rem", color: MID, marginTop: "0.3rem" }}>{serv.duracion} min</p>
@@ -237,7 +237,7 @@ function SlotCard({
                 <span style={{ fontSize: "0.6rem", color: MID }}>{libres} libres</span>
               )}
             </div>
-            <div style={{ height: 4, backgroundColor: "rgba(31,31,31,0.1)", borderRadius: 2, overflow: "hidden" }}>
+            <div style={{ height: 4, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 2, overflow: "hidden" }}>
               <div style={{ height: "100%", width: `${pct}%`, backgroundColor: color, borderRadius: 2, transition: "width 0.3s" }} />
             </div>
           </div>
@@ -270,8 +270,8 @@ function SlotCard({
         ) : (
           <button onClick={() => onReservar(slot)} style={{
             padding: "0.65rem 1.1rem", fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase",
-            border: "none", borderRadius: "4px", backgroundColor: DARK,
-            color: BG, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif",
+            border: "none", borderRadius: "4px", backgroundColor: "#8B1A2F",
+            color: "#FFFFFF", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif",
             fontWeight: 600, whiteSpace: "nowrap",
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
           }}>
@@ -315,7 +315,7 @@ function ModalConfirmar({
         ) : (
           <>
             {/* Handle */}
-            <div style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(31,31,31,0.18)", margin: "0.75rem auto 0" }} />
+            <div style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(61,61,61,0.18)", margin: "0.75rem auto 0" }} />
             <div style={{ padding: "1.25rem 1.5rem 0.75rem" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <p className="font-serif" style={{ fontSize: "1.1rem", fontWeight: 400, color: DARK }}>Confirmar reserva</p>
@@ -326,16 +326,16 @@ function ModalConfirmar({
             {/* Resumen */}
             <div style={{ padding: "0 1.5rem 1.5rem" }}>
               {/* Header del servicio */}
-              <div style={{ backgroundColor: DARK, borderRadius: "8px", padding: "1.1rem 1.25rem", marginBottom: "1.25rem" }}>
-                <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(237,230,217,0.6)", marginBottom: "0.35rem" }}>{serv.descripcion}</p>
-                <p style={{ fontSize: "1rem", fontWeight: 600, color: BG, marginBottom: "0.75rem" }}>{serv.labelCompleto}</p>
+              <div style={{ backgroundColor: LIGHT, borderRadius: "8px", padding: "1.1rem 1.25rem", marginBottom: "1.25rem" }}>
+                <p style={{ fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "0.35rem" }}>{serv.descripcion}</p>
+                <p style={{ fontSize: "1rem", fontWeight: 600, color: "#FFFFFF", marginBottom: "0.75rem" }}>{serv.labelCompleto}</p>
                 <div style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap" }}>
                   {[
                     { icon: <Calendar size={12} />, label: fmtFecha(fecha, { weekday: "short", day: "numeric", month: "short" }) },
                     { icon: <Clock size={12} />, label: `${slot.hora} – ${slot.horaFin}` },
                     { icon: <Users size={12} />, label: slot.proNombre || "Auto-asignado" },
                   ].map(({ icon, label }) => (
-                    <div key={label} style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "rgba(237,230,217,0.85)", fontSize: "0.75rem" }}>
+                    <div key={label} style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.85)", fontSize: "0.75rem" }}>
                       {icon} {label}
                     </div>
                   ))}
@@ -348,7 +348,7 @@ function ModalConfirmar({
                 ["Precio", serv.precio],
                 ...(serv.capacidad > 1 ? [["Plazas", `${slot.plazasTotales - slot.plazasOcupadas} disponibles`]] : []),
               ].map(([label, value]) => (
-                <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.6rem 0", borderBottom: "1px solid rgba(31,31,31,0.06)" }}>
+                <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.6rem 0", borderBottom: "1px solid rgba(61,61,61,0.06)" }}>
                   <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID }}>{label}</span>
                   <span style={{ fontSize: "0.82rem", color: DARK, fontWeight: 500 }}>{value}</span>
                 </div>
@@ -361,7 +361,7 @@ function ModalConfirmar({
               <button onClick={onConfirmar} style={{
                 width: "100%", marginTop: "1.25rem", padding: "1rem", fontSize: "0.75rem",
                 letterSpacing: "0.18em", textTransform: "uppercase", border: "none", borderRadius: "6px",
-                backgroundColor: DARK, color: BG, cursor: "pointer",
+                backgroundColor: "#8B1A2F", color: "#FFFFFF", cursor: "pointer",
                 fontFamily: "var(--font-inter), system-ui, sans-serif", fontWeight: 600,
                 boxShadow: "0 4px 12px rgba(0,0,0,0.18)",
               }}>
@@ -491,7 +491,7 @@ function ReservarContent() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: BG, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
       {/* Cabecera sticky */}
-      <div style={{ position: "sticky", top: 0, zIndex: 10, backgroundColor: BG, borderBottom: "1px solid rgba(31,31,31,0.1)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 10, backgroundColor: BG, borderBottom: "1px solid rgba(61,61,61,0.1)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
         {/* Top bar */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.85rem 1.25rem 0", maxWidth: 900, margin: "0 auto" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none", color: MID, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
@@ -511,8 +511,8 @@ function ReservarContent() {
             <button key={c.id} onClick={() => cambiarCat(c.id)} style={{
               padding: "0.65rem 1.1rem", background: "none", border: "none", cursor: "pointer",
               fontSize: "0.7rem", fontWeight: cat === c.id ? 700 : 400, letterSpacing: "0.08em",
-              color: cat === c.id ? DARK : MID,
-              borderBottom: cat === c.id ? `2px solid ${DARK}` : "2px solid transparent",
+              color: cat === c.id ? "#8B1A2F" : MID,
+              borderBottom: cat === c.id ? `2px solid #8B1A2F` : "2px solid transparent",
               transition: "all 0.15s", whiteSpace: "nowrap",
               fontFamily: "var(--font-inter), system-ui, sans-serif",
             }}>
@@ -530,8 +530,8 @@ function ReservarContent() {
               return (
                 <button key={sid} onClick={() => { setServId(sid); setSlotSeleccionado(null); }} style={{
                   padding: "0.4rem 0.9rem", fontSize: "0.65rem", letterSpacing: "0.08em", fontWeight: sel ? 600 : 400,
-                  border: `1px solid ${sel ? DARK : "rgba(31,31,31,0.2)"}`, borderRadius: "20px",
-                  backgroundColor: sel ? DARK : "transparent", color: sel ? BG : MID,
+                  border: `1px solid ${sel ? "#8B1A2F" : "#3D3D3D"}`, borderRadius: "20px",
+                  backgroundColor: sel ? "#8B1A2F" : "transparent", color: sel ? DARK : MID,
                   cursor: "pointer", transition: "all 0.15s", whiteSpace: "nowrap",
                   fontFamily: "var(--font-inter), system-ui, sans-serif",
                 }}>
@@ -544,8 +544,8 @@ function ReservarContent() {
 
         {/* Navegación de fecha + toggle vista */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.65rem 1.25rem 0.85rem", maxWidth: 900, margin: "0 auto", gap: "0.75rem", flexWrap: "wrap" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 0, border: "1px solid rgba(31,31,31,0.2)", borderRadius: "6px", overflow: "hidden", flex: 1, maxWidth: 360 }}>
-            <button onClick={() => setFecha(addDays(fecha, vista === "dia" ? -1 : -7))} style={{ background: "none", border: "none", borderRight: "1px solid rgba(31,31,31,0.12)", cursor: "pointer", color: DARK, padding: "0.6rem 0.85rem", flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 0, border: "1px solid #3D3D3D", borderRadius: "6px", overflow: "hidden", flex: 1, maxWidth: 360 }}>
+            <button onClick={() => setFecha(addDays(fecha, vista === "dia" ? -1 : -7))} style={{ background: "none", border: "none", borderRight: "1px solid rgba(61,61,61,0.12)", cursor: "pointer", color: DARK, padding: "0.6rem 0.85rem", flexShrink: 0 }}>
               <ChevronLeft size={16} />
             </button>
             <div style={{ flex: 1, textAlign: "center", padding: "0.55rem 0.5rem" }}>
@@ -556,7 +556,7 @@ function ReservarContent() {
                 <span style={{ fontSize: "0.55rem", color: C_DISP, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Hoy</span>
               )}
             </div>
-            <button onClick={() => setFecha(addDays(fecha, vista === "dia" ? 1 : 7))} style={{ background: "none", border: "none", borderLeft: "1px solid rgba(31,31,31,0.12)", cursor: "pointer", color: DARK, padding: "0.6rem 0.85rem", flexShrink: 0 }}>
+            <button onClick={() => setFecha(addDays(fecha, vista === "dia" ? 1 : 7))} style={{ background: "none", border: "none", borderLeft: "1px solid rgba(61,61,61,0.12)", cursor: "pointer", color: DARK, padding: "0.6rem 0.85rem", flexShrink: 0 }}>
               <ChevronRight size={16} />
             </button>
           </div>
@@ -567,12 +567,12 @@ function ReservarContent() {
                 Hoy
               </button>
             )}
-            <div style={{ display: "flex", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "6px", overflow: "hidden" }}>
+            <div style={{ display: "flex", border: "1px solid #3D3D3D", borderRadius: "6px", overflow: "hidden" }}>
               {(["dia", "semana"] as const).map((v) => (
                 <button key={v} onClick={() => setVista(v)} style={{
                   padding: "0.5rem 0.85rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase",
-                  border: "none", backgroundColor: vista === v ? DARK : "transparent",
-                  color: vista === v ? BG : MID, cursor: "pointer",
+                  border: "none", backgroundColor: vista === v ? "#8B1A2F" : "transparent",
+                  color: vista === v ? DARK : MID, cursor: "pointer",
                   fontFamily: "var(--font-inter), system-ui, sans-serif",
                 }}>
                   {v === "dia" ? "Día" : "Semana"}
@@ -594,7 +594,7 @@ function ReservarContent() {
                 <p style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>🏖️</p>
                 <p style={{ fontSize: "1rem", fontWeight: 500, color: DARK, marginBottom: "0.4rem" }}>El centro está cerrado</p>
                 <p style={{ fontSize: "0.82rem", color: MID, marginBottom: "1.5rem" }}>No hay citas disponibles el fin de semana.</p>
-                <button onClick={() => setFecha(mondayOf(addDays(fecha, 7)))} style={{ padding: "0.65rem 1.5rem", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", border: `1px solid ${DARK}`, borderRadius: "4px", backgroundColor: DARK, color: BG, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                <button onClick={() => setFecha(mondayOf(addDays(fecha, 7)))} style={{ padding: "0.65rem 1.5rem", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", border: `1px solid #8B1A2F`, borderRadius: "4px", backgroundColor: "#8B1A2F", color: "#FFFFFF", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                   Ver lunes siguiente
                 </button>
               </div>
@@ -651,7 +651,7 @@ function ReservarContent() {
                       disabled={fin} style={{
                         padding: "0.6rem 0.25rem", textAlign: "center", background: "none", border: "none",
                         cursor: fin ? "default" : "pointer", borderRadius: "6px 6px 0 0",
-                        backgroundColor: isToday ? `${DARK}0a` : "transparent",
+                        backgroundColor: isToday ? "#8B1A2F1a" : "transparent",
                         opacity: fin ? 0.4 : 1,
                       }}>
                       <p style={{ fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID }}>{DIAS_SEMANA[di]}</p>
@@ -670,20 +670,20 @@ function ReservarContent() {
               </div>
 
               {/* Grid de slots */}
-              <div style={{ border: "1px solid rgba(31,31,31,0.1)", borderRadius: "0 0 8px 8px", overflow: "hidden" }}>
+              <div style={{ border: "1px solid rgba(61,61,61,0.1)", borderRadius: "0 0 8px 8px", overflow: "hidden" }}>
                 {slotsDelDia(serv.duracion).map((hora, hi) => (
-                  <div key={hora} style={{ display: "grid", gridTemplateColumns: `64px repeat(7, 1fr)`, borderBottom: hi < slotsDelDia(serv.duracion).length - 1 ? "1px solid rgba(31,31,31,0.07)" : "none" }}>
+                  <div key={hora} style={{ display: "grid", gridTemplateColumns: `64px repeat(7, 1fr)`, borderBottom: hi < slotsDelDia(serv.duracion).length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none" }}>
                     {/* Etiqueta de hora */}
-                    <div style={{ padding: "0.6rem 0.5rem", display: "flex", alignItems: "center", justifyContent: "flex-end", backgroundColor: LIGHT, borderRight: "1px solid rgba(31,31,31,0.08)" }}>
+                    <div style={{ padding: "0.6rem 0.5rem", display: "flex", alignItems: "center", justifyContent: "flex-end", backgroundColor: LIGHT, borderRight: "1px solid rgba(61,61,61,0.08)" }}>
                       <span style={{ fontSize: "0.6rem", color: MID, fontVariantNumeric: "tabular-nums" }}>{hora}</span>
                     </div>
                     {/* Celdas de cada día */}
                     {weekDays.map((ds) => {
                       if (isWeekend(ds)) return (
-                        <div key={ds} style={{ backgroundColor: "rgba(31,31,31,0.03)", borderRight: "1px solid rgba(31,31,31,0.06)" }} />
+                        <div key={ds} style={{ backgroundColor: "rgba(255,255,255,0.03)", borderRight: "1px solid rgba(61,61,61,0.06)" }} />
                       );
                       const estado = slotEstadoEnSemana(ds, hora);
-                      if (!estado) return <div key={ds} style={{ borderRight: "1px solid rgba(31,31,31,0.06)" }} />;
+                      if (!estado) return <div key={ds} style={{ borderRight: "1px solid rgba(61,61,61,0.06)" }} />;
                       const color = estadoColor(estado);
                       const libresW = (() => {
                         const ss = computeSlots(serv, ds, citas, bloqueos, profesionales, user?.id || null).find((s) => s.hora === hora);
@@ -694,7 +694,7 @@ function ReservarContent() {
                           disabled={estado === "pasado" || estado === "completo"} style={{
                             display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
                             padding: "0.55rem 0.25rem", background: `${color}18`,
-                            border: "none", borderRight: "1px solid rgba(31,31,31,0.06)",
+                            border: "none", borderRight: "1px solid rgba(61,61,61,0.06)",
                             cursor: (estado === "pasado" || estado === "completo") ? "default" : "pointer",
                             transition: "background-color 0.15s", gap: "0.2rem",
                           }}
@@ -732,11 +732,11 @@ function ReservarContent() {
 
       {/* CTA si no está logueado */}
       {!user && (
-        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: BG, borderTop: "1px solid rgba(31,31,31,0.1)", padding: "1rem 1.25rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", zIndex: 50, boxShadow: "0 -4px 20px rgba(0,0,0,0.08)" }}>
+        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, backgroundColor: BG, borderTop: "1px solid rgba(61,61,61,0.1)", padding: "1rem 1.25rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", zIndex: 50, boxShadow: "0 -4px 20px rgba(0,0,0,0.08)" }}>
           <p style={{ fontSize: "0.78rem", color: MID, flex: 1 }}>
             Inicia sesión para reservar tu cita.
           </p>
-          <Link href={`/login?next=/reservar?categoria=${cat}`} style={{ padding: "0.7rem 1.4rem", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", backgroundColor: DARK, color: BG, textDecoration: "none", borderRadius: "4px", fontWeight: 600, whiteSpace: "nowrap" }}>
+          <Link href={`/login?next=/reservar?categoria=${cat}`} style={{ padding: "0.7rem 1.4rem", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", backgroundColor: "#8B1A2F", color: "#FFFFFF", textDecoration: "none", borderRadius: "4px", fontWeight: 600, whiteSpace: "nowrap" }}>
             Iniciar sesión
           </Link>
         </div>
@@ -761,8 +761,8 @@ function ReservarContent() {
 // ── Export con Suspense (requerido por useSearchParams) ───────────────────────
 export default function ReservarPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: "100vh", backgroundColor: "#EDE6D9", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <p style={{ fontSize: "0.8rem", color: "#3A3A3A", letterSpacing: "0.1em" }}>Cargando...</p>
+    <Suspense fallback={<div style={{ minHeight: "100vh", backgroundColor: "#2C2C2C", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <p style={{ fontSize: "0.8rem", color: "#A0A0A0", letterSpacing: "0.1em" }}>Cargando...</p>
     </div>}>
       <ReservarContent />
     </Suspense>

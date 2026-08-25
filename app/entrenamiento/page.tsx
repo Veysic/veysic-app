@@ -21,10 +21,12 @@ import {
   MessageSquare,
 } from "lucide-react";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
+const BG = "#2C2C2C";
+const SURFACE = "#3D3D3D";
+const TEXT = "#FFFFFF";
+const MUTED = "#A0A0A0";
+const ACCENT = "#8B1A2F";
+const ACCENT_HOVER = "#B8324A";
 
 // ── Fade-in on scroll ─────────────────────────────────────────────────────
 function FadeIn({
@@ -206,7 +208,7 @@ const FAQ = [
 function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ borderBottom: "1px solid rgba(31,31,31,0.1)" }}>
+    <div style={{ borderBottom: "1px solid rgba(61,61,61,0.1)" }}>
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -223,12 +225,12 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
           gap: "1rem",
         }}
       >
-        <span style={{ fontSize: "0.95rem", color: DARK, fontWeight: 500, lineHeight: 1.4 }}>
+        <span style={{ fontSize: "0.95rem", color: TEXT, fontWeight: 500, lineHeight: 1.4 }}>
           {pregunta}
         </span>
         <ChevronDown
           size={16}
-          color={MID}
+          color={MUTED}
           style={{
             flexShrink: 0,
             transform: open ? "rotate(180deg)" : "none",
@@ -246,7 +248,7 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
         <p
           style={{
             fontSize: "0.875rem",
-            color: MID,
+            color: MUTED,
             lineHeight: 1.8,
             paddingBottom: "1.25rem",
           }}
@@ -261,14 +263,14 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
 // ── Página ─────────────────────────────────────────────────────────────────
 export default function EntrenamientoPage() {
   return (
-    <div style={{ backgroundColor: BG, color: DARK }}>
+    <div style={{ backgroundColor: BG, color: TEXT }}>
       <Header />
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section
         style={{
           minHeight: "100vh",
-          backgroundColor: DARK,
+          backgroundColor: BG,
           display: "flex",
           alignItems: "center",
           paddingTop: "5rem",
@@ -283,7 +285,7 @@ export default function EntrenamientoPage() {
               fontSize: "0.65rem",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(237,230,217,0.5)",
+              color: "rgba(255,255,255,0.5)",
               marginBottom: "2rem",
             }}
           >
@@ -295,7 +297,7 @@ export default function EntrenamientoPage() {
             style={{
               fontSize: "clamp(2.6rem, 6vw, 5rem)",
               lineHeight: 1.08,
-              color: BG,
+              color: TEXT,
               marginBottom: "2rem",
               maxWidth: "780px",
               fontWeight: 400,
@@ -310,7 +312,7 @@ export default function EntrenamientoPage() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.85,
-              color: "rgba(237,230,217,0.65)",
+              color: "rgba(255,255,255,0.65)",
               maxWidth: "520px",
               marginBottom: "3rem",
             }}
@@ -328,14 +330,14 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                backgroundColor: BG,
-                color: DARK,
+                backgroundColor: ACCENT,
+                color: "#FFFFFF",
                 textDecoration: "none",
                 borderRadius: "2px",
                 transition: "background-color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F5F0E8")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = BG)}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = ACCENT_HOVER)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = ACCENT)}
             >
               Ver modalidades
             </a>
@@ -347,14 +349,22 @@ export default function EntrenamientoPage() {
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 backgroundColor: "transparent",
-                color: BG,
+                color: ACCENT,
                 textDecoration: "none",
-                border: "1px solid rgba(237,230,217,0.35)",
+                border: "1px solid " + ACCENT,
                 borderRadius: "2px",
-                transition: "border-color 0.2s",
+                transition: "background-color 0.2s, color 0.2s, border-color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.7)")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.35)")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = ACCENT;
+                e.currentTarget.style.borderColor = ACCENT;
+                e.currentTarget.style.color = "#FFFFFF";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.borderColor = ACCENT;
+                e.currentTarget.style.color = ACCENT;
+              }}
             >
               ¿Cómo funciona?
             </a>
@@ -374,7 +384,7 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -385,13 +395,13 @@ export default function EntrenamientoPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "1rem",
               }}
             >
               Elige cómo quieres entrenar
             </h2>
-            <p style={{ fontSize: "0.9rem", color: MID, maxWidth: 520, lineHeight: 1.8, marginBottom: "4rem" }}>
+            <p style={{ fontSize: "0.9rem", color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: "4rem" }}>
               Tres formatos diseñados para adaptarse a tu situación, presupuesto y objetivos. Todos con el mismo nivel de exigencia y seguimiento.
             </p>
           </FadeIn>
@@ -404,8 +414,8 @@ export default function EntrenamientoPage() {
               <FadeIn key={id} delay={i * 120}>
                 <div
                   style={{
-                    backgroundColor: LIGHT,
-                    border: "1px solid rgba(31,31,31,0.1)",
+                    backgroundColor: SURFACE,
+                    border: "1px solid rgba(61,61,61,0.1)",
                     borderRadius: "4px",
                     overflow: "hidden",
                     display: "flex",
@@ -416,27 +426,27 @@ export default function EntrenamientoPage() {
                   <div
                     style={{
                       padding: "2rem 1.75rem 1.5rem",
-                      borderBottom: "1px solid rgba(31,31,31,0.08)",
+                      borderBottom: "1px solid rgba(61,61,61,0.08)",
                     }}
                   >
-                    <Icon size={22} strokeWidth={1.5} color={DARK} style={{ marginBottom: "1.25rem" }} />
+                    <Icon size={22} strokeWidth={1.5} color={ACCENT} style={{ marginBottom: "1.25rem" }} />
                     <h3
                       className="font-serif"
-                      style={{ fontSize: "1.3rem", fontWeight: 400, color: DARK, marginBottom: "0.5rem" }}
+                      style={{ fontSize: "1.3rem", fontWeight: 400, color: TEXT, marginBottom: "0.5rem" }}
                     >
                       {titulo}
                     </h3>
-                    <p style={{ fontSize: "0.8rem", color: MID, lineHeight: 1.7 }}>{tagline}</p>
+                    <p style={{ fontSize: "0.8rem", color: MUTED, lineHeight: 1.7 }}>{tagline}</p>
                   </div>
 
                   {/* Ventajas */}
-                  <div style={{ padding: "1.5rem 1.75rem", borderBottom: "1px solid rgba(31,31,31,0.08)" }}>
+                  <div style={{ padding: "1.5rem 1.75rem", borderBottom: "1px solid rgba(61,61,61,0.08)" }}>
                     <p
                       style={{
                         fontSize: "0.6rem",
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
-                        color: MID,
+                        color: MUTED,
                         marginBottom: "0.9rem",
                       }}
                     >
@@ -445,8 +455,8 @@ export default function EntrenamientoPage() {
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.55rem" }}>
                       {ventajas.map((v, j) => (
                         <li key={j} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start" }}>
-                          <CheckCircle size={13} color={DARK} style={{ flexShrink: 0, marginTop: "0.15rem" }} />
-                          <span style={{ fontSize: "0.8rem", color: MID, lineHeight: 1.6 }}>{v}</span>
+                          <CheckCircle size={13} color={ACCENT} style={{ flexShrink: 0, marginTop: "0.15rem" }} />
+                          <span style={{ fontSize: "0.8rem", color: MUTED, lineHeight: 1.6 }}>{v}</span>
                         </li>
                       ))}
                     </ul>
@@ -459,7 +469,7 @@ export default function EntrenamientoPage() {
                         fontSize: "0.6rem",
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
-                        color: MID,
+                        color: MUTED,
                         marginBottom: "0.9rem",
                       }}
                     >
@@ -474,11 +484,11 @@ export default function EntrenamientoPage() {
                             padding: "0.9rem 1rem",
                             borderRadius: "3px",
                             backgroundColor: p.popular
-                              ? DARK
-                              : "rgba(31,31,31,0.04)",
+                              ? ACCENT
+                              : "rgba(255,255,255,0.04)",
                             border: p.popular
                               ? "none"
-                              : "1px solid rgba(31,31,31,0.1)",
+                              : "1px solid rgba(255,255,255,0.1)",
                           }}
                         >
                           {p.popular && (
@@ -487,7 +497,7 @@ export default function EntrenamientoPage() {
                                 position: "absolute",
                                 top: -10,
                                 right: 10,
-                                backgroundColor: "#c0392b",
+                                backgroundColor: "#C0574A",
                                 color: "#fff",
                                 fontSize: "0.55rem",
                                 letterSpacing: "0.12em",
@@ -513,7 +523,7 @@ export default function EntrenamientoPage() {
                             <span
                               style={{
                                 fontSize: "0.75rem",
-                                color: p.popular ? "rgba(237,230,217,0.7)" : MID,
+                                color: p.popular ? "rgba(255,255,255,0.7)" : MUTED,
                               }}
                             >
                               {p.etiqueta}
@@ -522,18 +532,18 @@ export default function EntrenamientoPage() {
                               style={{
                                 fontSize: "1.05rem",
                                 fontWeight: 600,
-                                color: p.popular ? BG : DARK,
+                                color: TEXT,
                               }}
                             >
                               {p.precio}
                             </span>
                           </div>
                           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.15rem" }}>
-                            <span style={{ fontSize: "0.7rem", color: p.popular ? "rgba(237,230,217,0.5)" : MID }}>
+                            <span style={{ fontSize: "0.7rem", color: p.popular ? "rgba(255,255,255,0.5)" : MUTED }}>
                               {p.detalle}
                             </span>
                             {"nota" in p && p.nota && (
-                              <span style={{ fontSize: "0.65rem", color: p.popular ? "rgba(237,230,217,0.5)" : MID, fontStyle: "italic" }}>
+                              <span style={{ fontSize: "0.65rem", color: p.popular ? "rgba(255,255,255,0.5)" : MUTED, fontStyle: "italic" }}>
                                 {p.nota}
                               </span>
                             )}
@@ -556,14 +566,14 @@ export default function EntrenamientoPage() {
                         fontSize: "0.65rem",
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
-                        backgroundColor: DARK,
-                        color: BG,
+                        backgroundColor: ACCENT,
+                        color: "#FFFFFF",
                         textDecoration: "none",
                         borderRadius: "2px",
                         transition: "background-color 0.2s",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3A3A3A")}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = DARK)}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = ACCENT_HOVER)}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = ACCENT)}
                     >
                       Reservar
                       <ArrowRight size={12} />
@@ -576,7 +586,7 @@ export default function EntrenamientoPage() {
 
           {/* Nota grupo */}
           <FadeIn delay={400}>
-            <p style={{ marginTop: "1.5rem", fontSize: "0.75rem", color: MID, textAlign: "center" }}>
+            <p style={{ marginTop: "1.5rem", fontSize: "0.75rem", color: MUTED, textAlign: "center" }}>
               * Entrenamiento en grupo: máximo 5 personas por sesión.
             </p>
           </FadeIn>
@@ -586,7 +596,7 @@ export default function EntrenamientoPage() {
       {/* ── CÓMO FUNCIONA ─────────────────────────────────────────────────── */}
       <section
         id="como-funciona"
-        style={{ backgroundColor: LIGHT, paddingTop: "7rem", paddingBottom: "7rem" }}
+        style={{ backgroundColor: SURFACE, paddingTop: "7rem", paddingBottom: "7rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <FadeIn>
@@ -595,7 +605,7 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -606,7 +616,7 @@ export default function EntrenamientoPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "4.5rem",
               }}
             >
@@ -621,7 +631,7 @@ export default function EntrenamientoPage() {
                   style={{
                     padding: "0 2rem 2rem 0",
                     paddingRight: i < PASOS.length - 1 ? "2rem" : 0,
-                    borderRight: i < PASOS.length - 1 ? "1px solid rgba(31,31,31,0.1)" : "none",
+                    borderRight: i < PASOS.length - 1 ? "1px solid rgba(61,61,61,0.1)" : "none",
                     marginRight: i < PASOS.length - 1 ? "2rem" : 0,
                   }}
                   className={i < PASOS.length - 1 ? "md:border-r md:mr-8 md:pr-8 mb-10 md:mb-0" : "mb-10 md:mb-0"}
@@ -631,26 +641,26 @@ export default function EntrenamientoPage() {
                     style={{
                       fontSize: "2.5rem",
                       fontWeight: 400,
-                      color: "rgba(31,31,31,0.1)",
+                      color: "rgba(255,255,255,0.1)",
                       lineHeight: 1,
                       marginBottom: "1.25rem",
                     }}
                   >
                     {numero}
                   </p>
-                  <Icon size={20} strokeWidth={1.5} color={DARK} style={{ marginBottom: "1rem" }} />
+                  <Icon size={20} strokeWidth={1.5} color={ACCENT} style={{ marginBottom: "1rem" }} />
                   <h3
                     className="font-serif"
                     style={{
                       fontSize: "1.05rem",
                       fontWeight: 400,
-                      color: DARK,
+                      color: TEXT,
                       marginBottom: "0.6rem",
                     }}
                   >
                     {titulo}
                   </h3>
-                  <p style={{ fontSize: "0.8rem", color: MID, lineHeight: 1.8 }}>{texto}</p>
+                  <p style={{ fontSize: "0.8rem", color: MUTED, lineHeight: 1.8 }}>{texto}</p>
                 </div>
               </FadeIn>
             ))}
@@ -669,7 +679,7 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -680,7 +690,7 @@ export default function EntrenamientoPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "4.5rem",
               }}
             >
@@ -697,22 +707,22 @@ export default function EntrenamientoPage() {
                       width: 44,
                       height: 44,
                       borderRadius: "50%",
-                      backgroundColor: "rgba(31,31,31,0.06)",
+                      backgroundColor: "rgba(139,26,47,0.15)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       marginBottom: "1.25rem",
                     }}
                   >
-                    <Icon size={18} strokeWidth={1.5} color={DARK} />
+                    <Icon size={18} strokeWidth={1.5} color={ACCENT} />
                   </div>
                   <h3
                     className="font-serif"
-                    style={{ fontSize: "1.1rem", fontWeight: 400, color: DARK, marginBottom: "0.6rem" }}
+                    style={{ fontSize: "1.1rem", fontWeight: 400, color: TEXT, marginBottom: "0.6rem" }}
                   >
                     {titulo}
                   </h3>
-                  <p style={{ fontSize: "0.825rem", color: MID, lineHeight: 1.8 }}>{texto}</p>
+                  <p style={{ fontSize: "0.825rem", color: MUTED, lineHeight: 1.8 }}>{texto}</p>
                 </div>
               </FadeIn>
             ))}
@@ -722,7 +732,7 @@ export default function EntrenamientoPage() {
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
       <section
-        style={{ backgroundColor: LIGHT, paddingTop: "7rem", paddingBottom: "7rem" }}
+        style={{ backgroundColor: SURFACE, paddingTop: "7rem", paddingBottom: "7rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <FadeIn>
@@ -731,7 +741,7 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -742,7 +752,7 @@ export default function EntrenamientoPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "3.5rem",
               }}
             >
@@ -757,11 +767,11 @@ export default function EntrenamientoPage() {
           </div>
 
           <FadeIn delay={200}>
-            <p style={{ marginTop: "3rem", fontSize: "0.875rem", color: MID }}>
+            <p style={{ marginTop: "3rem", fontSize: "0.875rem", color: MUTED }}>
               ¿Tienes otra pregunta?{" "}
               <Link
                 href="/#contacto"
-                style={{ color: DARK, textDecoration: "underline", textUnderlineOffset: "3px" }}
+                style={{ color: ACCENT, textDecoration: "underline", textUnderlineOffset: "3px" }}
               >
                 Escríbenos
               </Link>{" "}
@@ -774,7 +784,7 @@ export default function EntrenamientoPage() {
       {/* ── CTA FINAL ─────────────────────────────────────────────────────── */}
       <section
         style={{
-          backgroundColor: DARK,
+          backgroundColor: BG,
           paddingTop: "8rem",
           paddingBottom: "8rem",
         }}
@@ -786,7 +796,7 @@ export default function EntrenamientoPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                color: "rgba(237,230,217,0.45)",
+                color: "rgba(255,255,255,0.45)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -798,7 +808,7 @@ export default function EntrenamientoPage() {
                 fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
                 fontWeight: 400,
                 lineHeight: 1.2,
-                color: BG,
+                color: TEXT,
                 maxWidth: "640px",
                 marginBottom: "1.5rem",
               }}
@@ -809,7 +819,7 @@ export default function EntrenamientoPage() {
               style={{
                 fontSize: "0.95rem",
                 lineHeight: 1.9,
-                color: "rgba(237,230,217,0.6)",
+                color: "rgba(255,255,255,0.6)",
                 maxWidth: "480px",
                 marginBottom: "3rem",
               }}
@@ -825,14 +835,14 @@ export default function EntrenamientoPage() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: BG,
-                  color: DARK,
+                  backgroundColor: ACCENT,
+                  color: "#FFFFFF",
                   textDecoration: "none",
                   borderRadius: "2px",
                   transition: "background-color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F5F0E8")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = BG)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = ACCENT_HOVER)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = ACCENT)}
               >
                 Reservar primera sesión
               </Link>
@@ -844,14 +854,22 @@ export default function EntrenamientoPage() {
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   backgroundColor: "transparent",
-                  color: BG,
+                  color: ACCENT,
                   textDecoration: "none",
-                  border: "1px solid rgba(237,230,217,0.35)",
+                  border: "1px solid " + ACCENT,
                   borderRadius: "2px",
-                  transition: "border-color 0.2s",
+                  transition: "background-color 0.2s, color 0.2s, border-color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.7)")}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.35)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = ACCENT;
+                  e.currentTarget.style.borderColor = ACCENT;
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.borderColor = ACCENT;
+                  e.currentTarget.style.color = ACCENT;
+                }}
               >
                 Contactar
               </Link>
@@ -863,8 +881,8 @@ export default function EntrenamientoPage() {
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
       <footer
         style={{
-          backgroundColor: DARK,
-          borderTop: "1px solid rgba(237,230,217,0.08)",
+          backgroundColor: "#1A1A1A",
+          borderTop: "1px solid rgba(61,61,61,0.08)",
           paddingTop: "3rem",
           paddingBottom: "3rem",
         }}
@@ -883,11 +901,11 @@ export default function EntrenamientoPage() {
           <Link
             href="/"
             className="font-serif uppercase"
-            style={{ letterSpacing: "0.28em", fontSize: "1.05rem", color: BG, textDecoration: "none" }}
+            style={{ letterSpacing: "0.28em", fontSize: "1.05rem", color: TEXT, textDecoration: "none" }}
           >
             Veysic
           </Link>
-          <p style={{ fontSize: "0.7rem", color: "rgba(237,230,217,0.38)", letterSpacing: "0.05em" }}>
+          <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.38)", letterSpacing: "0.05em" }}>
             © 2026 Veysic. Todos los derechos reservados.
           </p>
           <nav style={{ display: "flex", gap: "2rem" }}>
@@ -904,12 +922,12 @@ export default function EntrenamientoPage() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "rgba(237,230,217,0.45)",
+                  color: "rgba(255,255,255,0.45)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = BG)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(237,230,217,0.45)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
               >
                 {label}
               </Link>

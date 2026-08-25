@@ -45,10 +45,10 @@ import {
 } from "../lib/store";
 import type { Cita, Pago, Bono, Sala, ListaEspera, Bloqueo } from "../lib/store";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
+const LIGHT = "#3D3D3D";
 
 const MESES_ES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const CAL_DIAS = ["L", "M", "X", "J", "V", "S", "D"];
@@ -100,7 +100,7 @@ function Label({ children }: { children: React.ReactNode }) {
 
 function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
-    <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", padding: "1.25rem", ...style }}>
+    <div className="veysic-card" style={{ backgroundColor: LIGHT, borderRadius: "4px", padding: "1.25rem", ...style }}>
       {children}
     </div>
   );
@@ -110,15 +110,15 @@ function Btn({ children, onClick, variant = "dark", small, type = "button", disa
   children: React.ReactNode; onClick?: () => void; variant?: "dark" | "outline" | "danger" | "ghost"; small?: boolean; type?: "button" | "submit"; disabled?: boolean;
 }) {
   const base: React.CSSProperties = { fontSize: small ? "0.6rem" : "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", borderRadius: "2px", cursor: disabled ? "not-allowed" : "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", padding: small ? "0.35rem 0.75rem" : "0.6rem 1.2rem", transition: "all 0.2s", border: "none", opacity: disabled ? 0.5 : 1 };
-  if (variant === "danger") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "#c0392b", color: "#fff" }}>{children}</button>;
-  if (variant === "outline") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: DARK, border: "1px solid rgba(31,31,31,0.3)" }}>{children}</button>;
+  if (variant === "danger") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "#C0574A", color: "#fff" }}>{children}</button>;
+  if (variant === "outline") return <button className="veysic-btn-outline" type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: "#8B1A2F", border: "1px solid #8B1A2F" }}>{children}</button>;
   if (variant === "ghost") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: MID }}>{children}</button>;
-  return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: DARK, color: BG }}>{children}</button>;
+  return <button className="veysic-btn-primary" type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "#8B1A2F", color: "#FFFFFF" }}>{children}</button>;
 }
 
 function KpiCard({ label, value, sub, accent }: { label: string; value: string | number; sub?: string; accent?: string }) {
   return (
-    <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", padding: "1.25rem", borderTop: accent ? `3px solid ${accent}` : undefined }}>
+    <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(61,61,61,0.1)", borderRadius: "4px", padding: "1.25rem", borderTop: accent ? `3px solid ${accent}` : undefined }}>
       <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.5rem" }}>{label}</p>
       <p className="font-serif" style={{ fontSize: "2rem", fontWeight: 400, color: DARK, lineHeight: 1 }}>{value}</p>
       {sub && <p style={{ fontSize: "0.7rem", color: MID, marginTop: "0.35rem" }}>{sub}</p>}
@@ -127,19 +127,19 @@ function KpiCard({ label, value, sub, accent }: { label: string; value: string |
 }
 
 function rolBadge(role: User["role"]) {
-  const map = { cliente: { bg: "rgba(41,128,185,0.1)", color: "#2980b9" }, profesional: { bg: "rgba(142,68,173,0.1)", color: "#8e44ad" }, admin: { bg: "rgba(39,174,96,0.1)", color: "#27ae60" } };
+  const map = { cliente: { bg: "rgba(74,111,165,0.1)", color: "#4A6FA5" }, profesional: { bg: "rgba(122,92,142,0.1)", color: "#7A5C8E" }, admin: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F" } };
   const s = map[role];
   return <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.55rem", borderRadius: "20px", backgroundColor: s.bg, color: s.color, fontWeight: 500, letterSpacing: "0.05em", textTransform: "capitalize" }}>{role}</span>;
 }
 
 function estadoBadge(estado: User["estado"]) {
-  const map = { activo: { bg: "rgba(39,174,96,0.1)", color: "#27ae60" }, pendiente: { bg: "rgba(230,126,34,0.12)", color: "#e67e22" }, inactivo: { bg: "rgba(192,57,43,0.1)", color: "#c0392b" } };
+  const map = { activo: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F" }, pendiente: { bg: "rgba(192,138,46,0.12)", color: "#C08A2E" }, inactivo: { bg: "rgba(192,87,74,0.1)", color: "#C0574A" } };
   const s = map[estado];
   return <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.55rem", borderRadius: "20px", backgroundColor: s.bg, color: s.color, fontWeight: 500, textTransform: "capitalize" }}>{estado}</span>;
 }
 
 function citaBadge(estado: Cita["estado"]) {
-  const map = { pendiente: { bg: "rgba(41,128,185,0.1)", color: "#2980b9" }, completada: { bg: "rgba(39,174,96,0.1)", color: "#27ae60" }, cancelada: { bg: "rgba(192,57,43,0.1)", color: "#c0392b" } };
+  const map = { pendiente: { bg: "rgba(74,111,165,0.1)", color: "#4A6FA5" }, completada: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F" }, cancelada: { bg: "rgba(192,87,74,0.1)", color: "#C0574A" } };
   const s = map[estado];
   return <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.55rem", borderRadius: "20px", backgroundColor: s.bg, color: s.color, fontWeight: 500, textTransform: "capitalize" }}>{estado}</span>;
 }
@@ -183,11 +183,11 @@ function SeccionCitas() {
 
       <div style={{ display: "flex", gap: "1rem", marginBottom: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
         <input value={busqueda} onChange={(e) => setBusqueda(e.target.value)} placeholder="Buscar por servicio, cliente o profesional..."
-          style={{ flex: 1, minWidth: 220, background: "transparent", border: "1px solid rgba(31,31,31,0.2)", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+          style={{ flex: 1, minWidth: 220, background: "transparent", border: "1px solid #3D3D3D", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
         <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
           {(["todas", "pendiente", "completada", "cancelada"] as const).map((f) => (
             <button key={f} onClick={() => setFiltroEstado(f)}
-              style={{ padding: "0.35rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "capitalize", borderRadius: "2px", border: `1px solid ${filtroEstado === f ? DARK : "rgba(31,31,31,0.2)"}`, backgroundColor: filtroEstado === f ? DARK : "transparent", color: filtroEstado === f ? BG : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+              style={{ padding: "0.35rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "capitalize", borderRadius: "2px", border: `1px solid ${filtroEstado === f ? "#8B1A2F" : "#3D3D3D"}`, backgroundColor: filtroEstado === f ? "#8B1A2F" : "transparent", color: filtroEstado === f ? "#FFFFFF" : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
               {f}
             </button>
           ))}
@@ -215,7 +215,7 @@ function SeccionCitas() {
                   {editSalaId === c.id ? (
                     <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.4rem", alignItems: "center" }}>
                       <select defaultValue={c.salaId || ""} onChange={(e) => asignarSala(c.id, e.target.value)}
-                        style={{ fontSize: "0.7rem", padding: "0.25rem 0.5rem", borderRadius: "2px", border: "1px solid rgba(31,31,31,0.25)", background: BG, color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif", cursor: "pointer" }}>
+                        style={{ fontSize: "0.7rem", padding: "0.25rem 0.5rem", borderRadius: "2px", border: "1px solid #3D3D3D", background: LIGHT, color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif", cursor: "pointer" }}>
                         <option value="">Sin sala</option>
                         {salas.filter((s) => s.activa).map((s) => <option key={s.id} value={s.id}>{s.nombre}</option>)}
                       </select>
@@ -241,7 +241,7 @@ function SeccionCitas() {
 }
 
 // ── CALENDARIO GLOBAL ──────────────────────────────────────────────────────
-const PRO_PALETTE_CAL = ["#2980b9", "#27ae60", "#8e44ad", "#e67e22", "#c0392b", "#1abc9c", "#d35400", "#6c5ce7"];
+const PRO_PALETTE_CAL = ["#4A6FA5", "#8B1A2F", "#7A5C8E", "#C08A2E", "#C0574A", "#3C8C89", "#8B5E3C", "#5B6EAE"];
 const SLOT_H = 48; // px per 30-min slot
 const CAL_INI_MIN = 330; // 05:30
 const CAL_FIN_MIN = 1260; // 21:00
@@ -448,7 +448,7 @@ function SeccionCalendario() {
               return (
                 <div key={ds} style={{ flex: 1, minWidth: isMulti ? 80 : 0, position: "relative" }}>
                   {isMulti && (
-                    <div style={{ height: 44, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderBottom: "1px solid rgba(31,31,31,0.08)", backgroundColor: isToday ? "rgba(31,31,31,0.05)" : "transparent", position: "sticky", top: 0, zIndex: 1 }}>
+                    <div style={{ height: 44, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderBottom: "1px solid rgba(61,61,61,0.08)", backgroundColor: isToday ? "rgba(255,255,255,0.05)" : "transparent", position: "sticky", top: 0, zIndex: 1 }}>
                       <p style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", color: MID }}>{fmtDiaSemana(ds)}</p>
                       <p style={{ fontSize: "0.82rem", fontWeight: isToday ? 700 : 400, color: isToday ? DARK : MID }}>{new Date(ds + "T00:00").getDate()}</p>
                     </div>
@@ -456,7 +456,7 @@ function SeccionCalendario() {
                   <div style={{ position: "relative", height: gridHeight }}>
                     {/* Grid lines */}
                     {Array.from({ length: TOTAL_SLOTS }).map((_, i) => (
-                      <div key={i} style={{ position: "absolute", left: 0, right: 0, top: i * SLOT_H, height: SLOT_H, borderTop: `1px solid rgba(31,31,31,${i % 2 === 0 ? "0.07" : "0.03"})` }} />
+                      <div key={i} style={{ position: "absolute", left: 0, right: 0, top: i * SLOT_H, height: SLOT_H, borderTop: `1px solid rgba(255,255,255,${i % 2 === 0 ? "0.07" : "0.03"})` }} />
                     ))}
 
                     {/* Bloqueos */}
@@ -465,7 +465,7 @@ function SeccionCalendario() {
                       const dur = toMinCal(b.horaFin) - ini;
                       if (ini >= CAL_FIN_MIN || ini + dur <= CAL_INI_MIN) return null;
                       return (
-                        <div key={b.id} style={{ position: "absolute", left: 0, right: 0, top: topPx(b.horaInicio), height: heightPx(dur), backgroundColor: "rgba(31,31,31,0.08)", border: "1px solid rgba(31,31,31,0.14)", borderRadius: "3px", overflow: "hidden", padding: "2px 4px" }}>
+                        <div key={b.id} style={{ position: "absolute", left: 0, right: 0, top: topPx(b.horaInicio), height: heightPx(dur), backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(61,61,61,0.14)", borderRadius: "3px", overflow: "hidden", padding: "2px 4px" }}>
                           <p style={{ fontSize: "0.58rem", color: MID, fontWeight: 500 }}>No disponible</p>
                           {b.motivo && <p style={{ fontSize: "0.55rem", color: MID }}>{b.motivo}</p>}
                         </div>
@@ -499,7 +499,7 @@ function SeccionCalendario() {
                       const now = new Date();
                       const nowMin = now.getHours() * 60 + now.getMinutes();
                       if (nowMin < CAL_INI_MIN || nowMin > CAL_FIN_MIN) return null;
-                      return <div style={{ position: "absolute", left: 0, right: 0, top: (nowMin - CAL_INI_MIN) * (SLOT_H / 30), height: 2, backgroundColor: "#e74c3c", zIndex: 3, pointerEvents: "none" }} />;
+                      return <div style={{ position: "absolute", left: 0, right: 0, top: (nowMin - CAL_INI_MIN) * (SLOT_H / 30), height: 2, backgroundColor: "#C0574A", zIndex: 3, pointerEvents: "none" }} />;
                     })()}
                   </div>
                 </div>
@@ -525,13 +525,13 @@ function SeccionCalendario() {
       <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
         {[
           { label: "Total", value: citasDia.length, color: DARK },
-          { label: "Pendientes", value: pendientesDia, color: "#2980b9" },
-          { label: "Completadas", value: completadasDia, color: "#27ae60" },
-          { label: "Canceladas", value: canceladasDia, color: "#c0392b" },
-          { label: "Sala + activa", value: salaMasOcupada, color: "#8e44ad" },
-          { label: "Pro + citas", value: proMasCitas, color: "#e67e22" },
+          { label: "Pendientes", value: pendientesDia, color: "#4A6FA5" },
+          { label: "Completadas", value: completadasDia, color: "#8B1A2F" },
+          { label: "Canceladas", value: canceladasDia, color: "#C0574A" },
+          { label: "Sala + activa", value: salaMasOcupada, color: "#7A5C8E" },
+          { label: "Pro + citas", value: proMasCitas, color: "#C08A2E" },
         ].map(({ label, value, color }) => (
-          <div key={label} style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", padding: "0.5rem 0.85rem", borderTop: `2px solid ${color}` }}>
+          <div key={label} style={{ backgroundColor: LIGHT, border: "1px solid rgba(61,61,61,0.1)", borderRadius: "4px", padding: "0.5rem 0.85rem", borderTop: `2px solid ${color}` }}>
             <p style={{ fontSize: "0.55rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, marginBottom: "0.2rem" }}>{label}</p>
             <p style={{ fontSize: "1rem", fontWeight: 600, color: DARK, lineHeight: 1 }}>{value}</p>
           </div>
@@ -540,25 +540,25 @@ function SeccionCalendario() {
 
       {/* Controles */}
       <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", overflow: "hidden" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", border: "1px solid #3D3D3D", borderRadius: "2px", overflow: "hidden" }}>
           <button onClick={() => setFecha(addDaysCal(fecha, vista === "dia" ? -1 : -7))} style={{ background: "none", border: "none", cursor: "pointer", color: DARK, padding: "0.4rem 0.5rem" }}><ChevronLeft size={14} /></button>
           <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} style={{ background: "transparent", border: "none", outline: "none", fontSize: "0.75rem", color: DARK, padding: "0.35rem 0.25rem", fontFamily: "var(--font-inter), system-ui, sans-serif", cursor: "pointer" }} />
           <button onClick={() => setFecha(addDaysCal(fecha, vista === "dia" ? 1 : 7))} style={{ background: "none", border: "none", cursor: "pointer", color: DARK, padding: "0.4rem 0.5rem" }}><ChevronRight size={14} /></button>
         </div>
-        <button onClick={() => setFecha(hoyDS)} style={{ padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", background: "transparent", color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Hoy</button>
-        <div style={{ display: "flex", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", overflow: "hidden" }}>
+        <button onClick={() => setFecha(hoyDS)} style={{ padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid #3D3D3D", borderRadius: "2px", background: "transparent", color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Hoy</button>
+        <div style={{ display: "flex", border: "1px solid #3D3D3D", borderRadius: "2px", overflow: "hidden" }}>
           {(["dia", "semana"] as const).map((v) => (
-            <button key={v} onClick={() => setVista(v)} style={{ padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "none", backgroundColor: vista === v ? DARK : "transparent", color: vista === v ? BG : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+            <button key={v} onClick={() => setVista(v)} style={{ padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "none", backgroundColor: vista === v ? "#8B1A2F" : "transparent", color: vista === v ? "#FFFFFF" : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
               {v === "dia" ? "Día" : "Semana"}
             </button>
           ))}
         </div>
-        <button onClick={() => setFiltroPanelOpen((v) => !v)} style={{ display: "flex", alignItems: "center", gap: "0.3rem", padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", background: (filtroProIds.length > 0 || filtroServicio || filtroSala) ? DARK : "transparent", color: (filtroProIds.length > 0 || filtroServicio || filtroSala) ? BG : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+        <button onClick={() => setFiltroPanelOpen((v) => !v)} style={{ display: "flex", alignItems: "center", gap: "0.3rem", padding: "0.4rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid #3D3D3D", borderRadius: "2px", background: (filtroProIds.length > 0 || filtroServicio || filtroSala) ? "#8B1A2F" : "transparent", color: (filtroProIds.length > 0 || filtroServicio || filtroSala) ? "#FFFFFF" : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
           Filtros {filtroProIds.length > 0 || filtroServicio || filtroSala ? `(${[filtroProIds.length > 0 ? filtroProIds.length + " pro" : "", filtroServicio ? "servicio" : "", filtroSala ? "sala" : ""].filter(Boolean).join(", ")})` : ""}
           <ChevronDown size={11} style={{ transform: filtroPanelOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
         </button>
         {(filtroProIds.length > 0 || filtroServicio || filtroSala) && (
-          <button onClick={() => { setFiltroProIds([]); setFiltroServicio(""); setFiltroSala(""); }} style={{ padding: "0.4rem 0.6rem", fontSize: "0.6rem", letterSpacing: "0.08em", border: "1px solid rgba(192,57,43,0.3)", borderRadius: "2px", background: "transparent", color: "#c0392b", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+          <button onClick={() => { setFiltroProIds([]); setFiltroServicio(""); setFiltroSala(""); }} style={{ padding: "0.4rem 0.6rem", fontSize: "0.6rem", letterSpacing: "0.08em", border: "1px solid rgba(192,87,74,0.3)", borderRadius: "2px", background: "transparent", color: "#C0574A", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
             Limpiar filtros
           </button>
         )}
@@ -585,7 +585,7 @@ function SeccionCalendario() {
             <div>
               <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, marginBottom: "0.5rem" }}>Servicio</p>
               <select value={filtroServicio} onChange={(e) => setFiltroServicio(e.target.value)}
-                style={{ width: "100%", background: BG, border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", padding: "0.4rem 0.5rem", fontSize: "0.78rem", color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                style={{ width: "100%", background: LIGHT, border: "1px solid #3D3D3D", borderRadius: "2px", padding: "0.4rem 0.5rem", fontSize: "0.78rem", color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 <option value="">Todos los servicios</option>
                 {serviciosUnicos.map((s) => <option key={s} value={s}>{s}</option>)}
               </select>
@@ -593,7 +593,7 @@ function SeccionCalendario() {
             <div>
               <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, marginBottom: "0.5rem" }}>Sala/Box</p>
               <select value={filtroSala} onChange={(e) => setFiltroSala(e.target.value)}
-                style={{ width: "100%", background: BG, border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", padding: "0.4rem 0.5rem", fontSize: "0.78rem", color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                style={{ width: "100%", background: LIGHT, border: "1px solid #3D3D3D", borderRadius: "2px", padding: "0.4rem 0.5rem", fontSize: "0.78rem", color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 <option value="">Todas las salas</option>
                 {salas.map((s) => <option key={s.id} value={s.id}>{s.nombre}</option>)}
               </select>
@@ -618,14 +618,14 @@ function SeccionCalendario() {
               const prox = proximaCita(pro.id);
               const filtrando = filtroProIds.includes(pro.id);
               const estadoConfig = {
-                disponible: { label: "Disponible", bg: "rgba(39,174,96,0.1)", col: "#27ae60" },
-                en_sesion: { label: "En sesión", bg: "rgba(230,126,34,0.12)", col: "#e67e22" },
-                fuera: { label: "Fuera horario", bg: "rgba(31,31,31,0.07)", col: MID },
+                disponible: { label: "Disponible", bg: "rgba(139,26,47,0.1)", col: "#8B1A2F" },
+                en_sesion: { label: "En sesión", bg: "rgba(192,138,46,0.12)", col: "#C08A2E" },
+                fuera: { label: "Fuera horario", bg: "rgba(255,255,255,0.07)", col: MID },
               }[estado];
               return (
                 <button key={pro.id} onClick={() => setFiltroProIds((prev) => prev.includes(pro.id) ? prev.filter((id) => id !== pro.id) : [...prev, pro.id])}
                   style={{ textAlign: "left", background: "none", border: "none", padding: 0, cursor: "pointer", width: "100%" }}>
-                  <div style={{ backgroundColor: LIGHT, border: `1px solid ${filtrando ? color : "rgba(31,31,31,0.1)"}`, borderLeft: `4px solid ${color}`, borderRadius: "4px", padding: "0.85rem 1rem", transition: "border-color 0.15s" }}>
+                  <div style={{ backgroundColor: LIGHT, border: `1px solid ${filtrando ? color : "rgba(61,61,61,0.1)"}`, borderLeft: `4px solid ${color}`, borderRadius: "4px", padding: "0.85rem 1rem", transition: "border-color 0.15s" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                         <div style={{ width: 34, height: 34, borderRadius: "50%", overflow: "hidden", backgroundColor: `${color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -669,7 +669,7 @@ function SeccionCalendario() {
             {vista === "dia" ? (
               <p style={{ fontSize: "0.8rem", fontWeight: 500, color: DARK }}>
                 {new Date(fecha + "T00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
-                {fecha === hoyDS && <span style={{ marginLeft: "0.5rem", fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: "rgba(31,31,31,0.1)", color: MID }}>Hoy</span>}
+                {fecha === hoyDS && <span style={{ marginLeft: "0.5rem", fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: "rgba(61,61,61,0.1)", color: MID }}>Hoy</span>}
               </p>
             ) : (
               <p style={{ fontSize: "0.8rem", fontWeight: 500, color: DARK }}>
@@ -678,7 +678,7 @@ function SeccionCalendario() {
             )}
           </div>
 
-          <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+          <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(61,61,61,0.1)", borderRadius: "4px", overflow: "hidden" }}>
             <TimeGrid fechas={vista === "dia" ? [fecha] : weekDays} />
           </div>
 
@@ -691,11 +691,11 @@ function SeccionCalendario() {
               </div>
             ))}
             <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
-              <div style={{ width: 10, height: 10, borderRadius: "2px", backgroundColor: "rgba(31,31,31,0.12)" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "2px", backgroundColor: "rgba(61,61,61,0.12)" }} />
               <span style={{ fontSize: "0.65rem", color: MID }}>No disponible</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
-              <div style={{ width: 10, height: 2, backgroundColor: "#e74c3c" }} />
+              <div style={{ width: 10, height: 2, backgroundColor: "#C0574A" }} />
               <span style={{ fontSize: "0.65rem", color: MID }}>Ahora</span>
             </div>
           </div>
@@ -705,7 +705,7 @@ function SeccionCalendario() {
       {/* Popup cita */}
       {popup && (
         <div onClick={() => setPopup(null)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.4)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ backgroundColor: BG, borderRadius: "6px", width: "100%", maxWidth: 420, boxShadow: "0 20px 60px rgba(0,0,0,0.2)", overflow: "hidden" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ backgroundColor: "#3D3D3D", borderRadius: "6px", width: "100%", maxWidth: 420, boxShadow: "0 20px 60px rgba(0,0,0,0.2)", overflow: "hidden" }}>
             <div style={{ backgroundColor: popup._proColor, padding: "1.25rem 1.5rem", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
               <div>
                 <p style={{ fontSize: "1rem", fontWeight: 500, color: "#fff", marginBottom: "0.25rem" }}>{popup.servicio}</p>
@@ -723,7 +723,7 @@ function SeccionCalendario() {
                 ["Duración", `${DURACION_SERVICIOS[popup.servicio] ?? 60} min`],
                 ["Estado", popup.estado],
               ].map(([label, value]) => (
-                <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid rgba(31,31,31,0.07)" }}>
+                <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid rgba(61,61,61,0.07)" }}>
                   <span style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: MID }}>{label}</span>
                   <span style={{ fontSize: "0.82rem", color: DARK, fontWeight: 500, textTransform: "capitalize" }}>{value}</span>
                 </div>
@@ -747,34 +747,34 @@ function SeccionCalendario() {
       {/* Nueva cita modal */}
       {nuevaCitaOpen && (
         <div onClick={() => setNuevaCitaOpen(false)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.4)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ backgroundColor: BG, borderRadius: "6px", width: "100%", maxWidth: 480, boxShadow: "0 20px 60px rgba(0,0,0,0.2)", padding: "1.5rem 2rem" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ backgroundColor: "#3D3D3D", borderRadius: "6px", width: "100%", maxWidth: 480, boxShadow: "0 20px 60px rgba(0,0,0,0.2)", padding: "1.5rem 2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
               <p className="font-serif" style={{ fontSize: "1.1rem", fontWeight: 400, color: DARK }}>Nueva cita manual</p>
               <button onClick={() => setNuevaCitaOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: MID }}><X size={16} /></button>
             </div>
             {ncOk ? (
               <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
-                <CheckCircle size={28} color="#27ae60" style={{ margin: "0 auto 0.75rem" }} />
+                <CheckCircle size={28} color="#8B1A2F" style={{ margin: "0 auto 0.75rem" }} />
                 <p style={{ fontSize: "0.9rem", color: DARK }}>Cita creada correctamente.</p>
               </div>
             ) : (
               <form onSubmit={crearCita} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {[
-                  { label: "Cliente", el: <select value={ncCliente} onChange={(e) => setNcCliente(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  { label: "Cliente", el: <select value={ncCliente} onChange={(e) => setNcCliente(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     <option value="">Seleccionar cliente</option>
                     {clientes.map((c) => <option key={c.id} value={c.id}>{c.nombre}</option>)}
                   </select> },
-                  { label: "Profesional", el: <select value={ncPro} onChange={(e) => setNcPro(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  { label: "Profesional", el: <select value={ncPro} onChange={(e) => setNcPro(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     <option value="">Seleccionar profesional</option>
                     {profesionales.map((p) => <option key={p.id} value={p.id}>{p.nombre}</option>)}
                   </select> },
-                  { label: "Servicio", el: <select value={ncServicio} onChange={(e) => setNcServicio(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  { label: "Servicio", el: <select value={ncServicio} onChange={(e) => setNcServicio(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     <option value="">Seleccionar servicio</option>
                     {Object.keys(DURACION_SERVICIOS).map((s) => <option key={s} value={s}>{s} ({DURACION_SERVICIOS[s]} min)</option>)}
                   </select> },
-                  { label: "Fecha", el: <input type="date" value={ncFecha} onChange={(e) => setNcFecha(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
-                  { label: "Hora de inicio", el: <input type="time" value={ncHora} onChange={(e) => setNcHora(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
-                  { label: "Sala (opcional)", el: <select value={ncSala} onChange={(e) => setNcSala(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  { label: "Fecha", el: <input type="date" value={ncFecha} onChange={(e) => setNcFecha(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
+                  { label: "Hora de inicio", el: <input type="time" value={ncHora} onChange={(e) => setNcHora(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
+                  { label: "Sala (opcional)", el: <select value={ncSala} onChange={(e) => setNcSala(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     <option value="">Auto-asignar</option>
                     {salas.filter((s) => s.activa).map((s) => <option key={s.id} value={s.id}>{s.nombre}</option>)}
                   </select> },
@@ -886,10 +886,10 @@ function SeccionSalas() {
               const estado = estadoActual(sala.id);
               const proxima = proximaCita(sala.id);
               return (
-                <div key={sala.id} style={{ backgroundColor: LIGHT, border: `1px solid ${estado.ocupada ? "rgba(192,57,43,0.3)" : "rgba(39,174,96,0.3)"}`, borderLeft: `4px solid ${estado.ocupada ? "#c0392b" : "#27ae60"}`, borderRadius: "4px", padding: "1.1rem 1.25rem" }}>
+                <div key={sala.id} style={{ backgroundColor: LIGHT, border: `1px solid ${estado.ocupada ? "rgba(192,87,74,0.3)" : "rgba(139,26,47,0.3)"}`, borderLeft: `4px solid ${estado.ocupada ? "#C0574A" : "#8B1A2F"}`, borderRadius: "4px", padding: "1.1rem 1.25rem" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
                     <p style={{ fontSize: "0.9rem", fontWeight: 500, color: DARK }}>{sala.nombre}</p>
-                    <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.6rem", borderRadius: "20px", backgroundColor: estado.ocupada ? "rgba(192,57,43,0.1)" : "rgba(39,174,96,0.1)", color: estado.ocupada ? "#c0392b" : "#27ae60", fontWeight: 600 }}>
+                    <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.6rem", borderRadius: "20px", backgroundColor: estado.ocupada ? "rgba(192,87,74,0.1)" : "rgba(139,26,47,0.1)", color: estado.ocupada ? "#C0574A" : "#8B1A2F", fontWeight: 600 }}>
                       {estado.ocupada ? "Ocupada" : "Libre"}
                     </span>
                   </div>
@@ -927,7 +927,7 @@ function SeccionSalas() {
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "1rem" }}>Añadir sala</p>
           <form onSubmit={crearSala} style={{ display: "flex", gap: "0.75rem" }}>
             <input value={nuevaNombre} onChange={(e) => setNuevaNombre(e.target.value)} placeholder="Ej: Box 1, Sala Fisio, Sala Cardio..." required
-              style={{ flex: 1, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+              style={{ flex: 1, background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
             <Btn type="submit" small>
               <Plus size={12} style={{ marginRight: 4, display: "inline" }} />Añadir
             </Btn>
@@ -947,14 +947,14 @@ function SeccionSalas() {
                       {editId === sala.id ? (
                         <div style={{ display: "flex", gap: "0.5rem" }}>
                           <input value={editNombre} onChange={(e) => setEditNombre(e.target.value)} autoFocus
-                            style={{ flex: 1, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.3)", paddingBottom: "0.3rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                            style={{ flex: 1, background: "transparent", border: "none", borderBottom: "1px solid rgba(61,61,61,0.3)", paddingBottom: "0.3rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                           <Btn small onClick={() => guardarNombre(sala.id)}>✓</Btn>
                           <Btn small variant="ghost" onClick={() => setEditId(null)}>✕</Btn>
                         </div>
                       ) : (
                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                           <p style={{ fontSize: "0.875rem", color: sala.activa ? DARK : MID, fontWeight: 500 }}>{sala.nombre}</p>
-                          <span style={{ fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: sala.activa ? "rgba(39,174,96,0.1)" : "rgba(31,31,31,0.08)", color: sala.activa ? "#27ae60" : MID }}>
+                          <span style={{ fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: sala.activa ? "rgba(139,26,47,0.1)" : "rgba(255,255,255,0.08)", color: sala.activa ? "#8B1A2F" : MID }}>
                             {sala.activa ? "Activa" : "Inactiva"}
                           </span>
                         </div>
@@ -968,11 +968,11 @@ function SeccionSalas() {
                         </button>
                       )}
                       <button onClick={() => toggleActiva(sala.id, !sala.activa)}
-                        style={{ background: "none", border: "none", cursor: "pointer", color: sala.activa ? "#e67e22" : "#27ae60", padding: "0.2rem" }} title={sala.activa ? "Desactivar" : "Activar"}>
+                        style={{ background: "none", border: "none", cursor: "pointer", color: sala.activa ? "#C08A2E" : "#8B1A2F", padding: "0.2rem" }} title={sala.activa ? "Desactivar" : "Activar"}>
                         {sala.activa ? <XCircle size={13} /> : <CheckCircle size={13} />}
                       </button>
                       <button onClick={() => eliminarSala(sala.id)}
-                        style={{ background: "none", border: "none", cursor: "pointer", color: "#c0392b", padding: "0.2rem" }} title="Eliminar">
+                        style={{ background: "none", border: "none", cursor: "pointer", color: "#C0574A", padding: "0.2rem" }} title="Eliminar">
                         <Trash2 size={13} />
                       </button>
                     </div>
@@ -1063,14 +1063,14 @@ function SeccionListaEspera() {
                 <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID }}>
                   {grupo.servicio} · {new Date(grupo.fecha + "T00:00").toLocaleDateString("es-ES", { weekday: "short", day: "numeric", month: "short" })} · {grupo.hora}
                 </p>
-                <span style={{ fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: "rgba(31,31,31,0.08)", color: MID }}>{grupo.entradas.length} en cola</span>
+                <span style={{ fontSize: "0.6rem", padding: "0.15rem 0.45rem", borderRadius: "20px", backgroundColor: "rgba(61,61,61,0.08)", color: MID }}>{grupo.entradas.length} en cola</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                 {grupo.entradas.map((le, idx) => {
                   const esNotificado = le.notificado && !le.expirado;
                   const esExpirado = le.expirado;
                   return (
-                    <Card key={le.id} style={{ opacity: esExpirado ? 0.5 : 1, borderLeft: esNotificado ? "4px solid #27ae60" : esExpirado ? "4px solid #c0392b" : undefined }}>
+                    <Card key={le.id} style={{ opacity: esExpirado ? 0.5 : 1, borderLeft: esNotificado ? "4px solid #3D3D3D" : esExpirado ? "4px solid #C0574A" : undefined }}>
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                           <span style={{ fontSize: "0.85rem", fontWeight: 700, color: MID, minWidth: 24, textAlign: "center" }}>#{idx + 1}</span>
@@ -1078,16 +1078,16 @@ function SeccionListaEspera() {
                             <p style={{ fontSize: "0.82rem", fontWeight: 500, color: DARK }}>{nombreUser(le.clienteId)}</p>
                             <p style={{ fontSize: "0.65rem", color: MID }}>
                               {new Date(le.creadoEn).toLocaleDateString("es-ES")} {new Date(le.creadoEn).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })}
-                              {esNotificado && <span style={{ marginLeft: "0.5rem", color: "#27ae60", fontWeight: 600 }}>• Notificado</span>}
-                              {esExpirado && <span style={{ marginLeft: "0.5rem", color: "#c0392b", fontWeight: 600 }}>• Expirado</span>}
+                              {esNotificado && <span style={{ marginLeft: "0.5rem", color: "#8B1A2F", fontWeight: 600 }}>• Notificado</span>}
+                              {esExpirado && <span style={{ marginLeft: "0.5rem", color: "#C0574A", fontWeight: 600 }}>• Expirado</span>}
                             </p>
                           </div>
                         </div>
                         <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", flexWrap: "wrap" }}>
                           {!le.notificado && (
                             <>
-                              <button onClick={() => moverArriba(grupo, idx)} disabled={idx === 0} title="Mover arriba" style={{ background: "none", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "4px", cursor: idx === 0 ? "not-allowed" : "pointer", color: idx === 0 ? "rgba(31,31,31,0.25)" : DARK, padding: "0.25rem 0.5rem", fontSize: "0.75rem" }}>↑</button>
-                              <button onClick={() => moverAbajo(grupo, idx)} disabled={idx === grupo.entradas.length - 1} title="Mover abajo" style={{ background: "none", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "4px", cursor: idx === grupo.entradas.length - 1 ? "not-allowed" : "pointer", color: idx === grupo.entradas.length - 1 ? "rgba(31,31,31,0.25)" : DARK, padding: "0.25rem 0.5rem", fontSize: "0.75rem" }}>↓</button>
+                              <button onClick={() => moverArriba(grupo, idx)} disabled={idx === 0} title="Mover arriba" style={{ background: "none", border: "1px solid #3D3D3D", borderRadius: "4px", cursor: idx === 0 ? "not-allowed" : "pointer", color: idx === 0 ? "#3D3D3D" : DARK, padding: "0.25rem 0.5rem", fontSize: "0.75rem" }}>↑</button>
+                              <button onClick={() => moverAbajo(grupo, idx)} disabled={idx === grupo.entradas.length - 1} title="Mover abajo" style={{ background: "none", border: "1px solid #3D3D3D", borderRadius: "4px", cursor: idx === grupo.entradas.length - 1 ? "not-allowed" : "pointer", color: idx === grupo.entradas.length - 1 ? "#3D3D3D" : DARK, padding: "0.25rem 0.5rem", fontSize: "0.75rem" }}>↓</button>
                               <Btn small onClick={() => notificarManual(le)}>
                                 <Send size={11} style={{ marginRight: 4, display: "inline" }} />Notificar
                               </Btn>
@@ -1139,11 +1139,11 @@ function SeccionUsuarios() {
 
       <div style={{ display: "flex", gap: "1rem", marginBottom: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
         <input value={busqueda} onChange={(e) => setBusqueda(e.target.value)} placeholder="Buscar por nombre o email..."
-          style={{ flex: 1, minWidth: 200, background: "transparent", border: "1px solid rgba(31,31,31,0.2)", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+          style={{ flex: 1, minWidth: 200, background: "transparent", border: "1px solid #3D3D3D", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
         <div style={{ display: "flex", gap: "0.4rem" }}>
           {(["todos", "cliente", "profesional", "admin"] as const).map((f) => (
             <button key={f} onClick={() => setFiltro(f)}
-              style={{ padding: "0.35rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "capitalize", borderRadius: "2px", border: `1px solid ${filtro === f ? DARK : "rgba(31,31,31,0.2)"}`, backgroundColor: filtro === f ? DARK : "transparent", color: filtro === f ? BG : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+              style={{ padding: "0.35rem 0.75rem", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "capitalize", borderRadius: "2px", border: `1px solid ${filtro === f ? "#8B1A2F" : "#3D3D3D"}`, backgroundColor: filtro === f ? "#8B1A2F" : "transparent", color: filtro === f ? "#FFFFFF" : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
               {f}
             </button>
           ))}
@@ -1164,7 +1164,7 @@ function SeccionUsuarios() {
               </div>
               <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
                 <select value={u.role} onChange={(e) => cambiarRol(u.id, e.target.value as User["role"])}
-                  style={{ fontSize: "0.65rem", padding: "0.3rem 0.5rem", borderRadius: "2px", border: "1px solid rgba(31,31,31,0.25)", background: BG, color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  style={{ fontSize: "0.65rem", padding: "0.3rem 0.5rem", borderRadius: "2px", border: "1px solid #3D3D3D", background: LIGHT, color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                   <option value="cliente">Cliente</option>
                   <option value="profesional">Profesional</option>
                   <option value="admin">Admin</option>
@@ -1220,7 +1220,7 @@ function SeccionClientes() {
       <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK, marginBottom: "1.5rem" }}>Lista de clientes</h2>
 
       <input value={busqueda} onChange={(e) => setBusqueda(e.target.value)} placeholder="Buscar cliente..."
-        style={{ display: "block", width: "100%", maxWidth: 320, marginBottom: "1.25rem", background: "transparent", border: "1px solid rgba(31,31,31,0.2)", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+        style={{ display: "block", width: "100%", maxWidth: 320, marginBottom: "1.25rem", background: "transparent", border: "1px solid #3D3D3D", padding: "0.5rem 0.75rem", borderRadius: "2px", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
 
       <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -1231,7 +1231,7 @@ function SeccionClientes() {
             const sel = selCliente?.id === c.id;
             return (
               <button key={c.id} onClick={() => setSelCliente(sel ? null : c)} style={{ textAlign: "left", background: "none", border: "none", padding: 0, cursor: "pointer", width: "100%" }}>
-                <Card style={{ borderLeft: sel ? `3px solid ${DARK}` : "3px solid transparent", transition: "border-color 0.15s" }}>
+                <Card style={{ borderLeft: sel ? `3px solid #8B1A2F` : "3px solid transparent", transition: "border-color 0.15s" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <div>
                       <p style={{ fontSize: "0.875rem", fontWeight: 500, color: DARK, marginBottom: "0.2rem" }}>{c.nombre}</p>
@@ -1264,7 +1264,7 @@ function SeccionClientes() {
                   ["Profesional asignado", nombrePro(selCliente.profesionalAsignadoId)],
                   ["Registro", new Date(selCliente.creadoEn).toLocaleDateString("es-ES")],
                 ].map(([l, v]) => (
-                  <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "0.55rem 0", borderBottom: "1px solid rgba(31,31,31,0.07)" }}>
+                  <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "0.55rem 0", borderBottom: "1px solid rgba(61,61,61,0.07)" }}>
                     <span style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: MID }}>{l}</span>
                     <span style={{ fontSize: "0.8rem", color: DARK }}>{v}</span>
                   </div>
@@ -1287,7 +1287,7 @@ function SeccionClientes() {
                   Citas ({citasDeCliente(selCliente.id).length})
                 </p>
                 {citasDeCliente(selCliente.id).slice(0, 5).map((c) => (
-                  <div key={c.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", padding: "0.35rem 0", borderBottom: "1px solid rgba(31,31,31,0.06)" }}>
+                  <div key={c.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", padding: "0.35rem 0", borderBottom: "1px solid rgba(61,61,61,0.06)" }}>
                     <span style={{ color: DARK }}>{c.fecha} · {c.hora}</span>
                     <span style={{ color: MID }}>{c.servicio}</span>
                   </div>
@@ -1368,7 +1368,7 @@ function SeccionComunicaciones() {
               <div>
                 <Label>Usuario</Label>
                 <select value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)} required
-                  style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                  style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                   <option value="">— Seleccionar —</option>
                   {usuarios.filter((u) => u.role !== "admin").map((u) => (
                     <option key={u.id} value={u.id}>{u.nombre} ({u.role})</option>
@@ -1380,10 +1380,10 @@ function SeccionComunicaciones() {
             <div>
               <Label>Mensaje</Label>
               <textarea value={texto} onChange={(e) => setTexto(e.target.value)} required rows={5} placeholder="Escribe tu mensaje aquí..."
-                style={{ width: "100%", background: "transparent", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", padding: "0.75rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "vertical", boxSizing: "border-box" }} />
+                style={{ width: "100%", background: "transparent", border: "1px solid #3D3D3D", borderRadius: "2px", padding: "0.75rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "vertical", boxSizing: "border-box" }} />
             </div>
 
-            {ok && <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>✓ Mensaje enviado a {enviados} usuario{enviados !== 1 ? "s" : ""}.</p>}
+            {ok && <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>✓ Mensaje enviado a {enviados} usuario{enviados !== 1 ? "s" : ""}.</p>}
 
             <div>
               <Btn type="submit" disabled={!texto}>
@@ -1452,7 +1452,7 @@ function SeccionProfesionales() {
               const sel = selPro?.id === p.id;
               return (
                 <button key={p.id} onClick={() => selectPro(p)} style={{ textAlign: "left", background: "none", border: "none", padding: 0, cursor: "pointer", width: "100%" }}>
-                  <Card style={{ borderLeft: sel ? `3px solid ${DARK}` : "3px solid transparent", transition: "border-color 0.15s" }}>
+                  <Card style={{ borderLeft: sel ? `3px solid #8B1A2F` : "3px solid transparent", transition: "border-color 0.15s" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                       <div>
                         <p style={{ fontSize: "0.875rem", fontWeight: 500, color: DARK, marginBottom: "0.2rem" }}>{p.nombre}</p>
@@ -1484,15 +1484,15 @@ function SeccionProfesionales() {
                   <div key={l}>
                     <Label>{l}</Label>
                     <input value={v} onChange={(e) => s(e.target.value)}
-                      style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }} />
+                      style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }} />
                   </div>
                 ))}
                 <div>
                   <Label>Biografía</Label>
                   <textarea value={bio} onChange={(e) => setBio(e.target.value)} rows={4}
-                    style={{ width: "100%", background: "transparent", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "2px", padding: "0.6rem 0.75rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "vertical", boxSizing: "border-box" }} />
+                    style={{ width: "100%", background: "transparent", border: "1px solid #3D3D3D", borderRadius: "2px", padding: "0.6rem 0.75rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "vertical", boxSizing: "border-box" }} />
                 </div>
-                {ok && <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>✓ Datos guardados correctamente.</p>}
+                {ok && <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>✓ Datos guardados correctamente.</p>}
                 <div><Btn type="submit">Guardar cambios</Btn></div>
               </form>
             </Card>
@@ -1531,7 +1531,7 @@ function SeccionPendientes() {
       {pendientes.length === 0 ? (
         <Card>
           <div style={{ textAlign: "center", padding: "2rem 0" }}>
-            <CheckCircle size={32} color="#27ae60" style={{ margin: "0 auto 1rem" }} />
+            <CheckCircle size={32} color="#8B1A2F" style={{ margin: "0 auto 1rem" }} />
             <p style={{ fontSize: "0.875rem", color: MID }}>No hay profesionales pendientes de aprobación.</p>
           </div>
         </Card>
@@ -1610,7 +1610,7 @@ function SeccionAsignaciones() {
             <div>
               <Label>Cliente</Label>
               <select value={selCliente} onChange={(e) => setSelCliente(e.target.value)}
-                style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 <option value="">Seleccionar cliente</option>
                 {clientes.map((c) => <option key={c.id} value={c.id}>{c.nombre}</option>)}
               </select>
@@ -1618,12 +1618,12 @@ function SeccionAsignaciones() {
             <div>
               <Label>Profesional</Label>
               <select value={selPro} onChange={(e) => setSelPro(e.target.value)}
-                style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 <option value="">Seleccionar profesional</option>
                 {profesionales.map((p) => <option key={p.id} value={p.id}>{p.nombre} ({p.especialidad || p.profesionalType})</option>)}
               </select>
             </div>
-            {ok && <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>✓ Asignación guardada correctamente.</p>}
+            {ok && <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>✓ Asignación guardada correctamente.</p>}
             <div><Btn onClick={asignar} disabled={!selCliente || !selPro}>Guardar asignación</Btn></div>
           </div>
         </Card>
@@ -1679,7 +1679,7 @@ function SeccionPagos() {
   const bonosActivos = bonos.filter((b) => b.activo);
 
   function tipoPagoBadge(tipo: Pago["tipo"]) {
-    const map = { recarga: { bg: "rgba(39,174,96,0.1)", color: "#27ae60", label: "Recarga" }, sesion: { bg: "rgba(41,128,185,0.1)", color: "#2980b9", label: "Sesión" }, bono: { bg: "rgba(142,68,173,0.1)", color: "#8e44ad", label: "Bono" } };
+    const map = { recarga: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F", label: "Recarga" }, sesion: { bg: "rgba(74,111,165,0.1)", color: "#4A6FA5", label: "Sesión" }, bono: { bg: "rgba(122,92,142,0.1)", color: "#7A5C8E", label: "Bono" } };
     const s = map[tipo];
     return <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.55rem", borderRadius: "20px", backgroundColor: s.bg, color: s.color, fontWeight: 500 }}>{s.label}</span>;
   }
@@ -1689,9 +1689,9 @@ function SeccionPagos() {
       <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK, marginBottom: "1.5rem" }}>Pagos y bonos</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1rem", marginBottom: "2rem" }}>
-        <KpiCard label="Ingresos totales" value={`${ingresoTotal}€`} sub="Recargas y bonos" accent="#27ae60" />
-        <KpiCard label="Bonos activos" value={bonosActivos.length} sub={`de ${bonos.length} en total`} accent="#8e44ad" />
-        <KpiCard label="Movimientos" value={pagos.length} sub="Todos los registros" accent="#2980b9" />
+        <KpiCard label="Ingresos totales" value={`${ingresoTotal}€`} sub="Recargas y bonos" accent="#8B1A2F" />
+        <KpiCard label="Bonos activos" value={bonosActivos.length} sub={`de ${bonos.length} en total`} accent="#7A5C8E" />
+        <KpiCard label="Movimientos" value={pagos.length} sub="Todos los registros" accent="#4A6FA5" />
       </div>
 
       {/* Bonos activos */}
@@ -1708,8 +1708,8 @@ function SeccionPagos() {
                   </div>
                   <span style={{ fontSize: "0.8rem", color: DARK, fontWeight: 500 }}>{b.sesionesUsadas}/{b.sesionesTotales} sesiones</span>
                 </div>
-                <div style={{ height: 6, backgroundColor: "rgba(31,31,31,0.1)", borderRadius: "3px" }}>
-                  <div style={{ height: "100%", width: `${(b.sesionesUsadas / b.sesionesTotales) * 100}%`, backgroundColor: DARK, borderRadius: "3px" }} />
+                <div style={{ height: 6, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "3px" }}>
+                  <div style={{ height: "100%", width: `${(b.sesionesUsadas / b.sesionesTotales) * 100}%`, backgroundColor: "#8B1A2F", borderRadius: "3px" }} />
                 </div>
               </Card>
             ))}
@@ -1722,7 +1722,7 @@ function SeccionPagos() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID }}>Historial de movimientos</p>
           <select value={filCliente} onChange={(e) => setFilCliente(e.target.value)}
-            style={{ fontSize: "0.7rem", padding: "0.3rem 0.5rem", borderRadius: "2px", border: "1px solid rgba(31,31,31,0.2)", background: BG, color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+            style={{ fontSize: "0.7rem", padding: "0.3rem 0.5rem", borderRadius: "2px", border: "1px solid #3D3D3D", background: LIGHT, color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
             <option value="">Todos los clientes</option>
             {clientes.map((c) => <option key={c.id} value={c.id}>{c.nombre}</option>)}
           </select>
@@ -1740,7 +1740,7 @@ function SeccionPagos() {
                   </div>
                   <p style={{ fontSize: "0.7rem", color: MID }}>{nombreUser(p.clienteId)} · {new Date(p.fecha).toLocaleDateString("es-ES")}</p>
                 </div>
-                <p style={{ fontSize: "0.95rem", fontWeight: 600, color: p.monto > 0 ? "#27ae60" : "#c0392b" }}>
+                <p style={{ fontSize: "0.95rem", fontWeight: 600, color: p.monto > 0 ? "#8B1A2F" : "#C0574A" }}>
                   {p.monto > 0 ? "+" : ""}{p.monto}€
                 </p>
               </div>
@@ -1801,20 +1801,20 @@ function SeccionEstadisticas() {
 
       {/* KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "1rem", marginBottom: "2rem" }}>
-        <KpiCard label="Clientes" value={stats.totalClientes} accent="#2980b9" />
-        <KpiCard label="Profesionales" value={stats.totalProfesionales} accent="#8e44ad" />
+        <KpiCard label="Clientes" value={stats.totalClientes} accent="#4A6FA5" />
+        <KpiCard label="Profesionales" value={stats.totalProfesionales} accent="#7A5C8E" />
         <KpiCard label="Citas totales" value={stats.totalCitas} accent={DARK} />
-        <KpiCard label="Citas este mes" value={stats.citasMes} accent="#27ae60" />
+        <KpiCard label="Citas este mes" value={stats.citasMes} accent="#8B1A2F" />
       </div>
 
       {/* Estado de citas */}
       <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1rem", marginBottom: "2rem" }}>
         {[
-          { label: "Pendientes", value: stats.pendientes, color: "#2980b9" },
-          { label: "Completadas", value: stats.completadas, color: "#27ae60" },
-          { label: "Canceladas", value: stats.canceladas, color: "#c0392b" },
+          { label: "Pendientes", value: stats.pendientes, color: "#4A6FA5" },
+          { label: "Completadas", value: stats.completadas, color: "#8B1A2F" },
+          { label: "Canceladas", value: stats.canceladas, color: "#C0574A" },
         ].map(({ label, value, color }) => (
-          <div key={label} style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", padding: "1.25rem", display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div key={label} style={{ backgroundColor: LIGHT, border: "1px solid rgba(61,61,61,0.1)", borderRadius: "4px", padding: "1.25rem", display: "flex", alignItems: "center", gap: "1rem" }}>
             <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: `${color}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontSize: "1.1rem", fontWeight: 700, color }}>{value}</span>
             </div>
@@ -1835,8 +1835,8 @@ function SeccionEstadisticas() {
                 <span style={{ fontSize: "0.78rem", color: DARK }}>{serv}</span>
                 <span style={{ fontSize: "0.75rem", color: MID, fontWeight: 500 }}>{count}</span>
               </div>
-              <div style={{ height: 6, backgroundColor: "rgba(31,31,31,0.1)", borderRadius: "3px" }}>
-                <div style={{ height: "100%", width: `${(count / maxSrv) * 100}%`, backgroundColor: DARK, borderRadius: "3px" }} />
+              <div style={{ height: 6, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "3px" }}>
+                <div style={{ height: "100%", width: `${(count / maxSrv) * 100}%`, backgroundColor: "#8B1A2F", borderRadius: "3px" }} />
               </div>
             </div>
           ))}
@@ -1853,8 +1853,8 @@ function SeccionEstadisticas() {
                 <span style={{ fontSize: "0.78rem", color: DARK }}>{p.nombre}</span>
                 <span style={{ fontSize: "0.75rem", color: MID, fontWeight: 500 }}>{p.count}</span>
               </div>
-              <div style={{ height: 6, backgroundColor: "rgba(31,31,31,0.1)", borderRadius: "3px" }}>
-                <div style={{ height: "100%", width: `${(p.count / maxPro) * 100}%`, backgroundColor: DARK, borderRadius: "3px" }} />
+              <div style={{ height: 6, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "3px" }}>
+                <div style={{ height: "100%", width: `${(p.count / maxPro) * 100}%`, backgroundColor: "#8B1A2F", borderRadius: "3px" }} />
               </div>
             </div>
           ))}
@@ -1891,7 +1891,7 @@ function SeccionConfiguracion() {
             ["Horario", "Lunes a Viernes: 05:30 – 21:00"],
             ["Fines de semana", "Cerrado"],
           ].map(([l, v]) => (
-            <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "0.55rem 0", borderBottom: "1px solid rgba(31,31,31,0.07)", flexWrap: "wrap", gap: "0.5rem" }}>
+            <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "0.55rem 0", borderBottom: "1px solid rgba(61,61,61,0.07)", flexWrap: "wrap", gap: "0.5rem" }}>
               <span style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: MID }}>{l}</span>
               <span style={{ fontSize: "0.8rem", color: DARK }}>{v}</span>
             </div>
@@ -1903,7 +1903,7 @@ function SeccionConfiguracion() {
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "1rem" }}>Servicios y precios</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
               {SERVICIOS_INFO.map((s) => (
-                <div key={s.nombre} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.55rem 0", borderBottom: "1px solid rgba(31,31,31,0.07)", flexWrap: "wrap", gap: "0.25rem" }}>
+                <div key={s.nombre} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.55rem 0", borderBottom: "1px solid rgba(61,61,61,0.07)", flexWrap: "wrap", gap: "0.25rem" }}>
                   <div>
                     <p style={{ fontSize: "0.8rem", color: DARK }}>{s.nombre}</p>
                     <p style={{ fontSize: "0.65rem", color: MID }}>{s.duracion}</p>
@@ -1972,19 +1972,19 @@ export default function AdminPage() {
       <nav style={{ flex: 1, overflowY: "auto", padding: mobile ? "0.5rem 0" : "0.5rem 0" }}>
         {GRUPOS.map(({ label, secciones }) => (
           <div key={label}>
-            <p style={{ padding: "0.85rem 1.5rem 0.3rem", fontSize: "0.55rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(31,31,31,0.4)", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+            <p style={{ padding: "0.85rem 1.5rem 0.3rem", fontSize: "0.55rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
               {label}
             </p>
             {secciones.map(({ id, label: secLabel, Icon }) => (
               <button key={id}
                 onClick={() => { setSeccion(id); setSidebarOpen(false); }}
-                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "0.6rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? DARK : "transparent"}`, backgroundColor: seccion === id ? "rgba(31,31,31,0.06)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.78rem", color: seccion === id ? DARK : MID, textAlign: "left", transition: "all 0.15s" }}
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "0.6rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? "#8B1A2F" : "transparent"}`, backgroundColor: seccion === id ? "rgba(139,26,47,0.08)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.78rem", color: seccion === id ? "#8B1A2F" : MID, textAlign: "left", transition: "all 0.15s" }}
               >
                 <span style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
                   <Icon size={15} />{secLabel}
                 </span>
                 {id === "pendientes" && pendientesCount > 0 && (
-                  <span style={{ backgroundColor: "#e67e22", color: "#fff", borderRadius: "20px", padding: "0.1rem 0.5rem", fontSize: "0.58rem", fontWeight: 600 }}>{pendientesCount}</span>
+                  <span style={{ backgroundColor: "#C08A2E", color: "#fff", borderRadius: "20px", padding: "0.1rem 0.5rem", fontSize: "0.58rem", fontWeight: 600 }}>{pendientesCount}</span>
                 )}
               </button>
             ))}
@@ -1997,7 +1997,7 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: BG, display: "flex", flexDirection: "column" }}>
       {/* Top bar */}
-      <div style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "rgba(237,230,217,0.95)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(31,31,31,0.1)", padding: "0 1.5rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "rgba(44,44,44,0.95)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(61,61,61,0.1)", padding: "0 1.5rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <button className="md:hidden" onClick={() => setSidebarOpen(!sidebarOpen)} style={{ background: "none", border: "none", cursor: "pointer", color: DARK }}>
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -2018,8 +2018,8 @@ export default function AdminPage() {
         {sidebarOpen && <div onClick={() => setSidebarOpen(false)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.3)", zIndex: 30 }} />}
 
         {/* Desktop sidebar */}
-        <aside className="hidden md:flex" style={{ width: 220, flexShrink: 0, backgroundColor: LIGHT, borderRight: "1px solid rgba(31,31,31,0.1)", position: "fixed", top: 60, bottom: 0, flexDirection: "column" }}>
-          <div style={{ padding: "1.25rem 1.5rem", borderBottom: "1px solid rgba(31,31,31,0.08)" }}>
+        <aside className="hidden md:flex" style={{ width: 220, flexShrink: 0, backgroundColor: LIGHT, borderRight: "1px solid rgba(61,61,61,0.1)", position: "fixed", top: 60, bottom: 0, flexDirection: "column" }}>
+          <div style={{ padding: "1.25rem 1.5rem", borderBottom: "1px solid rgba(61,61,61,0.08)" }}>
             <p style={{ fontSize: "0.8rem", fontWeight: 500, color: DARK }}>{user.nombre}</p>
             <p style={{ fontSize: "0.65rem", color: MID }}>Administrador</p>
           </div>
@@ -2028,7 +2028,7 @@ export default function AdminPage() {
 
         {/* Mobile sidebar */}
         {sidebarOpen && (
-          <aside style={{ position: "fixed", top: 60, left: 0, bottom: 0, width: 240, backgroundColor: LIGHT, borderRight: "1px solid rgba(31,31,31,0.1)", zIndex: 35, display: "flex", flexDirection: "column" }}>
+          <aside style={{ position: "fixed", top: 60, left: 0, bottom: 0, width: 240, backgroundColor: LIGHT, borderRight: "1px solid rgba(61,61,61,0.1)", zIndex: 35, display: "flex", flexDirection: "column" }}>
             <SidebarNav mobile />
           </aside>
         )}

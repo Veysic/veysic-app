@@ -33,10 +33,10 @@ import {
 } from "../lib/store";
 import type { Cita, Mensaje, PlanEntrenamiento, Ejercicio, Bloqueo, Sala } from "../lib/store";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
+const LIGHT = "#3D3D3D";
 
 type Seccion = "perfil" | "agenda" | "clientes" | "planes" | "mensajes";
 
@@ -60,7 +60,7 @@ function Label({ children }: { children: React.ReactNode }) {
 
 function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
-    <div style={{ backgroundColor: LIGHT, border: "1px solid rgba(31,31,31,0.1)", borderRadius: "4px", padding: "1.25rem", ...style }}>
+    <div className="veysic-card" style={{ backgroundColor: LIGHT, borderRadius: "4px", padding: "1.25rem", ...style }}>
       {children}
     </div>
   );
@@ -70,8 +70,8 @@ function Btn({ children, onClick, variant = "dark", small, type = "button", disa
   children: React.ReactNode; onClick?: () => void; variant?: "dark" | "outline" | "ghost"; small?: boolean; type?: "button" | "submit"; disabled?: boolean;
 }) {
   const base: React.CSSProperties = { fontSize: small ? "0.6rem" : "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: "2px", cursor: disabled ? "not-allowed" : "pointer", border: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", padding: small ? "0.4rem 0.85rem" : "0.65rem 1.3rem", transition: "all 0.2s", opacity: disabled ? 0.5 : 1 };
-  if (variant === "dark") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: DARK, color: BG }}>{children}</button>;
-  if (variant === "outline") return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: DARK, border: "1px solid rgba(31,31,31,0.3)" }}>{children}</button>;
+  if (variant === "dark") return <button className="veysic-btn-primary" type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "#8B1A2F", color: DARK }}>{children}</button>;
+  if (variant === "outline") return <button className="veysic-btn-outline" type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: "#8B1A2F", border: "1px solid #8B1A2F" }}>{children}</button>;
   return <button type={type} onClick={onClick} disabled={disabled} style={{ ...base, backgroundColor: "transparent", color: MID }}>{children}</button>;
 }
 
@@ -80,16 +80,16 @@ function InputLine({ label, value, onChange, type = "text", placeholder }: { lab
     <div>
       <Label>{label}</Label>
       <input type={type} value={value} onChange={onChange ? (e) => onChange(e.target.value) : undefined} placeholder={placeholder} readOnly={!onChange}
-        style={{ width: "100%", background: "transparent", border: "none", borderBottom: `1px solid ${onChange ? "rgba(31,31,31,0.25)" : "rgba(31,31,31,0.1)"}`, paddingBottom: "0.6rem", paddingTop: "0.15rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }}
-        onFocus={(e) => { if (onChange) e.currentTarget.style.borderBottomColor = DARK; }}
-        onBlur={(e) => { if (onChange) e.currentTarget.style.borderBottomColor = "rgba(31,31,31,0.25)"; }}
+        style={{ width: "100%", background: "transparent", border: "none", borderBottom: `1px solid ${onChange ? "#3D3D3D" : "rgba(61,61,61,0.1)"}`, paddingBottom: "0.6rem", paddingTop: "0.15rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }}
+        onFocus={(e) => { if (onChange) e.currentTarget.style.borderBottomColor = "#8B1A2F"; }}
+        onBlur={(e) => { if (onChange) e.currentTarget.style.borderBottomColor = "#3D3D3D"; }}
       />
     </div>
   );
 }
 
 function estadoBadge(estado: Cita["estado"]) {
-  const map = { pendiente: { bg: "rgba(41,128,185,0.1)", color: "#2980b9", label: "Pendiente" }, completada: { bg: "rgba(39,174,96,0.1)", color: "#27ae60", label: "Completada" }, cancelada: { bg: "rgba(192,57,43,0.1)", color: "#c0392b", label: "Cancelada" } };
+  const map = { pendiente: { bg: "rgba(74,111,165,0.1)", color: "#4A6FA5", label: "Pendiente" }, completada: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F", label: "Completada" }, cancelada: { bg: "rgba(192,87,74,0.1)", color: "#C0574A", label: "Cancelada" } };
   const s = map[estado];
   return <span style={{ fontSize: "0.65rem", padding: "0.2rem 0.55rem", borderRadius: "20px", backgroundColor: s.bg, color: s.color, fontWeight: 500 }}>{s.label}</span>;
 }
@@ -130,7 +130,7 @@ function SeccionPerfil() {
       <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK }}>Mi perfil profesional</h2>
 
       <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-        <div style={{ width: 80, height: 80, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+        <div style={{ width: 80, height: 80, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           {user.foto ? <img src={user.foto} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <User size={32} color={MID} />}
         </div>
         <div>
@@ -155,13 +155,13 @@ function SeccionPerfil() {
           <div style={{ marginTop: "1.25rem" }}>
             <Label>Bio (aparece en la web pública)</Label>
             <textarea value={bio} onChange={(e) => setBio(e.target.value)} rows={3}
-              style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", resize: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }}
-              onFocus={(e) => (e.currentTarget.style.borderBottomColor = DARK)}
-              onBlur={(e) => (e.currentTarget.style.borderBottomColor = "rgba(31,31,31,0.25)")}
+              style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", resize: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }}
+              onFocus={(e) => (e.currentTarget.style.borderBottomColor = "#8B1A2F")}
+              onBlur={(e) => (e.currentTarget.style.borderBottomColor = "#3D3D3D")}
             />
           </div>
         </Card>
-        {ok && <p style={{ fontSize: "0.8rem", color: "#27ae60", backgroundColor: "rgba(39,174,96,0.08)", padding: "0.75rem 1rem", borderRadius: "2px", borderLeft: "3px solid #27ae60" }}>Cambios guardados.</p>}
+        {ok && <p style={{ fontSize: "0.8rem", color: "#8B1A2F", backgroundColor: "rgba(139,26,47,0.08)", padding: "0.75rem 1rem", borderRadius: "2px", borderLeft: "3px solid #8B1A2F" }}>Cambios guardados.</p>}
         <div><Btn type="submit">Guardar cambios</Btn></div>
       </form>
     </div>
@@ -228,10 +228,10 @@ function SeccionAgenda() {
     <div>
       <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK, marginBottom: "1.5rem" }}>Mi agenda</h2>
 
-      <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(31,31,31,0.12)", marginBottom: "1.5rem" }}>
+      <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(61,61,61,0.12)", marginBottom: "1.5rem" }}>
         {(["hoy", "semana", "todo"] as const).map((t) => (
           <button key={t} onClick={() => setTab(t)}
-            style={{ background: "none", border: "none", borderBottom: `2px solid ${tab === t ? DARK : "transparent"}`, padding: "0.6rem 1.1rem", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: tab === t ? DARK : MID, cursor: "pointer", marginBottom: "-1px", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+            style={{ background: "none", border: "none", borderBottom: `2px solid ${tab === t ? "#8B1A2F" : "transparent"}`, padding: "0.6rem 1.1rem", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: tab === t ? "#8B1A2F" : MID, cursor: "pointer", marginBottom: "-1px", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
             {t === "hoy" ? "Hoy" : t === "semana" ? "Esta semana" : "Todo"}
           </button>
         ))}
@@ -276,7 +276,7 @@ function SeccionAgenda() {
       </div>
 
       {/* Bloqueos de horario */}
-      <div style={{ marginTop: "2.5rem", borderTop: "1px solid rgba(31,31,31,0.1)", paddingTop: "2rem" }}>
+      <div style={{ marginTop: "2.5rem", borderTop: "1px solid rgba(61,61,61,0.1)", paddingTop: "2rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
           <h3 style={{ fontSize: "0.85rem", fontWeight: 500, color: DARK, display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <Lock size={14} /> Horarios bloqueados
@@ -293,20 +293,20 @@ function SeccionAgenda() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem" }}>
                 <div>
                   <label style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, display: "block", marginBottom: "0.4rem" }}>Fecha</label>
-                  <input type="date" value={bFecha} onChange={(e) => setBFecha(e.target.value)} min={hoyStr} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                  <input type="date" value={bFecha} onChange={(e) => setBFecha(e.target.value)} min={hoyStr} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                 </div>
                 <div>
                   <label style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, display: "block", marginBottom: "0.4rem" }}>Desde</label>
-                  <input type="time" value={bIni} onChange={(e) => setBIni(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                  <input type="time" value={bIni} onChange={(e) => setBIni(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                 </div>
                 <div>
                   <label style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, display: "block", marginBottom: "0.4rem" }}>Hasta</label>
-                  <input type="time" value={bFin} onChange={(e) => setBFin(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                  <input type="time" value={bFin} onChange={(e) => setBFin(e.target.value)} required style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                 </div>
               </div>
               <div>
                 <label style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID, display: "block", marginBottom: "0.4rem" }}>Motivo (opcional)</label>
-                <input type="text" value={bMotivo} onChange={(e) => setBMotivo(e.target.value)} placeholder="Ej: Reunión, formación..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                <input type="text" value={bMotivo} onChange={(e) => setBMotivo(e.target.value)} placeholder="Ej: Reunión, formación..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.85rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
               </div>
               <div style={{ display: "flex", gap: "0.5rem" }}>
                 <Btn type="submit" small>Guardar bloqueo</Btn>
@@ -328,7 +328,7 @@ function SeccionAgenda() {
                   </p>
                   {b.motivo && <p style={{ fontSize: "0.7rem", color: MID, marginTop: "0.15rem" }}>{b.motivo}</p>}
                 </div>
-                <button onClick={() => eliminarBloqueo(b.id)} style={{ background: "none", border: "none", cursor: "pointer", color: "#c0392b", padding: "0.25rem" }}>
+                <button onClick={() => eliminarBloqueo(b.id)} style={{ background: "none", border: "none", cursor: "pointer", color: "#C0574A", padding: "0.25rem" }}>
                   <Trash2 size={14} />
                 </button>
               </div>
@@ -380,8 +380,8 @@ function SeccionClientes() {
           ) : (
             clientes.map((c) => (
               <button key={c.id} onClick={() => setSelCliente(c)}
-                style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.9rem 1rem", border: `1px solid ${selCliente?.id === c.id ? DARK : "rgba(31,31,31,0.12)"}`, borderRadius: "4px", backgroundColor: selCliente?.id === c.id ? "rgba(31,31,31,0.05)" : LIGHT, cursor: "pointer", textAlign: "left", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.9rem 1rem", border: `1px solid ${selCliente?.id === c.id ? "#8B1A2F" : "rgba(61,61,61,0.12)"}`, borderRadius: "4px", backgroundColor: selCliente?.id === c.id ? "rgba(139,26,47,0.08)" : LIGHT, cursor: "pointer", textAlign: "left", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   {c.foto ? <img src={c.foto} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <User size={16} color={MID} />}
                 </div>
                 <div>
@@ -401,10 +401,10 @@ function SeccionClientes() {
             </Card>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(31,31,31,0.12)" }}>
+              <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(61,61,61,0.12)" }}>
                 {(["ficha", "subir"] as const).map((t) => (
                   <button key={t} onClick={() => setTab(t)}
-                    style={{ background: "none", border: "none", borderBottom: `2px solid ${tab === t ? DARK : "transparent"}`, padding: "0.6rem 1rem", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: tab === t ? DARK : MID, cursor: "pointer", marginBottom: "-1px", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                    style={{ background: "none", border: "none", borderBottom: `2px solid ${tab === t ? "#8B1A2F" : "transparent"}`, padding: "0.6rem 1rem", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: tab === t ? "#8B1A2F" : MID, cursor: "pointer", marginBottom: "-1px", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     {t === "ficha" ? "Ficha del cliente" : "Subir documento"}
                   </button>
                 ))}
@@ -441,13 +441,13 @@ function SeccionClientes() {
                     <div>
                       <Label>Tipo</Label>
                       <select value={docTipo} onChange={(e) => setDocTipo(e.target.value as typeof docTipo)}
-                        style={{ background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", width: "100%" }}>
+                        style={{ background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", width: "100%" }}>
                         <option value="informe">Informe</option>
                         <option value="consentimiento">Consentimiento</option>
                         <option value="factura">Factura</option>
                       </select>
                     </div>
-                    {docOk && <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>Documento añadido correctamente.</p>}
+                    {docOk && <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>Documento añadido correctamente.</p>}
                     <div><Btn type="submit" small>
                       <Upload size={11} style={{ marginRight: 5, display: "inline" }} />Subir documento
                     </Btn></div>
@@ -537,12 +537,12 @@ function SeccionPlanes() {
                 <div>
                   <Label>Nombre del plan</Label>
                   <input value={planNombre} onChange={(e) => setPlanNombre(e.target.value)} placeholder="Ej: Plan Fuerza Fase 2" required
-                    style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }} />
+                    style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" }} />
                 </div>
                 <div>
                   <Label>Asignar a cliente</Label>
                   <select value={selCliente} onChange={(e) => setSelCliente(e.target.value)} required
-                    style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                    style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.6rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                     <option value="">Seleccionar cliente</option>
                     {clientes.map((c) => <option key={c.id} value={c.id}>{c.nombre}</option>)}
                   </select>
@@ -552,7 +552,7 @@ function SeccionPlanes() {
                   <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
                     {DIAS.map((d) => (
                       <button key={d} type="button" onClick={() => toggleDia(d)}
-                        style={{ padding: "0.35rem 0.65rem", fontSize: "0.65rem", letterSpacing: "0.05em", borderRadius: "2px", border: `1px solid ${dias[d] ? DARK : "rgba(31,31,31,0.2)"}`, backgroundColor: dias[d] ? DARK : "transparent", color: dias[d] ? BG : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                        style={{ padding: "0.35rem 0.65rem", fontSize: "0.65rem", letterSpacing: "0.05em", borderRadius: "2px", border: `1px solid ${dias[d] ? "#8B1A2F" : "#3D3D3D"}`, backgroundColor: dias[d] ? "#8B1A2F" : "transparent", color: dias[d] ? DARK : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                         {d.slice(0, 3)}
                       </button>
                     ))}
@@ -567,7 +567,7 @@ function SeccionPlanes() {
                 <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem", flexWrap: "wrap" }}>
                   {Object.keys(dias).map((d) => (
                     <button key={d} type="button" onClick={() => setDiaSel(d)}
-                      style={{ padding: "0.3rem 0.75rem", fontSize: "0.65rem", borderRadius: "2px", border: `1px solid ${diaSel === d ? DARK : "rgba(31,31,31,0.15)"}`, backgroundColor: diaSel === d ? "rgba(31,31,31,0.08)" : "transparent", color: diaSel === d ? DARK : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                      style={{ padding: "0.3rem 0.75rem", fontSize: "0.65rem", borderRadius: "2px", border: `1px solid ${diaSel === d ? "#8B1A2F" : "rgba(61,61,61,0.15)"}`, backgroundColor: diaSel === d ? "rgba(139,26,47,0.12)" : "transparent", color: diaSel === d ? "#8B1A2F" : MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                       {d}
                     </button>
                   ))}
@@ -576,16 +576,16 @@ function SeccionPlanes() {
                 {dias[diaSel] && (
                   <>
                     {dias[diaSel].ejercicios.map((ej, i) => (
-                      <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.4rem 0", borderBottom: "1px solid rgba(31,31,31,0.06)" }}>
+                      <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.4rem 0", borderBottom: "1px solid rgba(61,61,61,0.06)" }}>
                         <span style={{ fontSize: "0.8rem", color: DARK }}>{ej.nombre} — {ej.series}×{ej.reps} · {ej.descanso}</span>
                         <button type="button" onClick={() => removeEjercicio(diaSel, i)} style={{ background: "none", border: "none", cursor: "pointer", color: MID }}><X size={13} /></button>
                       </div>
                     ))}
                     <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                      <input value={ejNombre} onChange={(e) => setEjNombre(e.target.value)} placeholder="Ejercicio" style={{ flex: 2, minWidth: 100, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.2)", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
-                      <input value={ejSeries} onChange={(e) => setEjSeries(e.target.value)} placeholder="Series" style={{ flex: 1, minWidth: 50, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.2)", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
-                      <input value={ejReps} onChange={(e) => setEjReps(e.target.value)} placeholder="Reps" style={{ flex: 1, minWidth: 50, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.2)", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
-                      <input value={ejDescanso} onChange={(e) => setEjDescanso(e.target.value)} placeholder="Descanso" style={{ flex: 1, minWidth: 60, background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.2)", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                      <input value={ejNombre} onChange={(e) => setEjNombre(e.target.value)} placeholder="Ejercicio" style={{ flex: 2, minWidth: 100, background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                      <input value={ejSeries} onChange={(e) => setEjSeries(e.target.value)} placeholder="Series" style={{ flex: 1, minWidth: 50, background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                      <input value={ejReps} onChange={(e) => setEjReps(e.target.value)} placeholder="Reps" style={{ flex: 1, minWidth: 50, background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                      <input value={ejDescanso} onChange={(e) => setEjDescanso(e.target.value)} placeholder="Descanso" style={{ flex: 1, minWidth: 60, background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.8rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                       <button type="button" onClick={addEjercicio} style={{ background: "none", border: "none", cursor: "pointer", color: DARK }}><Plus size={18} /></button>
                     </div>
                   </>
@@ -593,7 +593,7 @@ function SeccionPlanes() {
               </Card>
             )}
 
-            {ok && <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>Plan guardado y asignado correctamente.</p>}
+            {ok && <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>Plan guardado y asignado correctamente.</p>}
             <div><Btn type="submit">Guardar plan</Btn></div>
           </form>
         </div>
@@ -613,7 +613,7 @@ function SeccionPlanes() {
                       <p style={{ fontSize: "0.7rem", color: MID }}>Cliente: {getUserById(p.clienteId)?.nombre || p.clienteId}</p>
                       <p style={{ fontSize: "0.7rem", color: MID }}>Días: {Object.keys(p.dias).join(", ")}</p>
                     </div>
-                    {p.activo && <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.5rem", borderRadius: "20px", backgroundColor: "rgba(39,174,96,0.1)", color: "#27ae60" }}>Activo</span>}
+                    {p.activo && <span style={{ fontSize: "0.6rem", padding: "0.2rem 0.5rem", borderRadius: "20px", backgroundColor: "rgba(139,26,47,0.1)", color: "#8B1A2F" }}>Activo</span>}
                   </div>
                 </Card>
               ))
@@ -673,8 +673,8 @@ function SeccionMensajes() {
         <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
           {clientes.map((c) => (
             <button key={c.id} onClick={() => setSelId(c.id)}
-              style={{ display: "flex", alignItems: "center", gap: "0.65rem", padding: "0.75rem", borderRadius: "4px", border: `1px solid ${selId === c.id ? DARK : "rgba(31,31,31,0.1)"}`, backgroundColor: selId === c.id ? "rgba(31,31,31,0.05)" : LIGHT, cursor: "pointer", textAlign: "left", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: "0.65rem", padding: "0.75rem", borderRadius: "4px", border: `1px solid ${selId === c.id ? "#8B1A2F" : "rgba(61,61,61,0.1)"}`, backgroundColor: selId === c.id ? "rgba(139,26,47,0.08)" : LIGHT, cursor: "pointer", textAlign: "left", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <User size={14} color={MID} />
               </div>
               <span style={{ fontSize: "0.8rem", color: DARK }}>{c.nombre.split(" ")[0]}</span>
@@ -685,8 +685,8 @@ function SeccionMensajes() {
         {/* Chat */}
         <div style={{ gridColumn: "span 2" }}>
           <Card style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid rgba(31,31,31,0.08)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}><User size={14} color={MID} /></div>
+            <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid rgba(61,61,61,0.08)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}><User size={14} color={MID} /></div>
               <p style={{ fontSize: "0.875rem", fontWeight: 500, color: DARK }}>{selCliente?.nombre || "—"}</p>
             </div>
             <div style={{ height: 300, overflowY: "auto", padding: "1rem", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
@@ -694,15 +694,15 @@ function SeccionMensajes() {
                 const esMio = m.de === user.id;
                 return (
                   <div key={m.id} style={{ display: "flex", justifyContent: esMio ? "flex-end" : "flex-start" }}>
-                    <div style={{ maxWidth: "75%", padding: "0.55rem 0.8rem", borderRadius: esMio ? "10px 10px 2px 10px" : "10px 10px 10px 2px", backgroundColor: esMio ? DARK : LIGHT, border: esMio ? "none" : "1px solid rgba(31,31,31,0.1)" }}>
-                      <p style={{ fontSize: "0.8rem", color: esMio ? BG : DARK, lineHeight: 1.5 }}>{m.texto}</p>
+                    <div style={{ maxWidth: "75%", padding: "0.55rem 0.8rem", borderRadius: esMio ? "10px 10px 2px 10px" : "10px 10px 10px 2px", backgroundColor: esMio ? "#8B1A2F" : LIGHT, border: esMio ? "none" : "1px solid rgba(61,61,61,0.1)" }}>
+                      <p style={{ fontSize: "0.8rem", color: esMio ? "#FFFFFF" : DARK, lineHeight: 1.5 }}>{m.texto}</p>
                     </div>
                   </div>
                 );
               })}
               <div ref={endRef} />
             </div>
-            <form onSubmit={enviar} style={{ padding: "0.65rem 1rem", borderTop: "1px solid rgba(31,31,31,0.08)", display: "flex", gap: "0.75rem" }}>
+            <form onSubmit={enviar} style={{ padding: "0.65rem 1rem", borderTop: "1px solid rgba(61,61,61,0.08)", display: "flex", gap: "0.75rem" }}>
               <input value={texto} onChange={(e) => setTexto(e.target.value)} placeholder="Escribe un mensaje..." style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: "0.875rem", color: DARK, fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
               <button type="submit" style={{ background: "none", border: "none", cursor: "pointer", color: DARK }}><Send size={17} /></button>
             </form>
@@ -759,7 +759,7 @@ export default function ProfesionalPage() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: BG, display: "flex", flexDirection: "column" }}>
       {/* Top bar */}
-      <div style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "rgba(237,230,217,0.95)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(31,31,31,0.1)", padding: "0 1.5rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 40, backgroundColor: "rgba(44,44,44,0.95)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(61,61,61,0.1)", padding: "0 1.5rem", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <button className="md:hidden" onClick={() => setSidebarOpen(!sidebarOpen)} style={{ background: "none", border: "none", cursor: "pointer", color: DARK }}>
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -778,10 +778,10 @@ export default function ProfesionalPage() {
         {sidebarOpen && <div onClick={() => setSidebarOpen(false)} style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.3)", zIndex: 30 }} />}
 
         {/* Desktop sidebar */}
-        <aside className="hidden md:flex" style={{ width: 240, flexShrink: 0, backgroundColor: LIGHT, borderRight: "1px solid rgba(31,31,31,0.1)", padding: "1.5rem 0", position: "fixed", top: 60, bottom: 0, flexDirection: "column" }}>
-          <div style={{ padding: "0 1.5rem 1.5rem", borderBottom: "1px solid rgba(31,31,31,0.08)" }}>
+        <aside className="hidden md:flex" style={{ width: 240, flexShrink: 0, backgroundColor: LIGHT, borderRight: "1px solid rgba(61,61,61,0.1)", padding: "1.5rem 0", position: "fixed", top: 60, bottom: 0, flexDirection: "column" }}>
+          <div style={{ padding: "0 1.5rem 1.5rem", borderBottom: "1px solid rgba(61,61,61,0.08)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <div style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {user.foto ? <img src={user.foto} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <User size={18} color={MID} />}
               </div>
               <div>
@@ -793,10 +793,10 @@ export default function ProfesionalPage() {
           <nav style={{ flex: 1, padding: "1rem 0", overflowY: "auto" }}>
             {SECCIONES.map(({ id, label, Icon }) => (
               <button key={id} onClick={() => { setSeccion(id); setSidebarOpen(false); }}
-                style={{ display: "flex", alignItems: "center", gap: "0.75rem", width: "100%", padding: "0.7rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? DARK : "transparent"}`, backgroundColor: seccion === id ? "rgba(31,31,31,0.06)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.8rem", color: seccion === id ? DARK : MID, textAlign: "left", transition: "all 0.15s" }}>
+                style={{ display: "flex", alignItems: "center", gap: "0.75rem", width: "100%", padding: "0.7rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? "#8B1A2F" : "transparent"}`, backgroundColor: seccion === id ? "rgba(139,26,47,0.08)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.8rem", color: seccion === id ? "#8B1A2F" : MID, textAlign: "left", transition: "all 0.15s" }}>
                 <Icon size={16} />{label}
                 {id === "mensajes" && unreadMsgs > 0 && (
-                  <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#c0392b", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
+                  <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#C0574A", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
                     {unreadMsgs > 9 ? "9+" : unreadMsgs}
                   </span>
                 )}
@@ -807,14 +807,14 @@ export default function ProfesionalPage() {
 
         {/* Mobile sidebar */}
         {sidebarOpen && (
-          <aside style={{ position: "fixed", top: 60, left: 0, bottom: 0, width: 240, backgroundColor: LIGHT, borderRight: "1px solid rgba(31,31,31,0.1)", zIndex: 35, display: "flex", flexDirection: "column", padding: "1.5rem 0" }}>
+          <aside style={{ position: "fixed", top: 60, left: 0, bottom: 0, width: 240, backgroundColor: LIGHT, borderRight: "1px solid rgba(61,61,61,0.1)", zIndex: 35, display: "flex", flexDirection: "column", padding: "1.5rem 0" }}>
             <nav style={{ flex: 1 }}>
               {SECCIONES.map(({ id, label, Icon }) => (
                 <button key={id} onClick={() => { setSeccion(id); setSidebarOpen(false); }}
-                  style={{ display: "flex", alignItems: "center", gap: "0.75rem", width: "100%", padding: "0.7rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? DARK : "transparent"}`, backgroundColor: seccion === id ? "rgba(31,31,31,0.06)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.8rem", color: seccion === id ? DARK : MID, textAlign: "left" }}>
+                  style={{ display: "flex", alignItems: "center", gap: "0.75rem", width: "100%", padding: "0.7rem 1.5rem", background: "none", border: "none", borderLeft: `3px solid ${seccion === id ? "#8B1A2F" : "transparent"}`, backgroundColor: seccion === id ? "rgba(139,26,47,0.08)" : "transparent", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: "0.8rem", color: seccion === id ? "#8B1A2F" : MID, textAlign: "left" }}>
                   <Icon size={16} />{label}
                   {id === "mensajes" && unreadMsgs > 0 && (
-                    <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#c0392b", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
+                    <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#C0574A", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
                       {unreadMsgs > 9 ? "9+" : unreadMsgs}
                     </span>
                   )}

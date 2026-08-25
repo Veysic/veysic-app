@@ -88,7 +88,7 @@ export default function Home() {
   return (
     <div
       className="min-h-screen"
-      style={{ backgroundColor: "#EDE6D9", color: "#1F1F1F" }}
+      style={{ backgroundColor: "#2C2C2C", color: "#FFFFFF" }}
     >
       <Header />
 
@@ -98,7 +98,7 @@ export default function Home() {
           id="inicio"
           style={{
             minHeight: "100vh",
-            backgroundColor: "#EDE6D9",
+            backgroundColor: "#2C2C2C",
             display: "flex",
             alignItems: "center",
             paddingTop: "5rem",
@@ -113,7 +113,7 @@ export default function Home() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                color: "#3A3A3A",
+                color: "#A0A0A0",
                 marginBottom: "2.5rem",
               }}
             >
@@ -125,7 +125,7 @@ export default function Home() {
               style={{
                 fontSize: "clamp(2.6rem, 6vw, 5rem)",
                 lineHeight: 1.08,
-                color: "#1F1F1F",
+                color: "#FFFFFF",
                 marginBottom: "2rem",
                 maxWidth: "780px",
                 fontWeight: 400,
@@ -140,7 +140,7 @@ export default function Home() {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.8,
-                color: "#3A3A3A",
+                color: "#A0A0A0",
                 maxWidth: "480px",
                 marginBottom: "3rem",
               }}
@@ -157,17 +157,17 @@ export default function Home() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: "#1F1F1F",
-                  color: "#EDE6D9",
+                  backgroundColor: "#8B1A2F",
+                  color: "#FFFFFF",
                   textDecoration: "none",
-                  borderRadius: "2px",
+                  borderRadius: "6px",
                   transition: "background-color 0.2s",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#3A3A3A")
+                  (e.currentTarget.style.backgroundColor = "#B8324A")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#1F1F1F")
+                  (e.currentTarget.style.backgroundColor = "#8B1A2F")
                 }
               >
                 Reservar cita
@@ -180,18 +180,22 @@ export default function Home() {
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   backgroundColor: "transparent",
-                  color: "#1F1F1F",
+                  color: "#8B1A2F",
                   textDecoration: "none",
-                  border: "1px solid #1F1F1F",
-                  borderRadius: "2px",
-                  transition: "background-color 0.2s",
+                  border: "1px solid #8B1A2F",
+                  borderRadius: "6px",
+                  transition: "background-color 0.2s, color 0.2s, border-color 0.2s",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "rgba(31,31,31,0.06)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "transparent")
-                }
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#8B1A2F";
+                  e.currentTarget.style.color = "#FFFFFF";
+                  e.currentTarget.style.borderColor = "#8B1A2F";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "#8B1A2F";
+                  e.currentTarget.style.borderColor = "#8B1A2F";
+                }}
               >
                 Conocer servicios
               </a>
@@ -202,7 +206,7 @@ export default function Home() {
         {/* ── SERVICIOS ──────────────────────────────────────────────────── */}
         <section
           id="servicios"
-          style={{ backgroundColor: "#F5F0E8", paddingTop: "7rem", paddingBottom: "7rem" }}
+          style={{ backgroundColor: "#3D3D3D", paddingTop: "7rem", paddingBottom: "7rem" }}
         >
           <div className="max-w-6xl mx-auto px-6 md:px-12">
             <FadeIn>
@@ -211,7 +215,7 @@ export default function Home() {
                 style={{
                   fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                   fontWeight: 400,
-                  color: "#1F1F1F",
+                  color: "#FFFFFF",
                   marginBottom: "4.5rem",
                 }}
               >
@@ -231,20 +235,20 @@ export default function Home() {
                       ? "py-10 md:py-0 md:px-12 border-b md:border-b-0 md:border-l md:border-r"
                       : "py-10 md:py-0 md:pl-12"
                   }
-                  style={{ borderColor: "rgba(31,31,31,0.12)" }}
+                  style={{ borderColor: "rgba(61,61,61,0.12)" }}
                 >
                   <FadeIn delay={i * 130}>
                     <Icon
                       size={20}
                       strokeWidth={1.5}
-                      style={{ color: "#1F1F1F", marginBottom: "1.75rem" }}
+                      style={{ color: "#FFFFFF", marginBottom: "1.75rem" }}
                     />
                     <h3
                       className="font-serif"
                       style={{
                         fontSize: "1.2rem",
                         fontWeight: 400,
-                        color: "#1F1F1F",
+                        color: "#FFFFFF",
                         marginBottom: "1rem",
                       }}
                     >
@@ -254,7 +258,7 @@ export default function Home() {
                       style={{
                         fontSize: "0.875rem",
                         lineHeight: 1.8,
-                        color: "#3A3A3A",
+                        color: "#A0A0A0",
                         marginBottom: href ? "1.25rem" : 0,
                       }}
                     >
@@ -270,14 +274,20 @@ export default function Home() {
                           fontSize: "0.65rem",
                           letterSpacing: "0.15em",
                           textTransform: "uppercase",
-                          color: "#1F1F1F",
+                          color: "#FFFFFF",
                           textDecoration: "none",
-                          borderBottom: "1px solid rgba(31,31,31,0.3)",
+                          borderBottom: "1px solid rgba(61,61,61,0.3)",
                           paddingBottom: "0.15rem",
-                          transition: "border-color 0.2s",
+                          transition: "border-color 0.2s, color 0.2s",
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#1F1F1F")}
-                        onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(31,31,31,0.3)")}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = "#8B1A2F";
+                          e.currentTarget.style.color = "#B8324A";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = "rgba(61,61,61,0.3)";
+                          e.currentTarget.style.color = "#FFFFFF";
+                        }}
                       >
                         Ver modalidades y precios
                         <ArrowRight size={11} />
@@ -294,7 +304,7 @@ export default function Home() {
         <section
           id="sobre-nosotros"
           style={{
-            backgroundColor: "#1F1F1F",
+            backgroundColor: "#3D3D3D",
             paddingTop: "8rem",
             paddingBottom: "8rem",
           }}
@@ -306,7 +316,7 @@ export default function Home() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.3em",
                   textTransform: "uppercase",
-                  color: "rgba(237,230,217,0.45)",
+                  color: "rgba(255,255,255,0.45)",
                   marginBottom: "2rem",
                 }}
               >
@@ -318,7 +328,7 @@ export default function Home() {
                   fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
                   fontWeight: 400,
                   lineHeight: 1.2,
-                  color: "#EDE6D9",
+                  color: "#FFFFFF",
                   maxWidth: "700px",
                   marginBottom: "2.5rem",
                 }}
@@ -330,7 +340,7 @@ export default function Home() {
                 style={{
                   fontSize: "0.95rem",
                   lineHeight: 1.9,
-                  color: "rgba(237,230,217,0.65)",
+                  color: "rgba(255,255,255,0.65)",
                   maxWidth: "560px",
                 }}
               >
@@ -349,7 +359,7 @@ export default function Home() {
         <section
           id="contacto"
           style={{
-            backgroundColor: "#F5F0E8",
+            backgroundColor: "#2C2C2C",
             paddingTop: "7rem",
             paddingBottom: "7rem",
           }}
@@ -361,7 +371,7 @@ export default function Home() {
                 style={{
                   fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                   fontWeight: 400,
-                  color: "#1F1F1F",
+                  color: "#FFFFFF",
                   marginBottom: "4.5rem",
                 }}
               >
@@ -412,7 +422,7 @@ export default function Home() {
                           fontSize: "0.65rem",
                           letterSpacing: "0.18em",
                           textTransform: "uppercase",
-                          color: "#3A3A3A",
+                          color: "#A0A0A0",
                           marginBottom: "0.5rem",
                         }}
                       >
@@ -422,7 +432,7 @@ export default function Home() {
                         style={{
                           fontSize: "0.9rem",
                           lineHeight: 1.7,
-                          color: "#1F1F1F",
+                          color: "#FFFFFF",
                         }}
                       >
                         {value}
@@ -448,7 +458,7 @@ export default function Home() {
                           fontSize: "0.65rem",
                           letterSpacing: "0.18em",
                           textTransform: "uppercase",
-                          color: "#3A3A3A",
+                          color: "#A0A0A0",
                         }}
                       >
                         {label}
@@ -459,21 +469,21 @@ export default function Home() {
                         style={{
                           background: "transparent",
                           border: "none",
-                          borderBottom: "1px solid rgba(31,31,31,0.25)",
+                          borderBottom: "1px solid #3D3D3D",
                           paddingBottom: "0.75rem",
                           paddingTop: "0.25rem",
                           fontSize: "0.875rem",
-                          color: "#1F1F1F",
+                          color: "#FFFFFF",
                           outline: "none",
                           width: "100%",
                           fontFamily: "var(--font-inter), system-ui, sans-serif",
                         }}
                         onFocus={(e) =>
-                          (e.currentTarget.style.borderBottomColor = "#1F1F1F")
+                          (e.currentTarget.style.borderBottomColor = "#8B1A2F")
                         }
                         onBlur={(e) =>
                           (e.currentTarget.style.borderBottomColor =
-                            "rgba(31,31,31,0.25)")
+                            "#3D3D3D")
                         }
                       />
                     </div>
@@ -485,7 +495,7 @@ export default function Home() {
                         fontSize: "0.65rem",
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
-                        color: "#3A3A3A",
+                        color: "#A0A0A0",
                       }}
                     >
                       Mensaje
@@ -496,22 +506,22 @@ export default function Home() {
                       style={{
                         background: "transparent",
                         border: "none",
-                        borderBottom: "1px solid rgba(31,31,31,0.25)",
+                        borderBottom: "1px solid #3D3D3D",
                         paddingBottom: "0.75rem",
                         paddingTop: "0.25rem",
                         fontSize: "0.875rem",
-                        color: "#1F1F1F",
+                        color: "#FFFFFF",
                         outline: "none",
                         resize: "none",
                         width: "100%",
                         fontFamily: "var(--font-inter), system-ui, sans-serif",
                       }}
                       onFocus={(e) =>
-                        (e.currentTarget.style.borderBottomColor = "#1F1F1F")
+                        (e.currentTarget.style.borderBottomColor = "#8B1A2F")
                       }
                       onBlur={(e) =>
                         (e.currentTarget.style.borderBottomColor =
-                          "rgba(31,31,31,0.25)")
+                          "#3D3D3D")
                       }
                     />
                   </div>
@@ -524,19 +534,19 @@ export default function Home() {
                         fontSize: "0.65rem",
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
-                        backgroundColor: "#1F1F1F",
-                        color: "#EDE6D9",
+                        backgroundColor: "#8B1A2F",
+                        color: "#FFFFFF",
                         border: "none",
-                        borderRadius: "2px",
+                        borderRadius: "6px",
                         cursor: "pointer",
                         transition: "background-color 0.2s",
                         fontFamily: "var(--font-inter), system-ui, sans-serif",
                       }}
                       onMouseEnter={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#3A3A3A")
+                        (e.currentTarget.style.backgroundColor = "#B8324A")
                       }
                       onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#1F1F1F")
+                        (e.currentTarget.style.backgroundColor = "#8B1A2F")
                       }
                     >
                       Enviar mensaje
@@ -552,7 +562,7 @@ export default function Home() {
       {/* ── FOOTER ─────────────────────────────────────────────────────── */}
       <footer
         style={{
-          backgroundColor: "#1F1F1F",
+          backgroundColor: "#1A1A1A",
           paddingTop: "3.5rem",
           paddingBottom: "3.5rem",
         }}
@@ -573,7 +583,7 @@ export default function Home() {
             style={{
               letterSpacing: "0.28em",
               fontSize: "1.05rem",
-              color: "#EDE6D9",
+              color: "#FFFFFF",
             }}
           >
             Veysic
@@ -582,7 +592,7 @@ export default function Home() {
           <p
             style={{
               fontSize: "0.7rem",
-              color: "rgba(237,230,217,0.38)",
+              color: "rgba(255,255,255,0.38)",
               letterSpacing: "0.05em",
             }}
           >
@@ -598,15 +608,15 @@ export default function Home() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "rgba(237,230,217,0.45)",
+                  color: "rgba(255,255,255,0.45)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#EDE6D9")
+                  (e.currentTarget.style.color = "#B8324A")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(237,230,217,0.45)")
+                  (e.currentTarget.style.color = "rgba(255,255,255,0.45)")
                 }
               >
                 {link.label}

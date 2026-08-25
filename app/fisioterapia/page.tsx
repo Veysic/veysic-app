@@ -24,10 +24,12 @@ import {
   Calendar,
 } from "lucide-react";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
+const BG = "#2C2C2C";
+const SURFACE = "#3D3D3D";
+const TEXT = "#FFFFFF";
+const MUTED = "#A0A0A0";
+const ACCENT = "#8B1A2F";
+const ACCENT_HOVER = "#B8324A";
 
 // ── Fade-in on scroll ─────────────────────────────────────────────────────
 function FadeIn({
@@ -240,7 +242,7 @@ const FAQ = [
 function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ borderBottom: "1px solid rgba(31,31,31,0.1)" }}>
+    <div style={{ borderBottom: "1px solid rgba(61,61,61,0.1)" }}>
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -257,12 +259,12 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
           gap: "1rem",
         }}
       >
-        <span style={{ fontSize: "0.95rem", color: DARK, fontWeight: 500, lineHeight: 1.4 }}>
+        <span style={{ fontSize: "0.95rem", color: TEXT, fontWeight: 500, lineHeight: 1.4 }}>
           {pregunta}
         </span>
         <ChevronDown
           size={16}
-          color={MID}
+          color={MUTED}
           style={{
             flexShrink: 0,
             transform: open ? "rotate(180deg)" : "none",
@@ -277,7 +279,7 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
           transition: "max-height 0.35s ease",
         }}
       >
-        <p style={{ fontSize: "0.875rem", color: MID, lineHeight: 1.8, paddingBottom: "1.25rem" }}>
+        <p style={{ fontSize: "0.875rem", color: MUTED, lineHeight: 1.8, paddingBottom: "1.25rem" }}>
           {respuesta}
         </p>
       </div>
@@ -288,14 +290,14 @@ function FaqItem({ pregunta, respuesta }: { pregunta: string; respuesta: string 
 // ── Página ─────────────────────────────────────────────────────────────────
 export default function FisioterapiaPage() {
   return (
-    <div style={{ backgroundColor: BG, color: DARK }}>
+    <div style={{ backgroundColor: BG, color: TEXT }}>
       <Header />
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section
         style={{
           minHeight: "100vh",
-          backgroundColor: DARK,
+          backgroundColor: BG,
           display: "flex",
           alignItems: "center",
           paddingTop: "5rem",
@@ -310,7 +312,7 @@ export default function FisioterapiaPage() {
               fontSize: "0.65rem",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(237,230,217,0.5)",
+              color: "rgba(255,255,255,0.5)",
               marginBottom: "2rem",
             }}
           >
@@ -322,7 +324,7 @@ export default function FisioterapiaPage() {
             style={{
               fontSize: "clamp(2.6rem, 6vw, 5rem)",
               lineHeight: 1.08,
-              color: BG,
+              color: TEXT,
               marginBottom: "2rem",
               maxWidth: "780px",
               fontWeight: 400,
@@ -337,7 +339,7 @@ export default function FisioterapiaPage() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.85,
-              color: "rgba(237,230,217,0.65)",
+              color: "rgba(255,255,255,0.65)",
               maxWidth: "520px",
               marginBottom: "3rem",
             }}
@@ -355,14 +357,14 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                backgroundColor: BG,
-                color: DARK,
+                backgroundColor: ACCENT,
+                color: "#FFFFFF",
                 textDecoration: "none",
                 borderRadius: "2px",
                 transition: "background-color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F5F0E8")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = BG)}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = ACCENT_HOVER)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = ACCENT)}
             >
               Ver servicios y precios
             </a>
@@ -374,14 +376,22 @@ export default function FisioterapiaPage() {
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 backgroundColor: "transparent",
-                color: BG,
+                color: ACCENT,
                 textDecoration: "none",
-                border: "1px solid rgba(237,230,217,0.35)",
+                border: "1px solid " + ACCENT,
                 borderRadius: "2px",
-                transition: "border-color 0.2s",
+                transition: "background-color 0.2s, color 0.2s, border-color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.7)")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(237,230,217,0.35)")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = ACCENT;
+                e.currentTarget.style.borderColor = ACCENT;
+                e.currentTarget.style.color = "#FFFFFF";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.borderColor = ACCENT;
+                e.currentTarget.style.color = ACCENT;
+              }}
             >
               ¿Cuándo acudir?
             </a>
@@ -401,7 +411,7 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -412,13 +422,13 @@ export default function FisioterapiaPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "1rem",
               }}
             >
               Tratamiento a tu medida
             </h2>
-            <p style={{ fontSize: "0.9rem", color: MID, maxWidth: 520, lineHeight: 1.8, marginBottom: "4rem" }}>
+            <p style={{ fontSize: "0.9rem", color: MUTED, maxWidth: 520, lineHeight: 1.8, marginBottom: "4rem" }}>
               Tres opciones para adaptarse a tu situación: desde una lesión puntual hasta un proceso de rehabilitación continuada.
             </p>
           </FadeIn>
@@ -432,8 +442,8 @@ export default function FisioterapiaPage() {
                 <FadeIn key={id} delay={i * 120}>
                   <div
                     style={{
-                      backgroundColor: LIGHT,
-                      border: popular ? `2px solid ${DARK}` : "1px solid rgba(31,31,31,0.1)",
+                      backgroundColor: SURFACE,
+                      border: popular ? `2px solid ${ACCENT}` : "1px solid rgba(61,61,61,0.1)",
                       borderRadius: "4px",
                       overflow: "hidden",
                       display: "flex",
@@ -444,8 +454,8 @@ export default function FisioterapiaPage() {
                     {popular && (
                       <div
                         style={{
-                          backgroundColor: DARK,
-                          color: BG,
+                          backgroundColor: ACCENT,
+                          color: "#FFFFFF",
                           textAlign: "center",
                           padding: "0.45rem",
                           fontSize: "0.6rem",
@@ -457,7 +467,7 @@ export default function FisioterapiaPage() {
                           gap: "0.4rem",
                         }}
                       >
-                        <Star size={9} fill={BG} />
+                        <Star size={9} fill="#FFFFFF" />
                         Más completo
                       </div>
                     )}
@@ -466,13 +476,13 @@ export default function FisioterapiaPage() {
                     <div
                       style={{
                         padding: "1.75rem 1.75rem 1.25rem",
-                        borderBottom: "1px solid rgba(31,31,31,0.08)",
+                        borderBottom: "1px solid rgba(61,61,61,0.08)",
                       }}
                     >
                       <Icon
                         size={20}
                         strokeWidth={1.5}
-                        color={DARK}
+                        color={ACCENT}
                         style={{ marginBottom: "1.1rem" }}
                       />
                       <h3
@@ -480,28 +490,28 @@ export default function FisioterapiaPage() {
                         style={{
                           fontSize: "1.2rem",
                           fontWeight: 400,
-                          color: DARK,
+                          color: TEXT,
                           marginBottom: "0.4rem",
                         }}
                       >
                         {titulo}
                       </h3>
-                      <p style={{ fontSize: "0.78rem", color: MID, lineHeight: 1.65 }}>{tagline}</p>
+                      <p style={{ fontSize: "0.78rem", color: MUTED, lineHeight: 1.65 }}>{tagline}</p>
                     </div>
 
                     {/* Precio destacado */}
                     <div
                       style={{
                         padding: "1.25rem 1.75rem",
-                        borderBottom: "1px solid rgba(31,31,31,0.08)",
-                        backgroundColor: popular ? "rgba(31,31,31,0.04)" : "transparent",
+                        borderBottom: "1px solid rgba(61,61,61,0.08)",
+                        backgroundColor: popular ? "rgba(139,26,47,0.1)" : "transparent",
                       }}
                     >
                       <span
                         style={{
                           fontSize: "2rem",
                           fontWeight: 600,
-                          color: DARK,
+                          color: TEXT,
                           letterSpacing: "-0.02em",
                         }}
                       >
@@ -510,7 +520,7 @@ export default function FisioterapiaPage() {
                       <span
                         style={{
                           fontSize: "0.75rem",
-                          color: MID,
+                          color: MUTED,
                           marginLeft: "0.5rem",
                         }}
                       >
@@ -522,10 +532,10 @@ export default function FisioterapiaPage() {
                     <div
                       style={{
                         padding: "1.25rem 1.75rem",
-                        borderBottom: "1px solid rgba(31,31,31,0.08)",
+                        borderBottom: "1px solid rgba(61,61,61,0.08)",
                       }}
                     >
-                      <p style={{ fontSize: "0.8rem", color: MID, lineHeight: 1.75 }}>
+                      <p style={{ fontSize: "0.8rem", color: MUTED, lineHeight: 1.75 }}>
                         {descripcion}
                       </p>
                     </div>
@@ -537,7 +547,7 @@ export default function FisioterapiaPage() {
                           fontSize: "0.6rem",
                           letterSpacing: "0.15em",
                           textTransform: "uppercase",
-                          color: MID,
+                          color: MUTED,
                           marginBottom: "0.85rem",
                         }}
                       >
@@ -560,10 +570,10 @@ export default function FisioterapiaPage() {
                           >
                             <CheckCircle
                               size={13}
-                              color={DARK}
+                              color={ACCENT}
                               style={{ flexShrink: 0, marginTop: "0.2rem" }}
                             />
-                            <span style={{ fontSize: "0.78rem", color: MID, lineHeight: 1.6 }}>
+                            <span style={{ fontSize: "0.78rem", color: MUTED, lineHeight: 1.6 }}>
                               {item}
                             </span>
                           </li>
@@ -584,17 +594,17 @@ export default function FisioterapiaPage() {
                           fontSize: "0.65rem",
                           letterSpacing: "0.18em",
                           textTransform: "uppercase",
-                          backgroundColor: DARK,
-                          color: BG,
+                          backgroundColor: ACCENT,
+                          color: "#FFFFFF",
                           textDecoration: "none",
                           borderRadius: "2px",
                           transition: "background-color 0.2s",
                         }}
                         onMouseEnter={(e) =>
-                          (e.currentTarget.style.backgroundColor = "#3A3A3A")
+                          (e.currentTarget.style.backgroundColor = ACCENT_HOVER)
                         }
                         onMouseLeave={(e) =>
-                          (e.currentTarget.style.backgroundColor = DARK)
+                          (e.currentTarget.style.backgroundColor = ACCENT)
                         }
                       >
                         Reservar sesión
@@ -611,7 +621,7 @@ export default function FisioterapiaPage() {
 
       {/* ── TÉCNICAS ──────────────────────────────────────────────────────── */}
       <section
-        style={{ backgroundColor: LIGHT, paddingTop: "7rem", paddingBottom: "7rem" }}
+        style={{ backgroundColor: SURFACE, paddingTop: "7rem", paddingBottom: "7rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <FadeIn>
@@ -620,7 +630,7 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -631,7 +641,7 @@ export default function FisioterapiaPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "1rem",
               }}
             >
@@ -640,7 +650,7 @@ export default function FisioterapiaPage() {
             <p
               style={{
                 fontSize: "0.9rem",
-                color: MID,
+                color: MUTED,
                 maxWidth: 520,
                 lineHeight: 1.8,
                 marginBottom: "4.5rem",
@@ -661,27 +671,27 @@ export default function FisioterapiaPage() {
                       width: 44,
                       height: 44,
                       borderRadius: "50%",
-                      backgroundColor: "rgba(31,31,31,0.07)",
+                      backgroundColor: "rgba(139,26,47,0.15)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       marginBottom: "1.1rem",
                     }}
                   >
-                    <Icon size={18} strokeWidth={1.5} color={DARK} />
+                    <Icon size={18} strokeWidth={1.5} color={ACCENT} />
                   </div>
                   <h3
                     className="font-serif"
                     style={{
                       fontSize: "1.05rem",
                       fontWeight: 400,
-                      color: DARK,
+                      color: TEXT,
                       marginBottom: "0.55rem",
                     }}
                   >
                     {titulo}
                   </h3>
-                  <p style={{ fontSize: "0.82rem", color: MID, lineHeight: 1.8 }}>{texto}</p>
+                  <p style={{ fontSize: "0.82rem", color: MUTED, lineHeight: 1.8 }}>{texto}</p>
                 </div>
               </FadeIn>
             ))}
@@ -701,7 +711,7 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -712,7 +722,7 @@ export default function FisioterapiaPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "1rem",
               }}
             >
@@ -721,7 +731,7 @@ export default function FisioterapiaPage() {
             <p
               style={{
                 fontSize: "0.9rem",
-                color: MID,
+                color: MUTED,
                 maxWidth: 520,
                 lineHeight: 1.8,
                 marginBottom: "4.5rem",
@@ -736,8 +746,8 @@ export default function FisioterapiaPage() {
               <FadeIn key={titulo} delay={i * 90}>
                 <div
                   style={{
-                    backgroundColor: LIGHT,
-                    border: "1px solid rgba(31,31,31,0.09)",
+                    backgroundColor: SURFACE,
+                    border: "1px solid rgba(61,61,61,0.09)",
                     borderRadius: "4px",
                     padding: "1.5rem",
                   }}
@@ -747,27 +757,27 @@ export default function FisioterapiaPage() {
                       width: 38,
                       height: 38,
                       borderRadius: "50%",
-                      backgroundColor: "rgba(31,31,31,0.06)",
+                      backgroundColor: "rgba(139,26,47,0.15)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       marginBottom: "1rem",
                     }}
                   >
-                    <Icon size={16} strokeWidth={1.5} color={DARK} />
+                    <Icon size={16} strokeWidth={1.5} color={ACCENT} />
                   </div>
                   <h3
                     className="font-serif"
                     style={{
                       fontSize: "1rem",
                       fontWeight: 400,
-                      color: DARK,
+                      color: TEXT,
                       marginBottom: "0.5rem",
                     }}
                   >
                     {titulo}
                   </h3>
-                  <p style={{ fontSize: "0.8rem", color: MID, lineHeight: 1.75 }}>{texto}</p>
+                  <p style={{ fontSize: "0.8rem", color: MUTED, lineHeight: 1.75 }}>{texto}</p>
                 </div>
               </FadeIn>
             ))}
@@ -776,7 +786,7 @@ export default function FisioterapiaPage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: LIGHT, paddingTop: "7rem", paddingBottom: "7rem" }}>
+      <section style={{ backgroundColor: SURFACE, paddingTop: "7rem", paddingBottom: "7rem" }}>
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <FadeIn>
             <p
@@ -784,7 +794,7 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: MID,
+                color: MUTED,
                 marginBottom: "1rem",
               }}
             >
@@ -795,7 +805,7 @@ export default function FisioterapiaPage() {
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 400,
-                color: DARK,
+                color: TEXT,
                 marginBottom: "3.5rem",
               }}
             >
@@ -810,12 +820,12 @@ export default function FisioterapiaPage() {
           </div>
 
           <FadeIn delay={200}>
-            <p style={{ marginTop: "3rem", fontSize: "0.875rem", color: MID }}>
+            <p style={{ marginTop: "3rem", fontSize: "0.875rem", color: MUTED }}>
               ¿Tienes alguna duda más?{" "}
               <Link
                 href="/#contacto"
                 style={{
-                  color: DARK,
+                  color: ACCENT,
                   textDecoration: "underline",
                   textUnderlineOffset: "3px",
                 }}
@@ -830,7 +840,7 @@ export default function FisioterapiaPage() {
 
       {/* ── CTA FINAL ─────────────────────────────────────────────────────── */}
       <section
-        style={{ backgroundColor: DARK, paddingTop: "8rem", paddingBottom: "8rem" }}
+        style={{ backgroundColor: BG, paddingTop: "8rem", paddingBottom: "8rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <FadeIn>
@@ -839,7 +849,7 @@ export default function FisioterapiaPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                color: "rgba(237,230,217,0.45)",
+                color: "rgba(255,255,255,0.45)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -851,7 +861,7 @@ export default function FisioterapiaPage() {
                 fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
                 fontWeight: 400,
                 lineHeight: 1.2,
-                color: BG,
+                color: TEXT,
                 maxWidth: "640px",
                 marginBottom: "1.5rem",
               }}
@@ -862,7 +872,7 @@ export default function FisioterapiaPage() {
               style={{
                 fontSize: "0.95rem",
                 lineHeight: 1.9,
-                color: "rgba(237,230,217,0.6)",
+                color: "rgba(255,255,255,0.6)",
                 maxWidth: "480px",
                 marginBottom: "3rem",
               }}
@@ -879,14 +889,14 @@ export default function FisioterapiaPage() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: BG,
-                  color: DARK,
+                  backgroundColor: ACCENT,
+                  color: "#FFFFFF",
                   textDecoration: "none",
                   borderRadius: "2px",
                   transition: "background-color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F5F0E8")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = BG)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = ACCENT_HOVER)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = ACCENT)}
               >
                 Reservar primera sesión
               </Link>
@@ -898,18 +908,22 @@ export default function FisioterapiaPage() {
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   backgroundColor: "transparent",
-                  color: BG,
+                  color: ACCENT,
                   textDecoration: "none",
-                  border: "1px solid rgba(237,230,217,0.35)",
+                  border: "1px solid " + ACCENT,
                   borderRadius: "2px",
-                  transition: "border-color 0.2s",
+                  transition: "background-color 0.2s, color 0.2s, border-color 0.2s",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderColor = "rgba(237,230,217,0.7)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.borderColor = "rgba(237,230,217,0.35)")
-                }
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = ACCENT;
+                  e.currentTarget.style.borderColor = ACCENT;
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.borderColor = ACCENT;
+                  e.currentTarget.style.color = ACCENT;
+                }}
               >
                 Contactar
               </Link>
@@ -921,8 +935,8 @@ export default function FisioterapiaPage() {
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
       <footer
         style={{
-          backgroundColor: DARK,
-          borderTop: "1px solid rgba(237,230,217,0.08)",
+          backgroundColor: "#1A1A1A",
+          borderTop: "1px solid rgba(61,61,61,0.08)",
           paddingTop: "3rem",
           paddingBottom: "3rem",
         }}
@@ -943,7 +957,7 @@ export default function FisioterapiaPage() {
             style={{
               letterSpacing: "0.28em",
               fontSize: "1.05rem",
-              color: BG,
+              color: TEXT,
               textDecoration: "none",
             }}
           >
@@ -952,7 +966,7 @@ export default function FisioterapiaPage() {
           <p
             style={{
               fontSize: "0.7rem",
-              color: "rgba(237,230,217,0.38)",
+              color: "rgba(255,255,255,0.38)",
               letterSpacing: "0.05em",
             }}
           >
@@ -972,13 +986,13 @@ export default function FisioterapiaPage() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "rgba(237,230,217,0.45)",
+                  color: "rgba(255,255,255,0.45)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = BG)}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(237,230,217,0.45)")
+                  (e.currentTarget.style.color = "rgba(255,255,255,0.45)")
                 }
               >
                 {label}

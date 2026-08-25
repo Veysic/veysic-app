@@ -69,10 +69,10 @@ import type {
   SesionCalendario,
 } from "../lib/store";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
-const LIGHT = "#F5F0E8";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
+const LIGHT = "#3D3D3D";
 
 // ── RESERVA WIZARD ─────────────────────────────────────────────────────────
 type ServicioReserva = {
@@ -160,7 +160,7 @@ function calcDispo(fecha: string, serv: ServicioReserva, profs: AuthUser[], cita
 
 function FilaResumen({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "0.65rem 0", borderBottom: "1px solid rgba(31,31,31,0.07)" }}>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "0.65rem 0", borderBottom: "1px solid rgba(61,61,61,0.07)" }}>
       <span style={{ fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: MID }}>{label}</span>
       <span style={{ fontSize: "0.875rem", color: DARK, fontWeight: 500 }}>{value}</span>
     </div>
@@ -256,10 +256,10 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 100, backgroundColor: "rgba(0,0,0,0.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
-      <div style={{ backgroundColor: BG, borderRadius: "6px", width: "100%", maxWidth: "680px", maxHeight: "90vh", overflowY: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.2)", display: "flex", flexDirection: "column" }}>
+      <div style={{ backgroundColor: "#3D3D3D", borderRadius: "6px", width: "100%", maxWidth: "680px", maxHeight: "90vh", overflowY: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.2)", display: "flex", flexDirection: "column" }}>
 
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "1.5rem 2rem 1.25rem", borderBottom: "1px solid rgba(31,31,31,0.1)", flexShrink: 0 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "1.5rem 2rem 1.25rem", borderBottom: "1px solid rgba(61,61,61,0.1)", flexShrink: 0 }}>
           <div>
             <p className="font-serif" style={{ fontSize: "1.25rem", fontWeight: 400, color: DARK, marginBottom: "0.75rem" }}>Reservar cita</p>
             <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", flexWrap: "wrap" }}>
@@ -270,12 +270,12 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
                 return (
                   <div key={n} style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                      <div style={{ width: 20, height: 20, borderRadius: "50%", backgroundColor: done ? "#27ae60" : active ? DARK : "rgba(31,31,31,0.14)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.58rem", fontWeight: 600, color: (done || active) ? BG : MID, flexShrink: 0 }}>
+                      <div style={{ width: 20, height: 20, borderRadius: "50%", backgroundColor: done ? "#8B1A2F" : active ? "#8B1A2F" : "rgba(255,255,255,0.14)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.58rem", fontWeight: 600, color: (done || active) ? "#FFFFFF" : MID, flexShrink: 0 }}>
                         {done ? "✓" : n}
                       </div>
-                      <span style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: active ? DARK : "rgba(31,31,31,0.4)", whiteSpace: "nowrap" }}>{label}</span>
+                      <span style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: active ? DARK : "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>{label}</span>
                     </div>
-                    {i < 3 && <div style={{ width: 14, height: 1, backgroundColor: "rgba(31,31,31,0.15)", flexShrink: 0 }} />}
+                    {i < 3 && <div style={{ width: 14, height: 1, backgroundColor: "rgba(255,255,255,0.15)", flexShrink: 0 }} />}
                   </div>
                 );
               })}
@@ -297,11 +297,11 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
                 {SERVICIOS_RESERVA.map((s) => {
                   const sel = servicio?.id === s.id;
                   return (
-                    <button key={s.id} onClick={() => setServicio(s)} style={{ textAlign: "left", background: sel ? DARK : LIGHT, border: `1px solid ${sel ? DARK : "rgba(31,31,31,0.12)"}`, borderRadius: "4px", padding: "1rem 1.1rem", cursor: "pointer", transition: "all 0.15s" }}>
-                      <s.Icon size={18} style={{ color: sel ? BG : DARK, marginBottom: "0.65rem", display: "block" }} />
-                      <p style={{ fontSize: "0.82rem", fontWeight: 500, color: sel ? BG : DARK, marginBottom: "0.2rem" }}>{s.label}</p>
-                      <p style={{ fontSize: "0.68rem", color: sel ? "rgba(237,230,217,0.65)" : MID, marginBottom: "0.55rem", lineHeight: 1.5 }}>{s.descripcion}</p>
-                      <p style={{ fontSize: "0.8rem", fontWeight: 600, color: sel ? BG : DARK }}>{s.precio}</p>
+                    <button key={s.id} onClick={() => setServicio(s)} style={{ textAlign: "left", background: sel ? "#8B1A2F" : LIGHT, border: `1px solid ${sel ? "#8B1A2F" : "rgba(61,61,61,0.12)"}`, borderRadius: "4px", padding: "1rem 1.1rem", cursor: "pointer", transition: "all 0.15s" }}>
+                      <s.Icon size={18} style={{ color: sel ? "#FFFFFF" : DARK, marginBottom: "0.65rem", display: "block" }} />
+                      <p style={{ fontSize: "0.82rem", fontWeight: 500, color: sel ? "#FFFFFF" : DARK, marginBottom: "0.2rem" }}>{s.label}</p>
+                      <p style={{ fontSize: "0.68rem", color: sel ? "rgba(255,255,255,0.65)" : MID, marginBottom: "0.55rem", lineHeight: 1.5 }}>{s.descripcion}</p>
+                      <p style={{ fontSize: "0.8rem", fontWeight: 600, color: sel ? "#FFFFFF" : DARK }}>{s.precio}</p>
                     </button>
                   );
                 })}
@@ -315,7 +315,7 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
               <p style={{ fontSize: "0.8rem", color: MID, marginBottom: "1.5rem" }}>Selecciona el día que prefieres. Solo se muestran días laborables.</p>
               <div style={{ maxWidth: 360, margin: "0 auto" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
-                  <button onClick={prevMes} disabled={isPrevDisabled} style={{ background: "none", border: "none", cursor: isPrevDisabled ? "not-allowed" : "pointer", color: isPrevDisabled ? "rgba(31,31,31,0.25)" : DARK, padding: "0.4rem" }}>
+                  <button onClick={prevMes} disabled={isPrevDisabled} style={{ background: "none", border: "none", cursor: isPrevDisabled ? "not-allowed" : "pointer", color: isPrevDisabled ? "#3D3D3D" : DARK, padding: "0.4rem" }}>
                     <ChevronLeft size={18} />
                   </button>
                   <p className="font-serif" style={{ fontSize: "1rem", fontWeight: 400, color: DARK }}>{MESES[calMonth]} {calYear}</p>
@@ -326,7 +326,7 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "2px", marginBottom: "4px" }}>
                   {CAL_DIAS.map((d, di) => (
-                    <div key={d} style={{ textAlign: "center", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", color: di >= 5 ? "rgba(31,31,31,0.3)" : MID, padding: "0.4rem 0", fontWeight: 500 }}>{d}</div>
+                    <div key={d} style={{ textAlign: "center", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", color: di >= 5 ? "rgba(255,255,255,0.3)" : MID, padding: "0.4rem 0", fontWeight: 500 }}>{d}</div>
                   ))}
                 </div>
 
@@ -343,8 +343,8 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
                         key={day}
                         onClick={() => selectDay(day)}
                         disabled={!ok}
-                        style={{ aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", border: (isToday && !sel) ? "1px solid rgba(31,31,31,0.4)" : "1px solid transparent", backgroundColor: sel ? DARK : "transparent", color: sel ? BG : ok ? DARK : "rgba(31,31,31,0.22)", cursor: ok ? "pointer" : "not-allowed", fontSize: "0.82rem", fontWeight: sel ? 600 : 400, transition: "background-color 0.1s", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
-                        onMouseEnter={(e) => { if (ok && !sel) e.currentTarget.style.backgroundColor = "rgba(31,31,31,0.08)"; }}
+                        style={{ aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", border: (isToday && !sel) ? "1px solid rgba(61,61,61,0.4)" : "1px solid transparent", backgroundColor: sel ? "#8B1A2F" : "transparent", color: sel ? "#FFFFFF" : ok ? DARK : "rgba(255,255,255,0.22)", cursor: ok ? "pointer" : "not-allowed", fontSize: "0.82rem", fontWeight: sel ? 600 : 400, transition: "background-color 0.1s", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
+                        onMouseEnter={(e) => { if (ok && !sel) e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"; }}
                         onMouseLeave={(e) => { if (!sel) e.currentTarget.style.backgroundColor = "transparent"; }}
                       >
                         {day}
@@ -382,7 +382,7 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
                     {slots.map((s) => {
                       const sel = slotSel?.slot === s.slot;
                       return (
-                        <button key={s.slot} onClick={() => setSlotSel(s)} style={{ padding: "0.5rem 1.1rem", fontSize: "0.85rem", fontWeight: sel ? 600 : 400, borderRadius: "20px", border: `1px solid ${sel ? DARK : "rgba(31,31,31,0.25)"}`, backgroundColor: sel ? DARK : "transparent", color: sel ? BG : DARK, cursor: "pointer", transition: "all 0.15s", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                        <button key={s.slot} onClick={() => setSlotSel(s)} style={{ padding: "0.5rem 1.1rem", fontSize: "0.85rem", fontWeight: sel ? 600 : 400, borderRadius: "20px", border: `1px solid ${sel ? "#8B1A2F" : "#3D3D3D"}`, backgroundColor: sel ? "#8B1A2F" : "transparent", color: sel ? "#FFFFFF" : DARK, cursor: "pointer", transition: "all 0.15s", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                           {s.slot}
                         </button>
                       );
@@ -392,19 +392,19 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
               )}
 
               {slotsOcupados.length > 0 && (
-                <div style={{ borderTop: slots.length > 0 ? "1px solid rgba(31,31,31,0.1)" : "none", paddingTop: slots.length > 0 ? "1.5rem" : 0 }}>
+                <div style={{ borderTop: slots.length > 0 ? "1px solid rgba(61,61,61,0.1)" : "none", paddingTop: slots.length > 0 ? "1.5rem" : 0 }}>
                   <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.75rem" }}>Ocupados — apúntate a la lista de espera</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     {slotsOcupados.map((slot) => {
                       const yaEnLista = user ? listaEsperaStore.estaEnLista(user.id, servicio!.label, fecha, slot) : false;
                       const recienOk = listaEsperaOkSlot === slot;
                       return (
-                        <div key={slot} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.6rem 0.9rem", borderRadius: "4px", border: "1px solid rgba(31,31,31,0.1)", backgroundColor: LIGHT }}>
+                        <div key={slot} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.6rem 0.9rem", borderRadius: "4px", border: "1px solid rgba(61,61,61,0.1)", backgroundColor: LIGHT }}>
                           <span style={{ fontSize: "0.9rem", color: MID, fontWeight: 500 }}>{slot}</span>
                           {(yaEnLista || recienOk) ? (
-                            <span style={{ fontSize: "0.65rem", color: "#27ae60", fontWeight: 500, letterSpacing: "0.05em" }}>✓ En lista de espera</span>
+                            <span style={{ fontSize: "0.65rem", color: "#8B1A2F", fontWeight: 500, letterSpacing: "0.05em" }}>✓ En lista de espera</span>
                           ) : (
-                            <button onClick={() => apuntarLista(slot)} style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.35rem 0.8rem", borderRadius: "2px", border: "1px solid rgba(31,31,31,0.25)", backgroundColor: "transparent", color: DARK, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                            <button onClick={() => apuntarLista(slot)} style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.35rem 0.8rem", borderRadius: "2px", border: "1px solid #8B1A2F", backgroundColor: "transparent", color: "#8B1A2F", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                               + Lista de espera
                             </button>
                           )}
@@ -441,8 +441,8 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
           {/* CONFIRMADO */}
           {confirmado && (
             <div style={{ textAlign: "center", padding: "2.5rem 0" }}>
-              <div style={{ width: 56, height: 56, borderRadius: "50%", backgroundColor: "rgba(39,174,96,0.12)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-                <CheckCircle size={28} style={{ color: "#27ae60" }} />
+              <div style={{ width: 56, height: 56, borderRadius: "50%", backgroundColor: "rgba(139,26,47,0.12)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
+                <CheckCircle size={28} style={{ color: "#8B1A2F" }} />
               </div>
               <p className="font-serif" style={{ fontSize: "1.25rem", fontWeight: 400, color: DARK, marginBottom: "0.5rem" }}>¡Reserva confirmada!</p>
               <p style={{ fontSize: "0.82rem", color: MID }}>
@@ -454,7 +454,7 @@ function ReservaWizard({ onClose, onSuccess }: { onClose: () => void; onSuccess:
 
         {/* Footer */}
         {!confirmado && (
-          <div style={{ display: "flex", justifyContent: step === 1 ? "flex-end" : "space-between", padding: "1.25rem 2rem 1.75rem", borderTop: "1px solid rgba(31,31,31,0.1)", flexShrink: 0 }}>
+          <div style={{ display: "flex", justifyContent: step === 1 ? "flex-end" : "space-between", padding: "1.25rem 2rem 1.75rem", borderTop: "1px solid rgba(61,61,61,0.1)", flexShrink: 0 }}>
             {step > 1 && (
               <Btn variant="outline" onClick={() => setStep((s) => s - 1)}>
                 <ChevronLeft size={13} style={{ marginRight: 4, display: "inline" }} /> Atrás
@@ -525,9 +525,9 @@ function Card({
 }) {
   return (
     <div
+      className="veysic-card"
       style={{
         backgroundColor: LIGHT,
-        border: "1px solid rgba(31,31,31,0.1)",
         borderRadius: "4px",
         padding: "1.5rem",
         ...style,
@@ -568,10 +568,11 @@ function Btn({
   if (variant === "dark")
     return (
       <button
+        className="veysic-btn-primary"
         type={type}
         onClick={onClick}
         disabled={disabled}
-        style={{ ...base, backgroundColor: DARK, color: BG }}
+        style={{ ...base, backgroundColor: "#8B1A2F", color: "#FFFFFF" }}
       >
         {children}
       </button>
@@ -579,14 +580,15 @@ function Btn({
   if (variant === "outline")
     return (
       <button
+        className="veysic-btn-outline"
         type={type}
         onClick={onClick}
         disabled={disabled}
         style={{
           ...base,
           backgroundColor: "transparent",
-          color: DARK,
-          border: `1px solid rgba(31,31,31,0.3)`,
+          color: "#8B1A2F",
+          border: `1px solid #8B1A2F`,
         }}
       >
         {children}
@@ -630,7 +632,7 @@ function InputLine({
           width: "100%",
           background: "transparent",
           border: "none",
-          borderBottom: `1px solid ${onChange ? "rgba(31,31,31,0.25)" : "rgba(31,31,31,0.1)"}`,
+          borderBottom: `1px solid ${onChange ? "#3D3D3D" : "rgba(61,61,61,0.1)"}`,
           paddingBottom: "0.6rem",
           paddingTop: "0.15rem",
           fontSize: "0.875rem",
@@ -640,11 +642,11 @@ function InputLine({
           boxSizing: "border-box",
         }}
         onFocus={(e) => {
-          if (onChange) e.currentTarget.style.borderBottomColor = DARK;
+          if (onChange) e.currentTarget.style.borderBottomColor = "#8B1A2F";
         }}
         onBlur={(e) => {
           if (onChange)
-            e.currentTarget.style.borderBottomColor = "rgba(31,31,31,0.25)";
+            e.currentTarget.style.borderBottomColor = "#3D3D3D";
         }}
       />
     </div>
@@ -711,7 +713,7 @@ function SeccionPerfil() {
               height: 80,
               borderRadius: "50%",
               overflow: "hidden",
-              backgroundColor: "rgba(31,31,31,0.1)",
+              backgroundColor: "rgba(255,255,255,0.1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -766,7 +768,7 @@ function SeccionPerfil() {
         </Card>
 
         {ok && (
-          <p style={{ fontSize: "0.8rem", color: "#27ae60", backgroundColor: "rgba(39,174,96,0.08)", padding: "0.75rem 1rem", borderRadius: "2px", borderLeft: "3px solid #27ae60" }}>
+          <p style={{ fontSize: "0.8rem", color: "#8B1A2F", backgroundColor: "rgba(139,26,47,0.08)", padding: "0.75rem 1rem", borderRadius: "2px", borderLeft: "3px solid #3D3D3D" }}>
             Cambios guardados correctamente.
           </p>
         )}
@@ -816,9 +818,9 @@ function SeccionReservas() {
 
   function estadoBadge(estado: Cita["estado"]) {
     const map = {
-      pendiente: { bg: "rgba(41,128,185,0.1)", color: "#2980b9", label: "Pendiente" },
-      completada: { bg: "rgba(39,174,96,0.1)", color: "#27ae60", label: "Completada" },
-      cancelada: { bg: "rgba(192,57,43,0.1)", color: "#c0392b", label: "Cancelada" },
+      pendiente: { bg: "rgba(74,111,165,0.1)", color: "#4A6FA5", label: "Pendiente" },
+      completada: { bg: "rgba(139,26,47,0.1)", color: "#8B1A2F", label: "Completada" },
+      cancelada: { bg: "rgba(192,87,74,0.1)", color: "#C0574A", label: "Cancelada" },
     };
     const s = map[estado];
     return (
@@ -834,14 +836,14 @@ function SeccionReservas() {
         <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK }}>
           Mis reservas
         </h2>
-        <Link href="/reservar" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", padding: "0.5rem 1rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", backgroundColor: DARK, color: BG, textDecoration: "none", borderRadius: "2px", fontWeight: 500 }}>
+        <Link href="/reservar" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", padding: "0.5rem 1rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", backgroundColor: "#8B1A2F", color: "#FFFFFF", textDecoration: "none", borderRadius: "2px", fontWeight: 500 }}>
           <Plus size={12} style={{ display: "inline" }} />
           Nueva cita
         </Link>
       </div>
 
       {/* Tabs */}
-      <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(31,31,31,0.12)", marginBottom: "1.5rem" }}>
+      <div style={{ display: "flex", gap: "0", borderBottom: "1px solid rgba(61,61,61,0.12)", marginBottom: "1.5rem" }}>
         {(["proximas", "historial"] as const).map((t) => (
           <button
             key={t}
@@ -849,7 +851,7 @@ function SeccionReservas() {
             style={{
               background: "none",
               border: "none",
-              borderBottom: `2px solid ${tab === t ? DARK : "transparent"}`,
+              borderBottom: `2px solid ${tab === t ? "#8B1A2F" : "transparent"}`,
               padding: "0.6rem 1.2rem",
               fontSize: "0.7rem",
               letterSpacing: "0.1em",
@@ -929,7 +931,7 @@ function SeccionPlan() {
             const btn = document.querySelector<HTMLButtonElement>("[data-seccion='asistente']");
             btn?.click();
           }}
-          style={{ display: "flex", alignItems: "center", gap: "0.4rem", padding: "0.5rem 0.85rem", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(31,31,31,0.2)", borderRadius: "20px", backgroundColor: LIGHT, color: MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.4rem", padding: "0.5rem 0.85rem", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid #3D3D3D", borderRadius: "20px", backgroundColor: LIGHT, color: MID, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
         >
           <Sparkles size={12} /> Crear rutina con IA
         </button>
@@ -950,7 +952,7 @@ function SeccionPlan() {
                 Desde {new Date(plan.fechaInicio + "T00:00").toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
               </p>
             </div>
-            <span style={{ fontSize: "0.65rem", padding: "0.25rem 0.7rem", borderRadius: "20px", backgroundColor: "rgba(39,174,96,0.1)", color: "#27ae60", fontWeight: 500 }}>
+            <span style={{ fontSize: "0.65rem", padding: "0.25rem 0.7rem", borderRadius: "20px", backgroundColor: "rgba(139,26,47,0.1)", color: "#8B1A2F", fontWeight: 500 }}>
               Activo
             </span>
           </div>
@@ -969,11 +971,11 @@ function SeccionPlan() {
                     style={{
                       padding: "0.5rem 0.75rem",
                       borderRadius: "2px",
-                      backgroundColor: activo ? DARK : "transparent",
-                      border: `1px solid ${activo ? DARK : "rgba(31,31,31,0.15)"}`,
+                      backgroundColor: activo ? "#8B1A2F" : "transparent",
+                      border: `1px solid ${activo ? "#8B1A2F" : "rgba(61,61,61,0.15)"}`,
                       fontSize: "0.65rem",
                       letterSpacing: "0.05em",
-                      color: activo ? BG : MID,
+                      color: activo ? "#FFFFFF" : MID,
                     }}
                   >
                     {d.slice(0, 3)}
@@ -1000,7 +1002,7 @@ function SeccionPlan() {
                         gap: "1rem",
                         alignItems: "center",
                         padding: "0.5rem 0",
-                        borderBottom: i < ejercicios.length - 1 ? "1px solid rgba(31,31,31,0.06)" : "none",
+                        borderBottom: i < ejercicios.length - 1 ? "1px solid rgba(61,61,61,0.06)" : "none",
                       }}
                     >
                       <span style={{ fontSize: "0.875rem", color: DARK }}>{ej.nombre}</span>
@@ -1089,11 +1091,11 @@ function SeccionEvolucion() {
     });
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", maxWidth: 400, height: 80 }}>
-        <polyline points={pts.join(" ")} fill="none" stroke={DARK} strokeWidth="1.5" strokeLinejoin="round" />
+        <polyline points={pts.join(" ")} fill="none" stroke={"#8B1A2F"} strokeWidth="1.5" strokeLinejoin="round" />
         {pesos.map((m, i) => {
           const x = (i / (vals.length - 1)) * W;
           const y = H - ((vals[i] - min) / (max - min)) * H;
-          return <circle key={i} cx={x} cy={y} r="3" fill={DARK} />;
+          return <circle key={i} cx={x} cy={y} r="3" fill={"#8B1A2F"} />;
         })}
       </svg>
     );
@@ -1148,7 +1150,7 @@ function SeccionEvolucion() {
             <InputLine label="% Grasa corporal" value={grasa} onChange={setGrasa} type="number" placeholder="22.0" />
           </div>
           {ok && (
-            <p style={{ fontSize: "0.8rem", color: "#27ae60" }}>Medición guardada.</p>
+            <p style={{ fontSize: "0.8rem", color: "#8B1A2F" }}>Medición guardada.</p>
           )}
           <div><Btn type="submit" small>Guardar medición</Btn></div>
         </form>
@@ -1279,12 +1281,12 @@ function SeccionPagos() {
           {bonos.filter((b) => b.activo).map((b) => (
             <Card key={b.id}>
               <p style={{ fontSize: "0.875rem", color: DARK, marginBottom: "0.25rem" }}>{b.nombre}</p>
-              <div style={{ backgroundColor: "rgba(31,31,31,0.08)", borderRadius: "20px", overflow: "hidden", height: 6, marginBottom: "0.4rem" }}>
+              <div style={{ backgroundColor: "rgba(255,255,255,0.08)", borderRadius: "20px", overflow: "hidden", height: 6, marginBottom: "0.4rem" }}>
                 <div
                   style={{
                     width: `${((b.sesionesTotales - b.sesionesUsadas) / b.sesionesTotales) * 100}%`,
                     height: "100%",
-                    backgroundColor: DARK,
+                    backgroundColor: "#8B1A2F",
                     borderRadius: "20px",
                   }}
                 />
@@ -1309,7 +1311,7 @@ function SeccionPagos() {
                 <p style={{ fontSize: "0.875rem", color: DARK, marginBottom: "0.2rem" }}>{p.descripcion}</p>
                 <p style={{ fontSize: "0.7rem", color: MID }}>{new Date(p.fecha + "T00:00").toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}</p>
               </div>
-              <span style={{ fontSize: "1rem", fontWeight: 500, color: p.monto > 0 ? "#27ae60" : DARK }}>
+              <span style={{ fontSize: "1rem", fontWeight: 500, color: p.monto > 0 ? "#8B1A2F" : DARK }}>
                 {p.monto > 0 ? "+" : ""}{p.monto} €
               </span>
             </div>
@@ -1370,12 +1372,12 @@ function SeccionListaEspera() {
                           <p style={{ fontSize: "0.85rem", fontWeight: 500, color: DARK, marginBottom: "0.2rem" }}>{le.servicio}</p>
                           <p style={{ fontSize: "0.72rem", color: MID }}>{new Date(le.fecha + "T00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })} · {le.hora}</p>
                           {pos > 0 && (
-                            <p style={{ fontSize: "0.68rem", color: "#e67e22", marginTop: "0.35rem", fontWeight: 500 }}>
+                            <p style={{ fontSize: "0.68rem", color: "#C08A2E", marginTop: "0.35rem", fontWeight: 500 }}>
                               Posición {pos} en la cola
                             </p>
                           )}
                         </div>
-                        <button onClick={() => salirDeLista(le.id)} style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.35rem 0.65rem", border: "1px solid rgba(192,57,43,0.3)", borderRadius: "4px", backgroundColor: "transparent", color: "#c0392b", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", whiteSpace: "nowrap" }}>
+                        <button onClick={() => salirDeLista(le.id)} style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.35rem 0.65rem", border: "1px solid rgba(192,87,74,0.3)", borderRadius: "4px", backgroundColor: "transparent", color: "#C0574A", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", whiteSpace: "nowrap" }}>
                           Salir
                         </button>
                       </div>
@@ -1390,14 +1392,14 @@ function SeccionListaEspera() {
               <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.75rem" }}>¡Hay un hueco para ti!</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {notificados.map(le => (
-                  <Card key={le.id} style={{ borderLeft: "4px solid #27ae60" }}>
+                  <Card key={le.id} style={{ borderLeft: "4px solid #3D3D3D" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
                       <div style={{ flex: 1 }}>
                         <p style={{ fontSize: "0.85rem", fontWeight: 500, color: DARK, marginBottom: "0.2rem" }}>🎉 {le.servicio}</p>
                         <p style={{ fontSize: "0.72rem", color: MID }}>{new Date(le.fecha + "T00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })} · {le.hora}</p>
-                        <p style={{ fontSize: "0.68rem", color: "#27ae60", marginTop: "0.35rem", fontWeight: 500 }}>Te han notificado — revisa tus mensajes</p>
+                        <p style={{ fontSize: "0.68rem", color: "#8B1A2F", marginTop: "0.35rem", fontWeight: 500 }}>Te han notificado — revisa tus mensajes</p>
                       </div>
-                      <Link href="/reservar" style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.4rem 0.75rem", border: "none", borderRadius: "4px", backgroundColor: DARK, color: BG, textDecoration: "none", whiteSpace: "nowrap" }}>
+                      <Link href="/reservar" style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.4rem 0.75rem", border: "none", borderRadius: "4px", backgroundColor: "#8B1A2F", color: "#FFFFFF", textDecoration: "none", whiteSpace: "nowrap" }}>
                         Reservar
                       </Link>
                     </div>
@@ -1424,11 +1426,11 @@ function SeccionListaEspera() {
 
 // ── SECCIÓN: MIS RETOS ─────────────────────────────────────────────────────
 const CATEGORIAS_RETO: { id: Reto["categoria"]; label: string; color: string }[] = [
-  { id: "perdida_peso", label: "Pérdida de peso", color: "#e67e22" },
-  { id: "ganancia_muscular", label: "Ganancia muscular", color: "#8e44ad" },
-  { id: "resistencia", label: "Resistencia", color: "#27ae60" },
-  { id: "flexibilidad", label: "Flexibilidad", color: "#3498db" },
-  { id: "rehabilitacion", label: "Rehabilitación", color: "#c0392b" },
+  { id: "perdida_peso", label: "Pérdida de peso", color: "#C08A2E" },
+  { id: "ganancia_muscular", label: "Ganancia muscular", color: "#7A5C8E" },
+  { id: "resistencia", label: "Resistencia", color: "#8B1A2F" },
+  { id: "flexibilidad", label: "Flexibilidad", color: "#4A6FA5" },
+  { id: "rehabilitacion", label: "Rehabilitación", color: "#C0574A" },
   { id: "otro", label: "Otro", color: MID },
 ];
 
@@ -1524,19 +1526,19 @@ function SeccionRetos() {
       <Card>
         <form onSubmit={crearReto} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           {[
-            { label: "Nombre del objetivo", el: <input value={fNombre} onChange={e => setFNombre(e.target.value)} required placeholder="Ej: Perder 5 kg, Correr 5 km..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" as const }} /> },
-            { label: "Categoría", el: <select value={fCat} onChange={e => setFCat(e.target.value as Reto["categoria"])} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>{CATEGORIAS_RETO.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select> },
-            { label: "Fecha límite", el: <input type="date" value={fFechaLimite} onChange={e => setFFechaLimite(e.target.value)} required min={new Date().toISOString().split("T")[0]} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
-            { label: "Unidad de medida", el: <input value={fUnidad} onChange={e => setFUnidad(e.target.value)} required placeholder="kg, cm, repeticiones, minutos..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" as const }} /> },
+            { label: "Nombre del objetivo", el: <input value={fNombre} onChange={e => setFNombre(e.target.value)} required placeholder="Ej: Perder 5 kg, Correr 5 km..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" as const }} /> },
+            { label: "Categoría", el: <select value={fCat} onChange={e => setFCat(e.target.value as Reto["categoria"])} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>{CATEGORIAS_RETO.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select> },
+            { label: "Fecha límite", el: <input type="date" value={fFechaLimite} onChange={e => setFFechaLimite(e.target.value)} required min={new Date().toISOString().split("T")[0]} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /> },
+            { label: "Unidad de medida", el: <input value={fUnidad} onChange={e => setFUnidad(e.target.value)} required placeholder="kg, cm, repeticiones, minutos..." style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", boxSizing: "border-box" as const }} /> },
           ].map(({ label, el }) => (
             <div key={label}><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>{label}</p>{el}</div>
           ))}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-            <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Valor inicial</p><input type="number" value={fValorInicial} onChange={e => setFValorInicial(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /></div>
-            <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Valor objetivo</p><input type="number" value={fValorObjetivo} onChange={e => setFValorObjetivo(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /></div>
+            <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Valor inicial</p><input type="number" value={fValorInicial} onChange={e => setFValorInicial(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /></div>
+            <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Valor objetivo</p><input type="number" value={fValorObjetivo} onChange={e => setFValorObjetivo(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} /></div>
           </div>
-          <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Notas (opcional)</p><textarea value={fNotas} onChange={e => setFNotas(e.target.value)} rows={2} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "none", boxSizing: "border-box" as const }} /></div>
-          <button type="submit" style={{ padding: "0.75rem 1.5rem", backgroundColor: DARK, color: BG, border: "none", borderRadius: "4px", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Crear reto</button>
+          <div><p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.4rem" }}>Notas (opcional)</p><textarea value={fNotas} onChange={e => setFNotas(e.target.value)} rows={2} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.5rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif", resize: "none", boxSizing: "border-box" as const }} /></div>
+          <button type="submit" style={{ padding: "0.75rem 1.5rem", backgroundColor: "#8B1A2F", color: "#FFFFFF", border: "none", borderRadius: "4px", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>Crear reto</button>
         </form>
       </Card>
     </div>
@@ -1564,7 +1566,7 @@ function SeccionRetos() {
               <span style={{ fontSize: "0.72rem", color: MID }}>Progreso</span>
               <span style={{ fontSize: "0.72rem", fontWeight: 600, color: cc.color }}>{pct}%</span>
             </div>
-            <div style={{ height: 10, backgroundColor: "rgba(31,31,31,0.1)", borderRadius: 5, overflow: "hidden", marginBottom: "0.75rem" }}>
+            <div style={{ height: 10, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 5, overflow: "hidden", marginBottom: "0.75rem" }}>
               <div style={{ height: "100%", width: `${pct}%`, backgroundColor: cc.color, borderRadius: 5, transition: "width 0.5s" }} />
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1582,7 +1584,7 @@ function SeccionRetos() {
               </div>
             </div>
             {retoActivo.comentarioPro && (
-              <div style={{ marginTop: "1rem", padding: "0.75rem", backgroundColor: "rgba(31,31,31,0.04)", borderRadius: "4px", borderLeft: "3px solid rgba(31,31,31,0.2)" }}>
+              <div style={{ marginTop: "1rem", padding: "0.75rem", backgroundColor: "rgba(255,255,255,0.04)", borderRadius: "4px", borderLeft: "3px solid #3D3D3D" }}>
                 <p style={{ fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", color: MID, marginBottom: "0.3rem" }}>Comentario de tu profesional</p>
                 <p style={{ fontSize: "0.8rem", color: DARK }}>{retoActivo.comentarioPro}</p>
               </div>
@@ -1613,20 +1615,20 @@ function SeccionRetos() {
               <form onSubmit={registrarProgreso} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-end", flexWrap: "wrap" }}>
                 <div style={{ flex: 1, minWidth: 120 }}>
                   <p style={{ fontSize: "0.6rem", color: MID, marginBottom: "0.3rem" }}>Valor actual ({retoActivo.unidad})</p>
-                  <input type="number" value={nuevoValor} onChange={e => setNuevoValor(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.4rem", fontSize: "0.9rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                  <input type="number" value={nuevoValor} onChange={e => setNuevoValor(e.target.value)} required step="0.1" style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.9rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                 </div>
                 <div style={{ flex: 2, minWidth: 180 }}>
                   <p style={{ fontSize: "0.6rem", color: MID, marginBottom: "0.3rem" }}>Nota (opcional)</p>
-                  <input value={nuevaNota} onChange={e => setNuevaNota(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(31,31,31,0.25)", paddingBottom: "0.4rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
+                  <input value={nuevaNota} onChange={e => setNuevaNota(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid #3D3D3D", paddingBottom: "0.4rem", fontSize: "0.875rem", color: DARK, outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif" }} />
                 </div>
-                <button type="submit" style={{ padding: "0.5rem 1rem", backgroundColor: DARK, color: BG, border: "none", borderRadius: "4px", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", flexShrink: 0 }}>Guardar</button>
+                <button type="submit" style={{ padding: "0.5rem 1rem", backgroundColor: "#8B1A2F", color: "#FFFFFF", border: "none", borderRadius: "4px", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", flexShrink: 0 }}>Guardar</button>
               </form>
             </Card>
           )}
           {retoActivo.completado && (
-            <div style={{ textAlign: "center", padding: "2rem", backgroundColor: "rgba(39,174,96,0.08)", borderRadius: "8px", border: "1px solid rgba(39,174,96,0.2)" }}>
+            <div style={{ textAlign: "center", padding: "2rem", backgroundColor: "rgba(139,26,47,0.08)", borderRadius: "8px", border: "1px solid rgba(139,26,47,0.2)" }}>
               <p style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🏆</p>
-              <p style={{ fontSize: "1rem", fontWeight: 600, color: "#27ae60", marginBottom: "0.25rem" }}>¡Objetivo conseguido!</p>
+              <p style={{ fontSize: "1rem", fontWeight: 600, color: "#8B1A2F", marginBottom: "0.25rem" }}>¡Objetivo conseguido!</p>
               <p style={{ fontSize: "0.78rem", color: MID }}>Enhorabuena por completar este reto.</p>
             </div>
           )}
@@ -1634,7 +1636,7 @@ function SeccionRetos() {
             <Card>
               <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: MID, marginBottom: "0.75rem" }}>Historial</p>
               {[...progreso].reverse().map((p, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.5rem 0", borderBottom: "1px solid rgba(31,31,31,0.06)" }}>
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.5rem 0", borderBottom: "1px solid rgba(61,61,61,0.06)" }}>
                   <div>
                     <p style={{ fontSize: "0.78rem", color: DARK }}>{p.fecha}</p>
                     {p.nota && <p style={{ fontSize: "0.65rem", color: MID }}>{p.nota}</p>}
@@ -1653,7 +1655,7 @@ function SeccionRetos() {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
         <h2 className="font-serif" style={{ fontSize: "1.5rem", fontWeight: 400, color: DARK }}>Mis retos</h2>
-        <button onClick={() => setVista("nuevo")} style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", padding: "0.5rem 1rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", backgroundColor: DARK, color: BG, border: "none", borderRadius: "2px", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+        <button onClick={() => setVista("nuevo")} style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", padding: "0.5rem 1rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", backgroundColor: "#8B1A2F", color: "#FFFFFF", border: "none", borderRadius: "2px", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
           + Nuevo reto
         </button>
       </div>
@@ -1676,7 +1678,7 @@ function SeccionRetos() {
                       </div>
                       <p style={{ fontSize: "1rem", fontWeight: 700, color: cc.color }}>{pct}%</p>
                     </div>
-                    <div style={{ height: 6, backgroundColor: "rgba(31,31,31,0.08)", borderRadius: 3, overflow: "hidden" }}>
+                    <div style={{ height: 6, backgroundColor: "rgba(255,255,255,0.08)", borderRadius: 3, overflow: "hidden" }}>
                       <div style={{ height: "100%", width: `${pct}%`, backgroundColor: cc.color, borderRadius: 3 }} />
                     </div>
                     <p style={{ fontSize: "0.65rem", color: MID, marginTop: "0.4rem" }}>
@@ -1706,7 +1708,7 @@ function SeccionRetos() {
                       <span style={{ fontSize: "0.58rem", color: MID }}>{rp.duracionDias} días</span>
                     </div>
                   </div>
-                  <button onClick={() => !yaAdoptado && adoptarPredefinido(rp)} disabled={yaAdoptado} style={{ padding: "0.4rem 0.85rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: `1px solid ${yaAdoptado ? "rgba(31,31,31,0.15)" : DARK}`, borderRadius: "4px", backgroundColor: yaAdoptado ? "transparent" : DARK, color: yaAdoptado ? MID : BG, cursor: yaAdoptado ? "default" : "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", whiteSpace: "nowrap", flexShrink: 0 }}>
+                  <button onClick={() => !yaAdoptado && adoptarPredefinido(rp)} disabled={yaAdoptado} style={{ padding: "0.4rem 0.85rem", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", border: `1px solid ${yaAdoptado ? "rgba(61,61,61,0.15)" : "#8B1A2F"}`, borderRadius: "4px", backgroundColor: yaAdoptado ? "transparent" : "#8B1A2F", color: yaAdoptado ? MID : "#FFFFFF", cursor: yaAdoptado ? "default" : "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif", whiteSpace: "nowrap", flexShrink: 0 }}>
                     {yaAdoptado ? "En curso" : "Adoptar"}
                   </button>
                 </div>
@@ -1761,8 +1763,8 @@ function SeccionMensajes() {
 
       <Card style={{ padding: 0, overflow: "hidden" }}>
         {/* Header chat */}
-        <div style={{ padding: "1rem 1.5rem", borderBottom: "1px solid rgba(31,31,31,0.08)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <div style={{ width: 36, height: 36, borderRadius: "50%", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ padding: "1rem 1.5rem", borderBottom: "1px solid rgba(61,61,61,0.08)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ width: 36, height: 36, borderRadius: "50%", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <User size={16} color={MID} />
           </div>
           <div>
@@ -1782,12 +1784,12 @@ function SeccionMensajes() {
                     maxWidth: "75%",
                     padding: "0.6rem 0.9rem",
                     borderRadius: esMio ? "12px 12px 2px 12px" : "12px 12px 12px 2px",
-                    backgroundColor: esMio ? DARK : LIGHT,
-                    border: esMio ? "none" : "1px solid rgba(31,31,31,0.1)",
+                    backgroundColor: esMio ? "#8B1A2F" : LIGHT,
+                    border: esMio ? "none" : "1px solid rgba(61,61,61,0.1)",
                   }}
                 >
-                  <p style={{ fontSize: "0.85rem", color: esMio ? BG : DARK, lineHeight: 1.5 }}>{m.texto}</p>
-                  <p style={{ fontSize: "0.6rem", color: esMio ? "rgba(237,230,217,0.6)" : MID, marginTop: "0.3rem", textAlign: "right" }}>
+                  <p style={{ fontSize: "0.85rem", color: esMio ? "#FFFFFF" : DARK, lineHeight: 1.5 }}>{m.texto}</p>
+                  <p style={{ fontSize: "0.6rem", color: esMio ? "rgba(255,255,255,0.6)" : MID, marginTop: "0.3rem", textAlign: "right" }}>
                     {new Date(m.fecha).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })}
                   </p>
                 </div>
@@ -1798,7 +1800,7 @@ function SeccionMensajes() {
         </div>
 
         {/* Input */}
-        <form onSubmit={enviar} style={{ padding: "0.75rem 1rem", borderTop: "1px solid rgba(31,31,31,0.08)", display: "flex", gap: "0.75rem" }}>
+        <form onSubmit={enviar} style={{ padding: "0.75rem 1rem", borderTop: "1px solid rgba(61,61,61,0.08)", display: "flex", gap: "0.75rem" }}>
           <input
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
@@ -1977,9 +1979,9 @@ function SeccionCalendario() {
   }
 
   const ESTADO_COLOR: Record<string, string> = {
-    programado: "#3498db",
-    completado: "#27ae60",
-    fallado: "#c0392b",
+    programado: "#4A6FA5",
+    completado: "#8B1A2F",
+    fallado: "#C0574A",
   };
 
   if (!plan) {
@@ -1994,7 +1996,7 @@ function SeccionCalendario() {
           </p>
           <button
             onClick={() => document.querySelector<HTMLButtonElement>("[data-seccion='asistente']")?.click()}
-            style={{ padding: "0.65rem 1.5rem", backgroundColor: DARK, color: BG, border: "none", borderRadius: "4px", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
+            style={{ padding: "0.65rem 1.5rem", backgroundColor: "#8B1A2F", color: "#FFFFFF", border: "none", borderRadius: "4px", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}
           >
             Hablar con Vic
           </button>
@@ -2026,7 +2028,7 @@ function SeccionCalendario() {
       {/* Tipos de sesión */}
       <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
         {plan.dias.map((d) => (
-          <span key={d.tipo} style={{ fontSize: "0.65rem", padding: "0.25rem 0.65rem", borderRadius: "20px", backgroundColor: "rgba(31,31,31,0.07)", color: DARK }}>
+          <span key={d.tipo} style={{ fontSize: "0.65rem", padding: "0.25rem 0.65rem", borderRadius: "20px", backgroundColor: "rgba(61,61,61,0.07)", color: DARK }}>
             <strong>Día {d.tipo}:</strong> {d.enfoque}
           </span>
         ))}
@@ -2057,7 +2059,7 @@ function SeccionCalendario() {
               <button key={i} onClick={() => sesion ? seleccionarDia(ds) : undefined}
                 style={{
                   aspectRatio: "1", borderRadius: "6px", padding: 0,
-                  border: isSelected ? `2px solid ${DARK}` : esHoyCell ? `1px solid rgba(31,31,31,0.4)` : "1px solid transparent",
+                  border: isSelected ? `2px solid #8B1A2F` : esHoyCell ? `1px solid rgba(255,255,255,0.4)` : "1px solid transparent",
                   backgroundColor: col ? `${col}18` : "transparent",
                   cursor: sesion ? "pointer" : "default",
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1px",
@@ -2090,10 +2092,10 @@ function SeccionCalendario() {
           {/* Botones hoy/pasado */}
           {esHoyOPasado && sesionDia.estado === "programado" && (
             <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
-              <button onClick={() => marcarEstado("completado")} style={{ flex: 1, padding: "0.6rem", border: "none", borderRadius: "6px", backgroundColor: "#27ae60", color: "#fff", fontSize: "0.72rem", fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+              <button onClick={() => marcarEstado("completado")} style={{ flex: 1, padding: "0.6rem", border: "none", borderRadius: "6px", backgroundColor: "#8B1A2F", color: "#fff", fontSize: "0.72rem", fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 ✅ Lo he cumplido
               </button>
-              <button onClick={() => marcarEstado("fallado")} style={{ flex: 1, padding: "0.6rem", border: "1px solid rgba(192,57,43,0.3)", borderRadius: "6px", backgroundColor: "transparent", color: "#c0392b", fontSize: "0.72rem", fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+              <button onClick={() => marcarEstado("fallado")} style={{ flex: 1, padding: "0.6rem", border: "1px solid rgba(192,87,74,0.3)", borderRadius: "6px", backgroundColor: "transparent", color: "#C0574A", fontSize: "0.72rem", fontWeight: 600, cursor: "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                 ❌ No pude
               </button>
             </div>
@@ -2107,14 +2109,14 @@ function SeccionCalendario() {
             </div>
           ) : (
             <button onClick={generarEjercicios} disabled={loadingEj} style={{
-              width: "100%", padding: "0.7rem", border: `1px solid ${DARK}`, borderRadius: "6px",
-              backgroundColor: loadingEj ? "transparent" : DARK, color: loadingEj ? DARK : BG,
+              width: "100%", padding: "0.7rem", border: `1px solid #8B1A2F`, borderRadius: "6px",
+              backgroundColor: loadingEj ? "transparent" : "#8B1A2F", color: loadingEj ? DARK : "#FFFFFF",
               fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase",
               cursor: loadingEj ? "default" : "pointer", fontFamily: "var(--font-inter), system-ui, sans-serif",
               display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
             }}>
               {loadingEj ? (
-                <><div style={{ width: 10, height: 10, borderRadius: "50%", border: `2px solid ${DARK}`, borderTopColor: "transparent", animation: "spin 0.8s linear infinite", flexShrink: 0 }} /> Generando ejercicios...</>
+                <><div style={{ width: 10, height: 10, borderRadius: "50%", border: `2px solid #8B1A2F`, borderTopColor: "transparent", animation: "spin 0.8s linear infinite", flexShrink: 0 }} /> Generando ejercicios...</>
               ) : (
                 "✨ Ver ejercicios del día"
               )}
@@ -2245,18 +2247,18 @@ function SeccionAsistente() {
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "calc(100vh - 120px)", minHeight: 500 }}>
       {/* Cabecera */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexShrink: 0 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexShrink: 0, backgroundColor: "#8B1A2F", borderRadius: "8px", padding: "0.85rem 1.1rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
           {/* Avatar IA */}
-          <div style={{ width: 44, height: 44, borderRadius: "50%", backgroundColor: DARK, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <Sparkles size={20} color={BG} />
+          <div style={{ width: 44, height: 44, borderRadius: "50%", backgroundColor: "#3D3D3D", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Sparkles size={20} color="#FFFFFF" />
           </div>
           <div>
-            <p style={{ fontSize: "0.95rem", fontWeight: 600, color: DARK, lineHeight: 1.2 }}>Vic · Asistente Veysic</p>
-            <p style={{ fontSize: "0.65rem", color: MID, letterSpacing: "0.05em" }}>Tu entrenador personal con IA</p>
+            <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.2 }}>Vic · Asistente Veysic</p>
+            <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.7)", letterSpacing: "0.05em" }}>Tu entrenador personal con IA</p>
           </div>
         </div>
-        <button onClick={resetChat} title="Nueva conversación" style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(31,31,31,0.18)", borderRadius: "4px", cursor: "pointer", padding: "0.4rem 0.7rem", color: MID, fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+        <button onClick={resetChat} title="Nueva conversación" style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(61,61,61,0.35)", borderRadius: "4px", cursor: "pointer", padding: "0.4rem 0.7rem", color: "#FFFFFF", fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
           <RotateCcw size={11} /> Nueva
         </button>
       </div>
@@ -2270,12 +2272,12 @@ function SeccionAsistente() {
             {SUGGESTIONS.map((s) => (
               <button key={s} onClick={() => sendMessage(s)} style={{
                 padding: "0.45rem 0.85rem", fontSize: "0.7rem", borderRadius: "20px",
-                border: "1px solid rgba(31,31,31,0.2)", backgroundColor: LIGHT, color: DARK,
+                border: "1px solid #3D3D3D", backgroundColor: LIGHT, color: DARK,
                 cursor: "pointer", textAlign: "left", transition: "all 0.15s",
                 fontFamily: "var(--font-inter), system-ui, sans-serif", lineHeight: 1.4,
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = DARK; e.currentTarget.style.color = BG; e.currentTarget.style.borderColor = DARK; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = LIGHT; e.currentTarget.style.color = DARK; e.currentTarget.style.borderColor = "rgba(31,31,31,0.2)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#8B1A2F"; e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderColor = "#8B1A2F"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = LIGHT; e.currentTarget.style.color = DARK; e.currentTarget.style.borderColor = "#3D3D3D"; }}
               >
                 {s}
               </button>
@@ -2295,8 +2297,8 @@ function SeccionAsistente() {
               <div style={{ display: "flex", justifyContent: isUser ? "flex-end" : "flex-start", alignItems: "flex-start", gap: "0.6rem" }}>
                 {/* Avatar asistente */}
                 {!isUser && (
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", backgroundColor: DARK, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "0.15rem" }}>
-                    <Sparkles size={13} color={BG} />
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", backgroundColor: "#8B1A2F", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "0.15rem" }}>
+                    <Sparkles size={13} color={"#FFFFFF"} />
                   </div>
                 )}
 
@@ -2304,12 +2306,12 @@ function SeccionAsistente() {
                 <div style={{
                   maxWidth: "78%", padding: "0.85rem 1rem",
                   borderRadius: isUser ? "16px 16px 4px 16px" : "4px 16px 16px 16px",
-                  backgroundColor: isUser ? DARK : LIGHT,
-                  border: isUser ? "none" : "1px solid rgba(31,31,31,0.09)",
+                  backgroundColor: isUser ? "#8B1A2F" : LIGHT,
+                  border: isUser ? "none" : "1px solid #3D3D3D",
                   boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
                 }}>
                   {isUser ? (
-                    <p style={{ fontSize: "0.82rem", color: BG, lineHeight: 1.6, margin: 0 }}>{msg.content}</p>
+                    <p style={{ fontSize: "0.82rem", color: "#FFFFFF", lineHeight: 1.6, margin: 0 }}>{msg.content}</p>
                   ) : msg.content === "" && isStreaming ? (
                     <div style={{ display: "flex", gap: "4px", alignItems: "center", padding: "0.2rem 0" }}>
                       {[0, 1, 2].map((i) => (
@@ -2327,9 +2329,9 @@ function SeccionAsistente() {
 
               {/* Boceto card */}
               {boceto && isLastAssistant && !acceptedBoceto && (
-                <div style={{ marginLeft: 42, marginTop: "0.75rem", backgroundColor: DARK, borderRadius: "8px", padding: "1.25rem 1.5rem", maxWidth: "calc(78% + 42px)" }}>
-                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(237,230,217,0.5)", marginBottom: "0.5rem" }}>Tu plan</p>
-                  <p style={{ fontSize: "1.05rem", fontWeight: 700, color: BG, marginBottom: "1rem" }}>{boceto.nombre}</p>
+                <div style={{ marginLeft: 42, marginTop: "0.75rem", backgroundColor: "#8B1A2F", borderRadius: "8px", padding: "1.25rem 1.5rem", maxWidth: "calc(78% + 42px)" }}>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "0.5rem" }}>Tu plan</p>
+                  <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#FFFFFF", marginBottom: "1rem" }}>{boceto.nombre}</p>
                   <div style={{ display: "flex", gap: "1.25rem", marginBottom: "1rem", flexWrap: "wrap" }}>
                     {[
                       { emoji: "📅", val: `${boceto.diasSemana} días/semana` },
@@ -2338,19 +2340,19 @@ function SeccionAsistente() {
                     ].map(({ emoji, val }) => (
                       <div key={val} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                         <span style={{ fontSize: "0.85rem" }}>{emoji}</span>
-                        <span style={{ fontSize: "0.75rem", color: "rgba(237,230,217,0.8)" }}>{val}</span>
+                        <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.8)" }}>{val}</span>
                       </div>
                     ))}
                   </div>
                   <div style={{ marginBottom: "1.25rem" }}>
-                    <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(237,230,217,0.5)", marginBottom: "0.5rem" }}>Lo que trabajaremos</p>
+                    <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "0.5rem" }}>Lo que trabajaremos</p>
                     {boceto.dias.map((d) => (
                       <div key={d.tipo} style={{ display: "flex", gap: "0.6rem", alignItems: "center", marginBottom: "0.3rem" }}>
-                        <span style={{ fontSize: "0.62rem", fontWeight: 700, minWidth: 40, backgroundColor: "rgba(237,230,217,0.12)", padding: "0.15rem 0.4rem", borderRadius: "3px", color: BG, textAlign: "center" }}>Día {d.tipo}</span>
-                        <span style={{ fontSize: "0.78rem", color: "rgba(237,230,217,0.85)" }}>{d.enfoque}</span>
+                        <span style={{ fontSize: "0.62rem", fontWeight: 700, minWidth: 40, backgroundColor: "rgba(255,255,255,0.12)", padding: "0.15rem 0.4rem", borderRadius: "3px", color: "#FFFFFF", textAlign: "center" }}>Día {d.tipo}</span>
+                        <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.85)" }}>{d.enfoque}</span>
                       </div>
                     ))}
-                    <p style={{ fontSize: "0.65rem", color: "rgba(237,230,217,0.4)", marginTop: "0.6rem", fontStyle: "italic" }}>Los ejercicios detallados los encontrarás en tu calendario.</p>
+                    <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)", marginTop: "0.6rem", fontStyle: "italic" }}>Los ejercicios detallados los encontrarás en tu calendario.</p>
                   </div>
                   <button onClick={() => handleAceptarPlan(boceto)} style={{
                     width: "100%", padding: "0.75rem", backgroundColor: BG, color: DARK,
@@ -2365,8 +2367,8 @@ function SeccionAsistente() {
 
               {/* Confirmación de plan aceptado */}
               {boceto && isLastAssistant && acceptedBoceto && (
-                <div style={{ marginLeft: 42, marginTop: "0.75rem", padding: "0.75rem 1rem", backgroundColor: "rgba(39,174,96,0.1)", borderRadius: "6px", border: "1px solid rgba(39,174,96,0.25)", maxWidth: "78%" }}>
-                  <p style={{ fontSize: "0.78rem", color: "#27ae60", fontWeight: 500 }}>✅ Plan guardado — abriendo tu calendario...</p>
+                <div style={{ marginLeft: 42, marginTop: "0.75rem", padding: "0.75rem 1rem", backgroundColor: "rgba(139,26,47,0.1)", borderRadius: "6px", border: "1px solid rgba(139,26,47,0.25)", maxWidth: "78%" }}>
+                  <p style={{ fontSize: "0.78rem", color: "#8B1A2F", fontWeight: 500 }}>✅ Plan guardado — abriendo tu calendario...</p>
                 </div>
               )}
             </div>
@@ -2376,7 +2378,7 @@ function SeccionAsistente() {
       </div>
 
       {/* Input */}
-      <div style={{ flexShrink: 0, paddingTop: "0.75rem", borderTop: "1px solid rgba(31,31,31,0.1)" }}>
+      <div style={{ flexShrink: 0, paddingTop: "0.75rem", borderTop: "1px solid rgba(61,61,61,0.1)" }}>
         <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-end" }}>
           <textarea
             ref={inputRef}
@@ -2386,19 +2388,19 @@ function SeccionAsistente() {
             placeholder="Escribe tu consulta… (Enter para enviar, Shift+Enter para nueva línea)"
             rows={1}
             style={{
-              flex: 1, resize: "none", background: LIGHT, border: "1px solid rgba(31,31,31,0.2)",
+              flex: 1, resize: "none", background: LIGHT, border: "1px solid #3D3D3D",
               borderRadius: "8px", padding: "0.75rem 1rem", fontSize: "0.82rem", color: DARK,
               outline: "none", fontFamily: "var(--font-inter), system-ui, sans-serif",
               lineHeight: 1.5, overflowY: "hidden", transition: "border-color 0.15s",
             }}
-            onFocus={(e) => (e.target.style.borderColor = DARK)}
-            onBlur={(e) => (e.target.style.borderColor = "rgba(31,31,31,0.2)")}
+            onFocus={(e) => (e.target.style.borderColor = "#8B1A2F")}
+            onBlur={(e) => (e.target.style.borderColor = "#3D3D3D")}
             disabled={loading}
           />
           {loading ? (
             <button type="button" onClick={stopGeneration} title="Detener" style={{
-              flexShrink: 0, width: 40, height: 40, borderRadius: "8px", border: "1px solid rgba(192,57,43,0.3)",
-              backgroundColor: "rgba(192,57,43,0.08)", color: "#c0392b", cursor: "pointer",
+              flexShrink: 0, width: 40, height: 40, borderRadius: "8px", border: "1px solid rgba(192,87,74,0.3)",
+              backgroundColor: "rgba(192,87,74,0.08)", color: "#C0574A", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <StopCircle size={16} />
@@ -2406,7 +2408,7 @@ function SeccionAsistente() {
           ) : (
             <button type="submit" disabled={!input.trim()} style={{
               flexShrink: 0, width: 40, height: 40, borderRadius: "8px", border: "none",
-              backgroundColor: input.trim() ? DARK : "rgba(31,31,31,0.15)", color: input.trim() ? BG : MID,
+              backgroundColor: input.trim() ? "#8B1A2F" : "rgba(255,255,255,0.15)", color: input.trim() ? "#FFFFFF" : MID,
               cursor: input.trim() ? "pointer" : "not-allowed", display: "flex", alignItems: "center", justifyContent: "center",
               transition: "background-color 0.15s",
             }}>
@@ -2498,9 +2500,9 @@ export default function PerfilPage() {
           position: "sticky",
           top: 0,
           zIndex: 40,
-          backgroundColor: "rgba(237,230,217,0.95)",
+          backgroundColor: "rgba(255,255,255,0.95)",
           backdropFilter: "blur(10px)",
-          borderBottom: "1px solid rgba(31,31,31,0.1)",
+          borderBottom: "1px solid rgba(61,61,61,0.1)",
           padding: "0 1.5rem",
           height: 60,
           display: "flex",
@@ -2551,7 +2553,7 @@ export default function PerfilPage() {
             width: 240,
             flexShrink: 0,
             backgroundColor: LIGHT,
-            borderRight: "1px solid rgba(31,31,31,0.1)",
+            borderRight: "1px solid rgba(61,61,61,0.1)",
             padding: "1.5rem 0",
             position: "fixed" as const,
             top: 60,
@@ -2565,9 +2567,9 @@ export default function PerfilPage() {
           className="hidden md:flex"
         >
           {/* Usuario */}
-          <div style={{ padding: "0 1.5rem 1.5rem", borderBottom: "1px solid rgba(31,31,31,0.08)" }}>
+          <div style={{ padding: "0 1.5rem 1.5rem", borderBottom: "1px solid rgba(61,61,61,0.08)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <div style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(31,31,31,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", backgroundColor: "rgba(61,61,61,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {user.foto ? (
                   <img src={user.foto} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 ) : (
@@ -2596,23 +2598,23 @@ export default function PerfilPage() {
                   padding: "0.7rem 1.5rem",
                   background: "none",
                   border: "none",
-                  borderLeft: `3px solid ${seccion === id ? DARK : "transparent"}`,
-                  backgroundColor: seccion === id ? "rgba(31,31,31,0.06)" : "transparent",
+                  borderLeft: `3px solid ${seccion === id ? "#8B1A2F" : "transparent"}`,
+                  backgroundColor: seccion === id ? "rgba(139,26,47,0.08)" : "transparent",
                   cursor: "pointer",
                   fontFamily: "var(--font-inter), system-ui, sans-serif",
                   fontSize: "0.8rem",
-                  color: seccion === id ? DARK : MID,
+                  color: seccion === id ? "#8B1A2F" : MID,
                   textAlign: "left",
                   transition: "all 0.15s",
                 }}
               >
-                <Icon size={id === "asistente" ? 15 : 16} style={id === "asistente" ? { color: "#8e44ad" } : undefined} />
+                <Icon size={id === "asistente" ? 15 : 16} style={id === "asistente" ? { color: "#7A5C8E" } : undefined} />
                 {label}
                 {id === "asistente" && (
-                  <span style={{ marginLeft: "auto", fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase", backgroundColor: "#8e44ad", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "3px", fontWeight: 700 }}>IA</span>
+                  <span style={{ marginLeft: "auto", fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase", backgroundColor: "#7A5C8E", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "3px", fontWeight: 700 }}>IA</span>
                 )}
                 {id === "mensajes" && unreadMsgs > 0 && (
-                  <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#c0392b", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
+                  <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#C0574A", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
                     {unreadMsgs > 9 ? "9+" : unreadMsgs}
                   </span>
                 )}
@@ -2631,7 +2633,7 @@ export default function PerfilPage() {
               bottom: 0,
               width: 240,
               backgroundColor: LIGHT,
-              borderRight: "1px solid rgba(31,31,31,0.1)",
+              borderRight: "1px solid rgba(61,61,61,0.1)",
               zIndex: 35,
               display: "flex",
               flexDirection: "column",
@@ -2651,19 +2653,19 @@ export default function PerfilPage() {
                     padding: "0.7rem 1.5rem",
                     background: "none",
                     border: "none",
-                    borderLeft: `3px solid ${seccion === id ? DARK : "transparent"}`,
-                    backgroundColor: seccion === id ? "rgba(31,31,31,0.06)" : "transparent",
+                    borderLeft: `3px solid ${seccion === id ? "#8B1A2F" : "transparent"}`,
+                    backgroundColor: seccion === id ? "rgba(139,26,47,0.08)" : "transparent",
                     cursor: "pointer",
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                     fontSize: "0.8rem",
-                    color: seccion === id ? DARK : MID,
+                    color: seccion === id ? "#8B1A2F" : MID,
                     textAlign: "left",
                   }}
                 >
                   <Icon size={16} />
                   {label}
                   {id === "mensajes" && unreadMsgs > 0 && (
-                    <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#c0392b", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
+                    <span style={{ marginLeft: "auto", minWidth: 18, height: 18, borderRadius: "50%", backgroundColor: "#C0574A", color: "#fff", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 3px" }}>
                       {unreadMsgs > 9 ? "9+" : unreadMsgs}
                     </span>
                   )}

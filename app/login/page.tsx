@@ -7,9 +7,9 @@ import { Eye, EyeOff } from "lucide-react";
 import { login } from "../lib/auth";
 import { useAuth } from "../components/AuthProvider";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
 
 function Field({
   label,
@@ -49,7 +49,7 @@ function Field({
             width: "100%",
             background: "transparent",
             border: "none",
-            borderBottom: `1px solid rgba(31,31,31,0.25)`,
+            borderBottom: `1px solid #3D3D3D`,
             paddingBottom: "0.75rem",
             paddingTop: "0.25rem",
             paddingRight: right ? "2rem" : 0,
@@ -60,10 +60,10 @@ function Field({
             boxSizing: "border-box",
           }}
           onFocus={(e) =>
-            (e.currentTarget.style.borderBottomColor = DARK)
+            (e.currentTarget.style.borderBottomColor = "#8B1A2F")
           }
           onBlur={(e) =>
-            (e.currentTarget.style.borderBottomColor = "rgba(31,31,31,0.25)")
+            (e.currentTarget.style.borderBottomColor = "#3D3D3D")
           }
         />
         {right && (
@@ -195,11 +195,11 @@ function LoginContent() {
             <p
               style={{
                 fontSize: "0.8rem",
-                color: "#c0392b",
-                backgroundColor: "rgba(192,57,43,0.06)",
+                color: "#C0574A",
+                backgroundColor: "rgba(192,87,74,0.1)",
                 padding: "0.75rem 1rem",
                 borderRadius: "2px",
-                borderLeft: "3px solid #c0392b",
+                borderLeft: "3px solid #C0574A",
               }}
             >
               {error}
@@ -214,8 +214,8 @@ function LoginContent() {
               fontSize: "0.65rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              backgroundColor: loading ? "#3A3A3A" : DARK,
-              color: BG,
+              backgroundColor: loading ? "#3D3D3D" : "#8B1A2F",
+              color: "#FFFFFF",
               border: "none",
               borderRadius: "2px",
               cursor: loading ? "not-allowed" : "pointer",
@@ -223,10 +223,10 @@ function LoginContent() {
               transition: "background-color 0.2s",
             }}
             onMouseEnter={(e) => {
-              if (!loading) e.currentTarget.style.backgroundColor = "#3A3A3A";
+              if (!loading) e.currentTarget.style.backgroundColor = "#B8324A";
             }}
             onMouseLeave={(e) => {
-              if (!loading) e.currentTarget.style.backgroundColor = DARK;
+              if (!loading) e.currentTarget.style.backgroundColor = "#8B1A2F";
             }}
           >
             {loading ? "Accediendo..." : "Iniciar sesión"}
@@ -250,7 +250,7 @@ function LoginContent() {
               textDecoration: "none",
               letterSpacing: "0.05em",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = DARK)}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#8B1A2F")}
             onMouseLeave={(e) => (e.currentTarget.style.color = MID)}
           >
             ¿Olvidaste tu contraseña?
@@ -275,9 +275,9 @@ function LoginContent() {
           style={{
             marginTop: "2.5rem",
             padding: "1rem",
-            backgroundColor: "rgba(31,31,31,0.04)",
+            backgroundColor: "#3D3D3D",
             borderRadius: "4px",
-            border: "1px solid rgba(31,31,31,0.1)",
+            border: "1px solid rgba(61,61,61,0.1)",
           }}
         >
           <p

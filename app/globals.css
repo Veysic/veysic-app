@@ -10,7 +10,27 @@ html {
 }
 
 body {
-  background-color: #ede6d9;
-  color: #1f1f1f;
+  background-color: #2c2c2c;
+  color: #ffffff;
   font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.veysic-card {
+  border: 1px solid #3d3d3d;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.15s ease;
+}
+
+.veysic-card:hover {
+  border-color: #8b1a2f;
+}
+
+.veysic-btn-primary:hover:not(:disabled) {
+  background-color: #a8324a !important;
+}
+
+.veysic-btn-outline:hover:not(:disabled) {
+  background-color: #8b1a2f !important;
+  border-color: #8b1a2f !important;
+  color: #ffffff !important;
 }

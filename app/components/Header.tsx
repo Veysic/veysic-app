@@ -28,16 +28,16 @@ const BTN = {
   },
   dark: {
     padding: "0.6rem 1.4rem",
-    backgroundColor: "#1F1F1F",
-    color: "#EDE6D9",
+    backgroundColor: "#8B1A2F",
+    color: "#FFFFFF",
     border: "none",
     cursor: "pointer",
   },
   outline: {
     padding: "0.55rem 1.3rem",
     backgroundColor: "transparent",
-    color: "#1F1F1F",
-    border: "1px solid rgba(31,31,31,0.35)",
+    color: "#8B1A2F",
+    border: "1px solid #8B1A2F",
   },
 };
 
@@ -86,29 +86,54 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: "#EDE6D9",
-        borderBottom: "1px solid rgba(31,31,31,0.12)",
-        boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.08)" : "none",
+        backgroundColor: "#2C2C2C",
+        borderBottom: "1px solid rgba(61,61,61,0.12)",
+        boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.3)" : "none",
         transition: "box-shadow 0.3s ease",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-20">
         {/* Wordmark */}
         <Link
           href="/"
-          className="font-serif uppercase"
           style={{
-            letterSpacing: "0.28em",
-            fontSize: "1.05rem",
-            color: "#1F1F1F",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
             textDecoration: "none",
           }}
         >
-          Veysic
+          <span
+            className="font-serif"
+            style={{
+              width: 30,
+              height: 30,
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#8B1A2F",
+              color: "#FFFFFF",
+              borderRadius: "3px",
+              fontSize: "0.95rem",
+            }}
+          >
+            V
+          </span>
+          <span
+            className="font-serif uppercase"
+            style={{
+              letterSpacing: "0.28em",
+              fontSize: "1.05rem",
+              color: "#FFFFFF",
+            }}
+          >
+            Veysic
+          </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -117,12 +142,12 @@ export default function Header() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#3A3A3A",
+                color: "#FFFFFF",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#1F1F1F")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#3A3A3A")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#B8324A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#FFFFFF")}
             >
               {link.label}
             </Link>
@@ -134,12 +159,16 @@ export default function Header() {
               <Link
                 href="/login"
                 style={{ ...BTN.base, ...BTN.outline }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "rgba(31,31,31,0.06)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "transparent")
-                }
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#8B1A2F";
+                  e.currentTarget.style.borderColor = "#8B1A2F";
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.borderColor = "#8B1A2F";
+                  e.currentTarget.style.color = "#8B1A2F";
+                }}
               >
                 Iniciar sesión
               </Link>
@@ -147,10 +176,10 @@ export default function Header() {
                 href="/registro"
                 style={{ ...BTN.base, ...BTN.dark }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#3A3A3A")
+                  (e.currentTarget.style.backgroundColor = "#A8324A")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#1F1F1F")
+                  (e.currentTarget.style.backgroundColor = "#8B1A2F")
                 }
               >
                 Registrarse
@@ -168,18 +197,18 @@ export default function Header() {
                   alignItems: "center",
                   gap: "0.6rem",
                   background: "none",
-                  border: "1px solid rgba(31,31,31,0.2)",
+                  border: "1px solid #3D3D3D",
                   borderRadius: "2rem",
                   padding: "0.4rem 0.9rem 0.4rem 0.5rem",
                   cursor: "pointer",
-                  color: "#1F1F1F",
+                  color: "#FFFFFF",
                   transition: "border-color 0.2s",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderColor = "rgba(31,31,31,0.5)")
+                  (e.currentTarget.style.borderColor = "rgba(61,61,61,0.5)")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.borderColor = "rgba(31,31,31,0.2)")
+                  (e.currentTarget.style.borderColor = "#3D3D3D")
                 }
               >
                 {user.foto ? (
@@ -199,20 +228,20 @@ export default function Header() {
                       width: 28,
                       height: 28,
                       borderRadius: "50%",
-                      backgroundColor: "#1F1F1F",
+                      backgroundColor: "#3D3D3D",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <User size={14} color="#EDE6D9" />
+                    <User size={14} color="#FFFFFF" />
                   </div>
                 )}
                 <span
                   style={{
                     fontSize: "0.7rem",
                     letterSpacing: "0.05em",
-                    color: "#1F1F1F",
+                    color: "#FFFFFF",
                   }}
                 >
                   {user.nombre.split(" ")[0]}
@@ -232,25 +261,25 @@ export default function Header() {
                     position: "absolute",
                     top: "calc(100% + 0.5rem)",
                     right: 0,
-                    backgroundColor: "#EDE6D9",
-                    border: "1px solid rgba(31,31,31,0.12)",
+                    backgroundColor: "#3D3D3D",
+                    border: "1px solid rgba(61,61,61,0.12)",
                     borderRadius: "4px",
                     minWidth: 200,
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
                     overflow: "hidden",
                   }}
                 >
                   <div
                     style={{
                       padding: "0.75rem 1rem",
-                      borderBottom: "1px solid rgba(31,31,31,0.08)",
+                      borderBottom: "1px solid rgba(61,61,61,0.08)",
                     }}
                   >
                     <p
                       style={{
                         fontSize: "0.75rem",
                         fontWeight: 500,
-                        color: "#1F1F1F",
+                        color: "#FFFFFF",
                       }}
                     >
                       {user.nombre}
@@ -258,7 +287,7 @@ export default function Header() {
                     <p
                       style={{
                         fontSize: "0.65rem",
-                        color: "#3A3A3A",
+                        color: "#A0A0A0",
                         marginTop: "0.15rem",
                       }}
                     >
@@ -274,13 +303,13 @@ export default function Header() {
                       gap: "0.6rem",
                       padding: "0.75rem 1rem",
                       fontSize: "0.7rem",
-                      color: "#1F1F1F",
+                      color: "#FFFFFF",
                       textDecoration: "none",
                       transition: "background-color 0.15s",
                     }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        "rgba(31,31,31,0.05)")
+                        "rgba(255,255,255,0.06)")
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor = "transparent")
@@ -298,17 +327,17 @@ export default function Header() {
                       width: "100%",
                       padding: "0.75rem 1rem",
                       fontSize: "0.7rem",
-                      color: "#1F1F1F",
+                      color: "#FFFFFF",
                       background: "none",
                       border: "none",
-                      borderTop: "1px solid rgba(31,31,31,0.06)",
+                      borderTop: "1px solid rgba(61,61,61,0.08)",
                       cursor: "pointer",
                       textAlign: "left",
                       transition: "background-color 0.15s",
                     }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        "rgba(31,31,31,0.05)")
+                        "rgba(255,255,255,0.06)")
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor = "transparent")
@@ -332,7 +361,7 @@ export default function Header() {
             background: "none",
             border: "none",
             cursor: "pointer",
-            color: "#1F1F1F",
+            color: "#FFFFFF",
             padding: "0.5rem",
           }}
         >
@@ -348,8 +377,8 @@ export default function Header() {
       {menuOpen && (
         <div
           style={{
-            backgroundColor: "#EDE6D9",
-            borderTop: "1px solid rgba(31,31,31,0.1)",
+            backgroundColor: "#3D3D3D",
+            borderTop: "1px solid rgba(61,61,61,0.1)",
             padding: "2rem 1.5rem 2.5rem",
             display: "flex",
             flexDirection: "column",
@@ -365,7 +394,7 @@ export default function Header() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#3A3A3A",
+                color: "#FFFFFF",
                 textDecoration: "none",
               }}
             >
@@ -382,8 +411,8 @@ export default function Header() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  border: "1px solid rgba(31,31,31,0.35)",
-                  color: "#1F1F1F",
+                  border: "1px solid #8B1A2F",
+                  color: "#8B1A2F",
                   textDecoration: "none",
                   borderRadius: "2px",
                   textAlign: "center",
@@ -399,8 +428,8 @@ export default function Header() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: "#1F1F1F",
-                  color: "#EDE6D9",
+                  backgroundColor: "#8B1A2F",
+                  color: "#FFFFFF",
                   textDecoration: "none",
                   borderRadius: "2px",
                   textAlign: "center",
@@ -419,8 +448,8 @@ export default function Header() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  border: "1px solid rgba(31,31,31,0.35)",
-                  color: "#1F1F1F",
+                  border: "1px solid #8B1A2F",
+                  color: "#8B1A2F",
                   textDecoration: "none",
                   borderRadius: "2px",
                   textAlign: "center",
@@ -438,8 +467,8 @@ export default function Header() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: "#1F1F1F",
-                  color: "#EDE6D9",
+                  backgroundColor: "#8B1A2F",
+                  color: "#FFFFFF",
                   border: "none",
                   borderRadius: "2px",
                   cursor: "pointer",

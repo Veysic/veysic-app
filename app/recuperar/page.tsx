@@ -4,9 +4,9 @@ import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 
-const BG = "#EDE6D9";
-const DARK = "#1F1F1F";
-const MID = "#3A3A3A";
+const BG = "#2C2C2C";
+const DARK = "#FFFFFF";
+const MID = "#A0A0A0";
 
 export default function RecuperarPage() {
   const [email, setEmail] = useState("");
@@ -99,7 +99,7 @@ export default function RecuperarPage() {
                   style={{
                     background: "transparent",
                     border: "none",
-                    borderBottom: "1px solid rgba(31,31,31,0.25)",
+                    borderBottom: "1px solid #3D3D3D",
                     paddingBottom: "0.75rem",
                     paddingTop: "0.25rem",
                     fontSize: "0.875rem",
@@ -108,11 +108,10 @@ export default function RecuperarPage() {
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                   }}
                   onFocus={(e) =>
-                    (e.currentTarget.style.borderBottomColor = DARK)
+                    (e.currentTarget.style.borderBottomColor = "#8B1A2F")
                   }
                   onBlur={(e) =>
-                    (e.currentTarget.style.borderBottomColor =
-                      "rgba(31,31,31,0.25)")
+                    (e.currentTarget.style.borderBottomColor = "#3D3D3D")
                   }
                 />
               </div>
@@ -125,13 +124,19 @@ export default function RecuperarPage() {
                   fontSize: "0.65rem",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  backgroundColor: loading ? "#3A3A3A" : DARK,
-                  color: BG,
+                  backgroundColor: loading ? "#3D3D3D" : "#8B1A2F",
+                  color: "#FFFFFF",
                   border: "none",
                   borderRadius: "2px",
                   cursor: loading ? "not-allowed" : "pointer",
                   fontFamily: "var(--font-inter), system-ui, sans-serif",
                   transition: "background-color 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading) e.currentTarget.style.backgroundColor = "#B8324A";
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading) e.currentTarget.style.backgroundColor = "#8B1A2F";
                 }}
               >
                 {loading ? "Enviando..." : "Enviar instrucciones"}
@@ -162,7 +167,7 @@ export default function RecuperarPage() {
           <div style={{ textAlign: "center" }}>
             <CheckCircle
               size={48}
-              color={DARK}
+              color="#8B1A2F"
               style={{ margin: "0 auto 1.5rem" }}
             />
             <h1
@@ -196,8 +201,8 @@ export default function RecuperarPage() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                backgroundColor: DARK,
-                color: BG,
+                backgroundColor: "#8B1A2F",
+                color: "#FFFFFF",
                 textDecoration: "none",
                 borderRadius: "2px",
               }}
